@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { HomeDashboardService } from 'src/app/pages/home-dashboard/home-dashboard.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-
+import * as FormData from 'form-data';
 @Component({
   selector: 'app-create-community',
   templateUrl: './create-community.component.html',

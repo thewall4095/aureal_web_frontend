@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "aureal-rss-frontend"
+  },
+  "targets": {
+    "aureal-rss-frontend": {
+      "hosting": {
+        "aureal-rss-frontend": [
+          "aureal-rss-frontend"
+        ]
+      }
+    }
   }
 }

@@ -80,7 +80,7 @@ const googleLoginOptions = {
     HiveTokenRegisterComponent,
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     AppRoutingModule,
     MatProgressBarModule,
     BrowserAnimationsModule,

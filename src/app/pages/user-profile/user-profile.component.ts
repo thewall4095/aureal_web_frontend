@@ -9,7 +9,7 @@ import { SelectCommunityComponent } from 'src/app/components/select-community/se
 import { HomeDashboardService } from 'src/app/pages/home-dashboard/home-dashboard.service';
 import { Observable, forkJoin } from 'rxjs';
 import { ConfirmationDialogService } from 'src/app/confirmation-dialog/confirmation-dialog.service';
-
+import * as FormData from 'form-data';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',

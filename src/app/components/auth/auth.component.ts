@@ -4,7 +4,7 @@ import { SearchCountryField, TooltipLabel, CountryISO, PhoneNumberFormat } from 
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
+import * as FormData from 'form-data';
 @Component({
   selector: 'app-auth',
   templateUrl: './auth.component.html',

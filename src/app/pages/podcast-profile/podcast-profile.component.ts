@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from "@angular/material/dialog";
 import { HiveAuthComponent } from 'src/app/components/hive-auth/hive-auth.component';
 import { SocialShareComponent } from 'src/app/components/social-share/social-share.component';
-
+import * as FormData from 'form-data';
 @Component({
   selector: 'app-podcast-profile',
   templateUrl: './podcast-profile.component.html',
@@ -49,8 +49,7 @@ export class PodcastProfileComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(paramMap => {
       this.podcastId = paramMap.get('podcast_id');
       this.rssFeedDetailsService.getRssFeedDetails(paramMap.get('podcast_id'), this.page, this.pageSize).then(res => {
-        this.podcastData = res['podcasts'][0]; //.find( podcast => podcast.id===parseInt(window.location.pathname.split('/')[2]));
-        document.title = this.podcastData.name;
+        this.podcastData = res['podcasts'][0]; 
         this.progress = false;
       })
     });
@@ -67,17 +66,6 @@ export class PodcastProfileComponent implements OnInit {
         });
     }
 
-    // console.log(this.route.snapshot.queryParamMap.get("expires_in"));
-
-    // this.activatedRoute.paramMap.subscribe((paramMap) => {
-    //   this.rssFeedDetailsService.getRssFeedDetails(parseInt(window.location.pathname.split('/')[2])).then(res => {
-    //     this.activatedRoute.queryParams.subscribe( queryParams=>{
-    //       this.podcastData = res['podcasts'].find( podcast => podcast.id===parseInt(window.location.pathname.split('/')[2]));
-    //       this.progress = false;
-    //     })
-
-    //   })    
-    // });
   }
 
   followPodcast(ifFollows) {
@@ -107,7 +95,7 @@ export class PodcastProfileComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(paramMap => {
       this.podcastId = paramMap.get('podcast_id');
       this.rssFeedDetailsService.getRssFeedDetails(paramMap.get('podcast_id'), this.page, this.pageSize).then(res => {
-        this.podcastData.Episodes = this.podcastData.Episodes.concat(res['podcasts'][0].Episodes); //.find( podcast => podcast.id===parseInt(window.location.pathname.split('/')[2]));
+        this.podcastData.Episodes = this.podcastData.Episodes.concat(res['podcasts'][0].Episodes); 
         this.categoryBasedPodcastsLoading = false;
       })
     });

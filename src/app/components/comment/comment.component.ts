@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Comment } from "./comment.model";
 import { HomeDashboardService } from 'src/app/pages/home-dashboard/home-dashboard.service';
 import { ToastrService } from 'ngx-toastr';
-
+import * as FormData from 'form-data';
 @Component({
   selector: 'app-comment',
   templateUrl: './comment.component.html',

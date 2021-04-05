@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import * as moment_ from 'moment';
 const moment = moment_;
 import {HomeDashboardService} from 'src/app/pages/home-dashboard/home-dashboard.service';
-
+import * as FormData from 'form-data';
 @Component({
   selector: 'app-hive-token',
   templateUrl: './hive-token.component.html',

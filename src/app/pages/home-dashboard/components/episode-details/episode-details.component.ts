@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from "@angular/material/dialog";
 import { HiveAuthComponent } from 'src/app/components/hive-auth/hive-auth.component';
 import { PlayerService } from 'src/app/services/player.service';
-
+import * as FormData from 'form-data';
 @Component({
   selector: 'app-episode-details',
   templateUrl: './episode-details.component.html',

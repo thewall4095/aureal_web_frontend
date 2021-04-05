@@ -6,7 +6,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import * as moment_ from 'moment';
 const moment = moment_;
 import { ActivatedRoute, Router } from "@angular/router";
-
+import * as FormData from 'form-data';
 @Component({
   selector: 'app-post',
   templateUrl: './post.component.html',
