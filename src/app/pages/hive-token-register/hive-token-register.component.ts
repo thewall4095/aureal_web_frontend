@@ -5,7 +5,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import * as moment_ from 'moment';
 const moment = moment_;
-
+import * as FormData from 'form-data';
 @Component({
   selector: 'app-hive-token-register',
   templateUrl: './hive-token-register.component.html',

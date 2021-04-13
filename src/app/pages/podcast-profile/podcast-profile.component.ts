@@ -12,6 +12,7 @@ import { HiveAuthComponent } from 'src/app/components/hive-auth/hive-auth.compon
 import { SocialShareComponent } from 'src/app/components/social-share/social-share.component';
 import { Title, Meta } from '@angular/platform-browser';
 
+import * as FormData from 'form-data';
 @Component({
   selector: 'app-podcast-profile',
   templateUrl: './podcast-profile.component.html',
@@ -52,8 +53,7 @@ export class PodcastProfileComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(paramMap => {
       this.podcastId = paramMap.get('podcast_id');
       this.rssFeedDetailsService.getRssFeedDetails(paramMap.get('podcast_id'), this.page, this.pageSize).then(res => {
-        this.podcastData = res['podcasts'][0]; //.find( podcast => podcast.id===parseInt(window.location.pathname.split('/')[2]));
-        document.title = this.podcastData.name;
+        this.podcastData = res['podcasts'][0]; 
         this.progress = false;
       })
     });
@@ -118,7 +118,7 @@ export class PodcastProfileComponent implements OnInit {
     this.activatedRoute.paramMap.subscribe(paramMap => {
       this.podcastId = paramMap.get('podcast_id');
       this.rssFeedDetailsService.getRssFeedDetails(paramMap.get('podcast_id'), this.page, this.pageSize).then(res => {
-        this.podcastData.Episodes = this.podcastData.Episodes.concat(res['podcasts'][0].Episodes); //.find( podcast => podcast.id===parseInt(window.location.pathname.split('/')[2]));
+        this.podcastData.Episodes = this.podcastData.Episodes.concat(res['podcasts'][0].Episodes); 
         this.categoryBasedPodcastsLoading = false;
       })
     });

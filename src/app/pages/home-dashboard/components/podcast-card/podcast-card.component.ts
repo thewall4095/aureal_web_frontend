@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 import { HiveAuthComponent } from 'src/app/components/hive-auth/hive-auth.component';
 import { SocialShareComponent } from 'src/app/components/social-share/social-share.component';
 import { ToastrService } from 'ngx-toastr';
-
+import * as FormData from 'form-data';
 @Component({
   selector: 'app-podcast-card',
   templateUrl: './podcast-card.component.html',
@@ -95,7 +95,6 @@ export class PodcastCardComponent implements OnInit {
   tipAuthor(episodeData){
     if(episodeData.author_hiveusername){
       window.open('https://buymeberri.es/@'+episodeData.author_hiveusername, "_blank")
-      // window.location(episodeData.author_hiveusername);
     }
   }
   openHiveAuthDialog(autoCheck: Boolean): void {

@@ -8,7 +8,7 @@ import { SocialAuthService } from "angularx-social-login";
 import { SocialUser } from "angularx-social-login";
 import {HomeDashboardService} from 'src/app/pages/home-dashboard/home-dashboard.service';
 import { ToastrService } from 'ngx-toastr';
-
+import * as FormData from 'form-data';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -27,11 +27,11 @@ export class AppComponent implements OnInit {
 
     this.currentModule = this.playerService.getCurrentModule();
     this.updateClient();
-    if(window.location.pathname.split('/')[1] == 'embed-player'){
-      this.isEmbedPlayer = true;
-    }else{
-      this.isEmbedPlayer = false;
-    }
+    // if(window.location.pathname.split('/')[1] == 'embed-player'){
+    //   this.isEmbedPlayer = true;
+    // }else{
+    //   this.isEmbedPlayer = false;
+    // }
     console.log(this.isEmbedPlayer);
 
   }
@@ -94,9 +94,9 @@ export class AppComponent implements OnInit {
   }
 
   check(){
-    document.body.onkeyup = function(e){
-      console.log(e);
-    }
+    // document.body.onkeyup = function(e){
+    //   console.log(e);
+    // }
   }
 
   navigateHome(){

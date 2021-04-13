@@ -25,8 +25,8 @@ export class CopyClipboardDirective {
       this.copied.emit(this.payload);
     };
 
-    document.addEventListener("copy", listener, false)
-    document.execCommand("copy");
-    document.removeEventListener("copy", listener, false);
+    // document.addEventListener("copy", listener, false)
+    // document.execCommand("copy");
+    // document.removeEventListener("copy", listener, false);
   }
 }

@@ -7,7 +7,7 @@ import { switchMap, debounceTime, tap, finalize, switchAll } from 'rxjs/operator
 import { CreateCommunityComponent } from 'src/app/components/create-community/create-community.component';
 import { ConfirmationDialogService } from 'src/app/confirmation-dialog/confirmation-dialog.service';
 import { ToastrService } from 'ngx-toastr';
-
+import * as FormData from 'form-data';
 @Component({
   selector: 'app-select-community',
   templateUrl: './select-community.component.html',
