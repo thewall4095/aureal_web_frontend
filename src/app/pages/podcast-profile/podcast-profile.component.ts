@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 import { MatDialog } from "@angular/material/dialog";
 import { HiveAuthComponent } from 'src/app/components/hive-auth/hive-auth.component';
 import { SocialShareComponent } from 'src/app/components/social-share/social-share.component';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-podcast-profile',
@@ -40,6 +41,8 @@ export class PodcastProfileComponent implements OnInit {
     public authService: AuthService,
     public dialog: MatDialog,
     public router: Router,
+    private titleService: Title, 
+    private metaService: Meta
   ) {
   }
 
@@ -66,18 +69,26 @@ export class PodcastProfileComponent implements OnInit {
           this.sharedEpisode = res.episode;
         });
     }
+  }
 
-    // console.log(this.route.snapshot.queryParamMap.get("expires_in"));
-
-    // this.activatedRoute.paramMap.subscribe((paramMap) => {
-    //   this.rssFeedDetailsService.getRssFeedDetails(parseInt(window.location.pathname.split('/')[2])).then(res => {
-    //     this.activatedRoute.queryParams.subscribe( queryParams=>{
-    //       this.podcastData = res['podcasts'].find( podcast => podcast.id===parseInt(window.location.pathname.split('/')[2]));
-    //       this.progress = false;
-    //     })
-
-    //   })    
-    // });
+  setTags(){
+    this.titleService.setTitle('Aureal - The new way of podcast monetisation');
+    this.metaService.addTags([
+      { name: 'keywords', content: 'Podcast rating platform, Decentralised Podcasting' }, //tags
+      { name: 'og:locale', content: 'en' },
+      { name: 'og:title', content: this.podcastData.name }, // episode/podcast name
+      { name: 'Description', content: this.podcastData.description }, // episode/podcast desciption
+      { name: 'og:description', content: this.podcastData.description  }, // episode/podcast desciption
+      { name: 'og:url', content: 'https://app.aureal.one/'+this.podcastData.id }, // episode/podcast desciption
+      { name: 'og:site_name', content: 'Aureal - Podcast Rating Platform' }, // episode/podcast desciption
+      { name: 'og:image', content: this.podcastData.image }, // episode/podcast image
+      { name: 'twitter:card', content: 'summary_large_image' }, // episode/podcast image
+      { name: 'twitter:image', content: this.podcastData.image }, // episode/podcast image
+      { name: 'twitter:title', content: this.podcastData.name }, // episode/podcast image
+      { name: 'og:image', content: this.podcastData.image }, // episode/podcast image
+      { name: 'og:image', content: this.podcastData.image }, // episode/podcast image
+      { name: 'robots', content: 'index, follow' }
+    ]);
   }
 
   followPodcast(ifFollows) {

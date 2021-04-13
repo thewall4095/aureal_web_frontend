@@ -32,13 +32,13 @@ export class HomeComponent implements OnInit {
   constructor(private homeDashboardService: HomeDashboardService, private route: ActivatedRoute,
     public playerService: PlayerService, private router: Router
     , private titleService: Title, private metaService: Meta) {
-    this.titleService.setTitle('Aureal - Your voice is worth something');
+    this.titleService.setTitle('Aureal - The new way of podcast monetisation');
     this.metaService.addTags([
       { name: 'keywords', content: 'Podcast rating platform, Decentralised Podcasting' }, //tags
       { name: 'og:locale', content: 'en' },
       { name: 'og:title', content: 'Aureal' }, // episode/podcast name
-      { name: 'Description', content: 'Your voice is worth something' }, // episode/podcast desciption
-      { name: 'og:description', content: 'Your voice is worth something' }, // episode/podcast desciption
+      { name: 'Description', content: 'The new way of podcast monetisation' }, // episode/podcast desciption
+      { name: 'og:description', content: 'The new way of podcast monetisation' }, // episode/podcast desciption
       { name: 'og:url', content: 'https://app.aureal.one' }, // episode/podcast desciption
       { name: 'og:site_name', content: 'Aureal - Podcast Rating Platform' }, // episode/podcast desciption
       { name: 'og:image', content: 'https://aureal.one/wp-content/uploads/2019/04/Aureal-Logo-light-1024x291.png' }, // episode/podcast image
