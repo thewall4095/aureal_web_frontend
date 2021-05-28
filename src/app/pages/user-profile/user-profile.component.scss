@@ -1,18 +1,31 @@
+.profile-container{
+  width: 100%;
+  padding: 25px 40px;
+  min-height: 100vh;
+
+  .heading{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 30px;
+    color: var(--accent);
+  }
+}
 .userprofile-section {
   width: 100%;
-  background: white;
-  border: 1px solid var(--light);
+  background: var(--secondary-background);
   display: flex;
   justify-content: space-between;
   flex-wrap: initial;
   padding: 20px;
   margin-bottom: 50px;
+  flex-direction: column;
+  border-radius: 20px;
   .user-image {
     position: relative;
     width: 100px;
     .user-image-avatar {
       font: 300 44px/66px Roboto, roboto, "Helvetica Neue", sans-serif;
-      color: white;
+      color: var(--accent);
       text-transform: uppercase;
       background-image: linear-gradient(to right, #52bff9, #5f51f6);
       // background: linear-gradient(#694ed6, #c137a2, #e40046);
@@ -48,6 +61,7 @@
       background: rgba(0, 0, 0, 0.1);
       border-radius: 18px;
       padding: 3px;
+      color: var(--accenttwo);
       .mat-icon {
         height: 20px;
         width: 20px;
@@ -64,14 +78,47 @@
     // margin-left: 10px;
     width: calc(100% - 100px);
   }
+  .sub-heading{
+    color: var(--accent);
+    font-size: 16px;
+  }
+  .catgories-section{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    max-width: 90vw;
+    /* this will hide the scrollbar in mozilla based browsers */
+    overflow: -moz-scrollbars-none;
+    /* this will hide the scrollbar in internet explorers */
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { 
+        width: 0 !important;
+        display: none; 
+    }
+    .each-category{
+        font-size: 14px;
+        cursor: pointer;
+        color: var(--accenttwo);
+        padding: 3px 10px;
+        margin: 5px;
+        border: 1px solid var(--primary-border);
+        border-radius: 20px;
+        min-width: fit-content!important;
+        &.selected{
+            color: var(--accent);
+            background: var(--tertiary-background);
+        }
+    }
+  }
 }
+
 
 .the-episodes {
   position: relative;
   display: flex;
-  background: white;
+  background: var(--theme-background);
   &:hover {
-    background: #f9f9f9;
+    background: var(--tertiary-background);
   }
   .status {
     // position: absolute;
@@ -133,4 +180,66 @@
     font-size: 14px !important;
     margin-bottom: 5px;
   }
+}
+
+.podcast-card{
+  width: 20%;
+  border-radius: 20px;
+  padding: 20px;
+  background: var(--secondary-background);
+  margin-right: 25px;
+  img{
+    width: 70%;
+    margin-bottom: 10px;
+  }
+  .dummy-image{
+    width: 70%;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accenttwo);
+    cursor: pointer;
+    .icon{
+      font-size: 148px;
+    }
+  }
+  .podcast-name{
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  .vote-count{
+    background: var(--tertiary-background);
+    color: var(--accent);
+    font-size: 12px;
+    padding: 3px 15px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    cursor: pointer;
+    width: fit-content;
+    .icon{
+      margin-left: 10px;
+      margin-top: 2px;
+    }
+  }
+}
+
+.userpodcasts-section{
+  margin-bottom: 50px;
+}
+
+.logout-but{
+  background: var(--tertiary-background);
+  color: var(--accent);
+  font-size: 14px;
+  padding: 5px 20px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  cursor: pointer;
+  width: fit-content;
 }

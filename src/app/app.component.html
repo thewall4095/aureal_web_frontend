@@ -1,28 +1,56 @@
-<mat-sidenav-container>
-    <mat-sidenav #sidenav mode="over" class="sidenav-styles" *ngIf="!isEmbedPlayer">
-        <div class="logo">
-            <a (click)="navigateHome()">
-                <img src="./assets/aureal_logo.png">
-            </a>
-            <i class="fas fa-times" aria-hidden="true" (click)="closeAllSidenav()"></i>
+<mat-drawer-container [ngClass]="{'hideit': hideit}">
+    <mat-drawer autosize [mode]="appMode" [opened]="isSidebarOpened" class="sidebar-container left" [ngClass]="{'expanded' : isSidebarExpanded}"
+     #sidenav>
+      <div class="logo" [@fadeAnimation]="isSidebarExpanded">
+        <a>
+          <img src="./assets/aureal_full_dark.png" class="lazyload" [ngClass]="{'expanded' : isSidebarExpanded}" style="padding: 0 40px;"/>
+          <img src="./assets/launch_icon.png" class="lazyload" [ngClass]="{'expanded' : !isSidebarExpanded}" style="padding: 0 15px;" (click)="redirectToHome()"/>
+        </a>
+      </div>
+      <div class="tabs">
+        <div
+          class="each-tab"
+          *ngFor="let item of routes"
+          [class.active]="isActive(item.route)"
+          (click)="navigateTo(item.route)"
+        >
+          <span [class]="item.icon">
+          </span>
+          <span class="name">{{ item.name }}</span>
         </div>
-        <div class="each-tab">
-            <a (click)="navigateHome()">
-                Home
-            </a>
-            <a href="https://medium.com/aureal">
-                Blog
-            </a>
+      </div>
+    </mat-drawer>
+    <!-- <mat-drawer autosize [mode]="appMode" [opened]="isSidebarOpened" class="sidebar-container right" [ngClass]="{'expanded' : isSidebarExpanded}"
+      #sidenav style="right: 0;">
+      <div class="logo pointer" [@fadeAnimation]="isSidebarExpanded" (click)="navigateProfile()">
+          <span>
+            <img *ngIf="userDetailsService.UserDetails?.img" [src]="userDetailsService.UserDetails?.img"/>
+            <span *ngIf="!userDetailsService.UserDetails?.img" class="icon icon-user"></span>
+          </span>
+          <span class="user-name text-truncate">
+            {{userDetailsService.UserDetails?.username}}
+          </span>
+      </div>
+      <div class="notifications-section" *ngIf="userNotifications?.length">
+        <div class="accent font-weight-bold">Notifications</div>
+        <hr>
+        <div *ngFor="let notfication of userNotifications;">
+          <span></span>
         </div>
-        <div class="each-tab">
-
+      </div>
+      <div class="hive-section" *ngIf="userHiveDetails">
+        <div class="hive-heading">
+          @{{userDetailsService.UserDetails?.hive_username}}
         </div>
-    </mat-sidenav>
-    <mat-sidenav-content>
-        <app-header [sidenav]="usuarioMenu" *ngIf="!isEmbedPlayer"></app-header>
-        <router-outlet></router-outlet>
-        <app-player class="the-player" *ngIf="playingEpisode && !isEmbedPlayer" [toPlayData]="playingEpisode">
-        </app-player>
-        <app-footer *ngIf="!isEmbedPlayer"></app-footer>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+        
+      </div>
+   </mat-drawer> -->
+    <mat-drawer-content #content [ngClass]="{'expanded' : isSidebarExpanded}">
+      <app-header style="position: fixed; width: calc(100% - 100px); z-index: 2; top: 0;"></app-header>
+      <router-outlet style="margin-top: 70px; display: block; z-index: 1;"></router-outlet>
+      <app-player class="the-player" *ngIf="playingEpisode && !isEmbedPlayer" [ngClass]="{'dark' : dark}" [toPlayData]="playingEpisode">
+      </app-player>
+      <app-footer class="the-footer" *ngIf="hideit"></app-footer>
+    </mat-drawer-content>
+</mat-drawer-container>
+  

@@ -1,0 +1,220 @@
+.podcast-card-1{
+    // background: white;
+    background: var(--secondary-background);
+    // border: 1px solid var(--primary-border);
+    display: flex;
+    // margin-right: 20px;
+    padding: 15px;
+    width: inherit;
+    border-radius: 20px;
+    position: relative;
+    .img{
+        width: 20%;
+        object-fit: contain;
+        height: auto;
+        border-radius: 10px;
+    }
+    .control {
+        border: none;
+        background-color: var(--theme-background);
+        border-radius: 37px;
+        outline: 0;
+        position: absolute;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 0;
+        color: #FFFFFF;
+        font-weight: bold;
+        font-size: 1em;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+        height: 50px;
+        width: 50px;
+        margin-left: 10px;
+        .isode{
+            background: var(--primary);
+            height: 40px;
+            width: 40px;
+            border-radius: 37px;
+            right: 4px;
+            padding: 5px;
+            position: absolute;
+        }
+        &:hover,
+        &:focus {
+          opacity: 1;
+        }
+      
+        &.prev {
+            left: 60%;
+            position: absolute;
+            bottom: 0px;
+        }
+    }
+    .content{
+        display: flex;
+        flex-direction: column;
+        width: calc(80% - 15px);
+        align-self: stretch;
+        justify-content: space-between;
+        margin-left: 15px;
+        .podcast_name{
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .author{
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .description{
+            font-size: 10px;
+            max-height: 3.8em;
+            p,h1,h3{
+                font-size: 10px !important;
+                color: var(--accenttwo) !important;
+            }
+        }
+
+    }
+    .vote-icon{
+        color: var(--theme-color);
+        font-size: 24px;
+        margin-top: 5px;
+        &.voted{
+            color: var(--primary);
+        }
+        cursor: pointer;
+    }
+    .vote-count{
+        margin-top: 5px;
+        margin-left: 5px;
+        color: var(--theme-color);
+        font-size: 12px;
+        background: var(--tertiary-background);
+        padding: 0px 7px;
+        display: flex;
+        align-items: center;
+        border-radius: 15px;
+        .icon{
+            font-size: 14px;
+            margin-right: 3px;
+        }
+    }
+    .comment-count{
+        margin-top: 5px;
+        margin-right: 10px;
+        color: var(--theme-color);
+        font-size: 10px;
+        background: var(--tertiary-background);
+        padding: 0px 7px;
+        display: flex;
+        align-items: center;
+        border-radius: 15px;
+        width: fit-content;
+        .icon{
+            font-size: 18px;
+            margin-right: 3px;
+            margin-top: 2px;
+        }
+        .icon-vote-up-arrow{
+            margin-left: -3px;
+        }
+        &.voted{
+            .icon{
+                color: var(--primary);
+            }
+        }
+        cursor: pointer;
+    }
+}
+
+
+/* loader */
+.timeline-item {
+    background: var(--secondary-background);
+    border-radius: 3px;
+    padding: 12px;
+    // border: 1px solid var(--primary-border);
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 20px;
+}
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}
+.animated-background-1 {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: var(--tertiary-background);
+    background: linear-gradient(to right, var(--tertiary-background) 8%, var(--accenttwo) 18%, var(--tertiary-background) 33%);
+    background-size: 800px 104px;
+    height: 100px;
+    position: relative;
+}
+.background-masker-1 {
+    background: var(--secondary-background);
+    position: absolute;
+}
+
+/* Every thing below this is just positioning */
+.background-masker.header-top-1,.background-masker-1.header-bottom-1,.background-masker-1.subheader-bottom-1 {
+    top: 40px;
+    left: 105px;
+    right: 0;
+    height: 15px;
+}
+.background-masker-1.header-bottom-1 {
+    top: 60px;
+    height: 15px;
+}
+.background-masker-1.subheader-left-1,.background-masker-1.subheader-right-1 {
+    top: 184px;
+    height: 6px;
+}
+.background-masker-1.subheader-bottom-1 {
+    top: 190px;
+    height: 10px;
+}
+.background-masker-1.content-top-1,.background-masker-1.content-second-line-1,.background-masker-1.content-third-line-1,
+.background-masker-1.content-second-end-1,.background-masker-1.content-third-end-1,.background-masker-1.content-first-end-1 {
+    top: 0;
+    left: 100px;
+    right: 0;
+    height: 100px;
+}
+.background-masker-1.content-top-1 {
+    width: 10px;
+}
+.background-masker-1.content-first-end-1,.background-masker-1.content-second-end-1,.background-masker-1.content-third-end-1{
+    width: auto;
+    left: 380px;
+    right: 0;
+    top: 120px;
+    height: 8px;
+}
+.background-masker-1.content-second-line-1  {
+    top: 213px;
+}
+
+.header-top-1{
+    left: 110px !important;
+}
+
+.truncate-overflow {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}

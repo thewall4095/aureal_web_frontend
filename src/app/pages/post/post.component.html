@@ -1,44 +1,248 @@
-<div class="container">
+<div class="post-container">
   <div *ngIf="showSubmitForm">
     <div class="part">
-      <h2 class="the-text">Submit your Podcast</h2>
-      <div class="form-part">
-        <form [formGroup]="linkForm" (ngSubmit)="onSubmitLink(linkForm.value)" class="form" *ngIf="!isOtpFormShown">
-          <mat-form-field class="form-element">
-            <input matInput placeholder="RSS feed of your Podcast" formControlName="link">
-            <mat-error *ngIf="!linkForm.controls['link'].valid && linkForm.controls['link'].touched">
-              {{ getErrorLink(linkForm) }}
-            </mat-error>
-          </mat-form-field>
-
-          <div class="form-element">
-            <button mat-raised-button color="primary" type="submit" class="button w100"
-              [disabled]="!linkForm.valid || isbuttonLoaderOn">Submit RSS Feed link <i class="fas fa-spinner fa-spin"
-                *ngIf="isbuttonLoaderOn" aria-hidden="true"></i></button>
+      <h3 class="the-text">Add your Podcast</h3>
+      <div class="stepper" *ngIf="step!=0">
+        <div class="step" [ngClass]="{'active' : step>=1}">
+          1
+        </div>
+        <div class="step-divider" [ngClass]="{'active' : step>1}">
+        </div>
+        <div class="step" [ngClass]="{'active' : step>=2}">
+          2
+        </div>
+        <div class="step-divider" [ngClass]="{'active' : step>2}">
+        </div>
+        <div class="step" [ngClass]="{'active' : step>=3}">
+          3
+        </div>
+        <div class="step-divider" [ngClass]="{'active' : step>3}">
+        </div>
+        <div class="step">
+          4
+        </div>
+      </div>
+      <div class="c-card">
+        <div class="d-flex justify-content-between" *ngIf="step==0">
+          <div class="d-flex flex-column justify-content-between left-content">
+            <div>
+              <div class="left-content-heading">
+                <span>Power up your podcasts with Web 3.0 in 3 easy steps.</span>
+              </div>
+              <div class="left-content-content">
+                <div>- Make sure your HIVE account is connected with Aureal. You can create your hive account from here.</div>
+                <div>- Your audience will help you get the value for your voice.</div>
+              </div>
+            </div>
+            <div class="left-content-buttons">
+              <button class="primary-but" (click)="getStarted()">
+                <span>
+                  Get Started
+                </span>
+                <span class="icon icon-right-open-big">
+                </span>
+              </button>
+            </div>
           </div>
-        </form>
-        <form [formGroup]="otpForm" (ngSubmit)="onSubmitOtp(otpForm.value)" class="form" *ngIf="isOtpFormShown">
-
-          <mat-form-field class="form-element">
-            <input matInput placeholder="OTP" formControlName="otp">
-            <mat-error *ngIf="!otpForm.controls['otp'].valid && otpForm.controls['otp'].touched">
-              {{ getErrorOtp(otpForm) }}
-            </mat-error>
-          </mat-form-field>
-
-          <div class="form-element">
-            <button mat-raised-button color="primary" type="submit" class="button"
-              [disabled]="!otpForm.valid || isbuttonLoaderOn">Submit Otp <i class="fas fa-spinner fa-spin"
-                *ngIf="isbuttonLoaderOn" aria-hidden="true"></i></button>
+          <div class="d-flex flex-column">
+            <span class="icon icon-podcasts-black-24dp" style="font-size: 200px; color: var(--tertiary-background);transform: rotate(-45deg);">
+            </span>
           </div>
-          <div class="form-element">
-            <h6 (click)="redirectToProfile()" class="no-account">Already added your Podcast. Check it here.</h6>
+        </div>
+        <div class="d-flex justify-content-between" *ngIf="step==1">
+          <div class="d-flex flex-column justify-content-between left-content">
+            <div>
+              <div class="left-content-heading">
+                <span>Add your podcast's RSS link</span>
+              </div>
+              <div class="left-content-content">
+                <form [formGroup]="linkForm" class="form" *ngIf="!isOtpFormShown">
+                  <mat-form-field class="form-element search-container relative">
+                    <input class="accenttwo" matInput placeholder="your Podcast's RSS link" formControlName="link">
+                    <mat-error *ngIf="!linkForm.controls['link'].valid && linkForm.controls['link'].touched">
+                      {{ getErrorLink(linkForm) }}
+                    </mat-error>
+                  </mat-form-field>
+                </form>
+                <div>- Make sure your HIVE account is connected with Aureal. You can create your hive account from here.</div>
+                <div>- Your audience will help you get the value for your voice.</div>
+              </div>
+            </div>
+            <div class="left-content-buttons">
+              <button class="primary-but" (click)="onSubmitLink()" [disabled]="!linkForm.valid || isbuttonLoaderOn">
+                Continue
+                <i class="fas fa-spinner fa-spin"
+                *ngIf="isbuttonLoaderOn" aria-hidden="true"></i>
+              </button>
+              <button class="secondary-but ml-3" (click)="step=0">
+                <span>
+                  Cancel
+                </span>
+              </button>
+            </div>
           </div>
-        </form>
+          <div class="d-flex flex-column">
+            <span class="icon icon-rss" style="font-size: 200px; color: var(--tertiary-background);">
+            </span>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between" *ngIf="step==2">
+          <div class="d-flex flex-column justify-content-between left-content">
+            <div>
+              <div class="left-content-heading">
+                <span>We've sent you a verification code at <span class="f500 accent">{{rssMailId}}</span></span>
+              </div>
+              <div class="left-content-content">
+                <form [formGroup]="otpForm" class="form" *ngIf="isOtpFormShown">
+                  <mat-form-field class="form-element search-container relative">
+                    <input class="accenttwo" placeholder="enter OTP" formControlName="otp">
+                    <mat-error *ngIf="!otpForm.controls['otp'].valid && otpForm.controls['otp'].touched">
+                      {{ getErrorOtp(otpForm) }}
+                    </mat-error>
+                  </mat-form-field>
+                  <div class="form-element">
+                    <h6 (click)="redirectToProfile()" class="no-account">* Already added your Podcast? Check it here.</h6>
+                  </div>
+                </form>
+                <div>- Did not receive the code yet? Send again</div>
+                <div>- Make sure you check your spam folder.</div>
+                <div>- If you don't have access to <span class="f500 accent">{{rssMailId}}</span> you can change this from your podcast hosting provider.</div>
+              </div>
+            </div>
+            <div class="left-content-buttons">
+              <button class="primary-but" (click)="onSubmitOtp()" [disabled]="!otpForm.valid || isbuttonLoaderOn">
+                <span>
+                  Continue
+                </span>
+              </button>
+              <button class="secondary-but ml-3" (click)="step=2">
+                <span>
+                  Cancel
+                </span>
+              </button>
+            </div>
+          </div>
+          <div class="d-flex flex-column">
+            <span class="icon icon-rss" style="font-size: 200px; color: var(--tertiary-background);">
+            </span>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between" *ngIf="step==3">
+          <div class="d-flex flex-column justify-content-between left-content">
+            <div>
+              <div class="left-content-heading">
+                <span>Publish atleast one episode to start monetization. You can always publish your unpublished episodes later.</span>
+              </div>
+              <div class="left-content-content podcast">
+                <div class="d-flex">
+                  <img defaultImage="https://aurealbucket.s3.us-east-2.amazonaws.com/thumbnailnew.png" [lazyLoad]="podcast.image" class="lazyload">
+                  <div class="flex flex-column ml-3">
+                    <div class="podcast-name">
+                      {{podcast.name}}
+                    </div>
+                    <div class="podcast-author">
+                      {{podcast.author}}
+                    </div>
+                    <div class="podcast-description" [innerHTML]="podcast.description" [ngClass]="{'truncate-overflow' : !viewMoreDescription}">
+                    </div>
+                    <div class="view-more" (click)="viewMoreDescription = !viewMoreDescription">
+                      <span *ngIf="!viewMoreDescription">view more
+                      </span>
+                      <span *ngIf="viewMoreDescription">view less</span>
+                      <span class="icon icon-right-open-mini ml-2"></span>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+                <div class="d-flex flex-column">
+                  <div class="episodes-count">
+                    Episodes
+                  </div>
+                  <div *ngIf="!episodesLoading || episodes.length">
+                    <div class="episodes" *ngFor="let episode of episodes;">
+                      <div class="episode-name">
+                        {{episode?.name}}
+                      </div>
+                      <div class="episode-createdAt">
+                        {{episode?.createdAt | date: 'MMM dd yyyy'}}
+                      </div>
+                      <div class="d-flex align-items-center">
+                        <div class="episode-duration">
+                          {{formatDuration(episode?.duration)}}
+                        </div>
+                        <div class="episode-publish">
+                          <span *ngIf="episode?.hive_status != 'done'" class="d-flex align-items-center" (click)="publishEpisode(episode)">
+                            <span>
+                              Publish Episode
+                            </span>
+                            <i class="fas fa-spinner fa-spin"
+                            *ngIf="episode?.publishing" aria-hidden="true"></i>
+                          </span>
+                          <span *ngIf="episode?.hive_status == 'done'">
+                            Published
+                            <span class="icon icon-check"></span>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="view-more" (click)="showMoreEpisodes()">
+                      <span>
+                        Show more
+                      </span>
+                      <span class="icon icon-down-open-mini"></span>
+                    </div>
+                  </div>
+                  <div *ngIf="episodesLoading">
+                    <app-loader></app-loader>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            <div class="left-content-buttons">
+              <button class="primary-but" (click)="step = 4">
+                <span>
+                  Done
+                </span>
+              </button>
+            </div>
+          </div>
+          <div class="d-flex flex-column">
+            <span class="icon icon-cloud" style="font-size: 200px; color: var(--tertiary-background);">
+            </span>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between" *ngIf="step==4">
+          <div class="d-flex flex-column justify-content-between left-content">
+            <div>
+              <div class="left-content-heading">
+                <span>You are all set !</span>
+              </div>
+              <div class="left-content-content">
+                <div>- Your new episodes will be auto-published to HIVE.</div>
+                <div>- You can always choose to manually publish your older episodes on HIVE from profile section.</div>
+              </div>
+            </div>
+            <div class="left-content-buttons">
+              <button class="primary-but" (click)="redirectToProfile()">
+                <span>
+                  Head to my Profile
+                </span>
+                <span class="icon icon-right-open-big">
+                </span>
+              </button>
+            </div>
+          </div>
+          <div class="d-flex flex-column">
+            <span class="icon icon-check" style="font-size: 200px; color: var(--tertiary-background);">
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <div *ngIf="!showSubmitForm">
+
+  <!-- <div *ngIf="!showSubmitForm">
     <div class="d-flex align-items-center justify-content-between">
       <h2 class="the-text">Your Podcasts</h2>
       <div (click)="showSubmitForm = true">
@@ -65,6 +269,6 @@
       </table>
     </div>
 
-  </div>
+  </div> -->
 
 </div>

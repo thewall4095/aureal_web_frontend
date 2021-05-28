@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { HomeDashboardService } from 'src/app/pages/home-dashboard/home-dashboard.service';
+import {CommonService} from 'src/app/services/common.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastrService } from 'ngx-toastr';
 import * as moment_ from 'moment';
 const moment = moment_;
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { MetatagsService } from 'src/app/services/metatags.service';
 
 @Component({
   selector: 'app-hive-token-register',
@@ -12,8 +14,20 @@ const moment = moment_;
   styleUrls: ['./hive-token-register.component.scss']
 })
 export class HiveTokenRegisterComponent implements OnInit {
-  constructor(private route: ActivatedRoute, public router: Router,
-    private homeDashboardService: HomeDashboardService, public authService: AuthService, private toastr: ToastrService) { }
+  constructor(
+    private route: ActivatedRoute,
+    public router: Router,
+    private commonService : CommonService,
+    public authService: AuthService,
+    private toastr: ToastrService,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    public metatagsService: MetatagsService,
+    ) {
+      if (isPlatformBrowser(this.platformId)) {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      }
+      this.metatagsService.defaultTags();
+    }
 
   ngOnInit(): void {
     if (this.route.snapshot.queryParamMap.get("code")) {

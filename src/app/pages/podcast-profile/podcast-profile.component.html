@@ -1,142 +1,84 @@
-<div class="sp-section dark3">
-    <div class="container w100" *ngIf="!progress">
-        <div class="d-flex justify-content-between show-container row">
-            <div class="col-md-8 col-sm-12 album-desc">
-                <div class="podcast-name">
-                    <h1 class="podcast-name">{{podcastData.name}}</h1>
-                </div>
-                <div class="podcast-author">
-                    <h3 class="podcast-author">By {{podcastData.author}}</h3>
-                </div>
-                <div class="podcast-desc">
-                    <p [innerHTML]="podcastData.description"></p>
-                    <div class="d-flex align-center justify-content-start">
-                        <div>
-                            <button mat-raised-button color="primary" *ngIf="!podcastData.follows"
-                                (click)="followPodcast(false)">Follow</button>
-                            <button mat-raised-button color="secondary" *ngIf="podcastData.follows">Followed</button>
-                        </div>
-                        <div style="margin-left: 30px;">
-                            <button mat-raised-button color="primary" (click)="socialShare('podcast', podcastData)">
-                                <i class="fa fa-share-alt" aria-hidden="true"></i>
-                            </button>
-                        </div>
+<div class="podcast-container">
+    <div class="inside-search-container w100" *ngIf="!progress">
+        <div class="d-flex justify-content-between show-container row m-0 pb-5">
+            <div class="col-md-11 col-sm-12 d-flex align-items-start p-0">
+                <img defaultImage="https://aurealbucket.s3.us-east-2.amazonaws.com/thumbnailnew.png" [lazyLoad]="podcastData.image" class="album-art lazyload">
+                <div class="album-desc">
+                    <div class="podcast-name">
+                        <h3 class="podcast-name">{{podcastData.name}}</h3>
                     </div>
-
+                    <div class="podcast-author">
+                        <h5 class="podcast-author">By {{podcastData.author}}</h5>
+                    </div>
+                    <div class="podcast-desc">
+                        <span [innerHTML]="podcastData.description"></span>
+                    </div>
+                    <!-- <div class="view-more" (click)="viewMoreDescription = !viewMoreDescription">
+                        <span *ngIf="!viewMoreDescription">view more
+                        </span>
+                        <span *ngIf="viewMoreDescription">view less</span>
+                        <span class="icon icon-right-open-mini ml-2"></span>
+                    </div> -->
                 </div>
             </div>
-            <div class="col-md-4 col-sm-12 album-art">
-                <img [src]="podcastData.image">
-                <!-- <div class="running-episode">
-                    <div>
-                        <h1 class="episode-name">{{podcastData.Episodes[playingId].name}}</h1>
+            <div class="col-md-1 col-sm-12 album-art p-0">
+                <div class="d-flex align-items-center">
+                    <div class="vote-count" (click)="followPodcast()">
+                        <span *ngIf="podcastData.ifFollows">Followed</span>
+                        <span *ngIf="!podcastData.ifFollows">Follow</span>
                     </div>
-                    <div>
-                        <p class="episode-summary">{{podcastData.Episodes[playingId].summary}}</p>
+                    <div style="margin-left: 30px;">
+                        <button (click)="socialShare('podcast', podcastData)" class="share-but">
+                            <span class="icon icon-share"></span>
+                        </button>
                     </div>
-                    <div>
-                        <p class="episode-author">By {{podcastData.author}}</p>
-                    </div>
-                </div> -->
+                </div>
             </div>
         </div>
         <div class="podcast-episode-container">
-            <!-- <div class="player-container">
-                <div class="inside-player-container">
-                    <div class="episode-image">
-                        <img [src]="podcastData.Episodes[playingId].image">
-                    </div>
-                    <div class="player-view">
-                        <div>
-                            <h4>{{podcastData.Episodes[playingId].name}}</h4>
-                        </div>
-                        <div>
-                            <p>{{podcastData.Episodes[playingId].summary}}</p>
-                        </div>
-                        <div *ngIf="showPlayer">
-                            <audio controls>
-                                <source [src]="podcastData.Episodes[playingId].url">
-                                Your browser does not support the audio element.
-                              </audio>
+            <div class="some-container">
+                <div class="episode-container" infinite-scroll [infiniteScrollDistance]="scrollDistance"
+                    [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle"
+                    (scrolled)="onScrollDown()">
+                    <h5 class="font-weight-bold">Episodes</h5>
+                    <div class="outside-episode-container">
+                        <div class="inside-episode-container"
+                            *ngFor="let episodeData of podcastData.Episodes; let episodeIndex = index;"
+                            >
+                            <app-episode-list-card [episodeData]="episodeData" [userId]="userId"
+                                showUpvote="{{episodeData?.permlink ? true:false}}"></app-episode-list-card>
                         </div>
                     </div>
+                    <div class="outside-episode-container" *ngIf="categoryBasedPodcastsLoading">
+                        <div class="inside-episode-container" *ngFor="let episodeData of [].constructor(pageSize); let episodeIndex = index;">
+                            <app-episode-list-card [episodeData]="episodeData" [userId]="userId" isLoading="true"
+                            showUpvote="false"></app-episode-list-card>
+                        </div>
+                    </div>
+                </div>
+                <div class="view-more" (click)="onScrollDown()">
+                    <span>
+                    Show more
+                    </span>
+                    <span class="icon icon-down-open-mini"></span>
                 </div>
             </div>
-            <hr> -->
-
-            <div class="episode-container" *ngIf="activatedRoute.snapshot.queryParamMap.get('episode_id')">
-                <h1>Shared Episode</h1>
-                <div class="outside-episode-container" *ngIf="!sharedEpisodeLoading">
-                    <div class="inside-episode-container" (click)="playEpisode(sharedEpisode);">
-                        <app-podcast-card [episodeData]="sharedEpisode"
-                            showUpvote="{{sharedEpisode?.permlink ? true:false}}"></app-podcast-card>
-                    </div>
+            <div class="similar-podcasts">
+                <div class="heading">
+                    Similar Podcasts
                 </div>
-                <div class="outside-episode-container" *ngIf="sharedEpisodeLoading">
-                    <div *ngFor="let loaderNum of [0]">
-                        <div class="timeline-wrapper">
-                            <div class="timeline-item">
-                                <div class="animated-background">
-                                    <div class="vertical-bottom"></div>
-                                    <div class="horizontal-bottom"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <div *ngIf="similarPodcastsLoading">
+                    <app-loader></app-loader>
                 </div>
-            </div>
-            <div class="episode-container" infinite-scroll [infiniteScrollDistance]="scrollDistance"
-                [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle"
-                (scrolled)="onScrollDown()">
-                <h1>Episodes</h1>
-                <div class="outside-episode-container">
-                    <div class="inside-episode-container"
-                        *ngFor="let episodeData of podcastData.Episodes; let episodeIndex = index;"
-                        (click)="playEpisode(episodeData);">
-                        <app-podcast-card [episodeData]="episodeData"
-                            showUpvote="{{episodeData?.permlink ? true:false}}"></app-podcast-card>
-                        <!-- <div class="podcast-card">
-                            <div class="itemsContainer">
-                                <img [src]="episodeData.image">
-                                <div class="play"><img src="./../../../../../assets/play.png" /> </div>
+                <div *ngIf="!similarPodcastsLoading">
+                    <div *ngFor="let podcast of similarPodcasts;" class="each-podcast">
+                        <img defaultImage="https://aurealbucket.s3.us-east-2.amazonaws.com/thumbnailnew.png" [lazyLoad]="podcast.image" class="lazyload">
+                        <div>
+                            <div class="episode-name pointer truncate-overflow"  (click)="redirectToPodcast(podcast)">
+                                {{podcast.name}}
                             </div>
-                            <div class="content">
-                                <h6 class="name truncate-overflow">{{episodeData.name}}</h6>
-                                <h6 class="podcast-name truncate-overflow">{{episodeData.podcast_name}}</h6>
-                                <div class="d-flex justify-content-between align-center">
-                                    <div class="d-flex">
-                                        <div class="duration">
-                                            <i class="far fa-clock-o" aria-hidden="true"></i> <p>{{formatDuration(episodeData.duration)}}</p>
-                                        </div>
-                                        <div class="views">
-                                            <i class="fas fa-headphones" aria-hidden="true"></i><p>{{episodeData.views}}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-none d-sm-block">
-                                    <div class="tags d-flex flex-wrap">
-                                        <p *ngFor="let tag of episodeData.Tags; let cardIndex = index;">
-                                            <span *ngIf="tag && cardIndex<5">{{'#'+tag+'  '}}</span></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="d-flex" *ngIf="episodeData.permlink" >
-                                <div class="upvotes">
-                                    <i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
-                                    <p>{{episodeData.votes}} </p>
-                                </div>
-                            </div>
-                        </div> -->
-                    </div>
-                </div>
-                <div class="outside-episode-container" *ngIf="categoryBasedPodcastsLoading">
-                    <div *ngFor="let loaderNum of [0,1,2,3,4,5,6,7,8,9]">
-                        <div class="timeline-wrapper">
-                            <div class="timeline-item">
-                                <div class="animated-background">
-                                    <div class="vertical-bottom"></div>
-                                    <div class="horizontal-bottom"></div>
-                                </div>
+                             <div class="published_at">
+                                {{podcast.author}}
                             </div>
                         </div>
                     </div>
@@ -144,8 +86,7 @@
             </div>
         </div>
     </div>
-
     <div class="d-flex align-items-center justify-content-center" *ngIf="progress" style="height: 300px;">
-        <span class="dot-revolution"></span>
+        <app-loader></app-loader>
     </div>
 </div>

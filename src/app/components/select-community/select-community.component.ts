@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from "@angular/material/dialog";
 import { environment } from 'src/environments/environment';
-import { HomeDashboardService } from 'src/app/pages/home-dashboard/home-dashboard.service';
+import {CommonService} from 'src/app/services/common.service';
 import { FormControl } from '@angular/forms';
 import { switchMap, debounceTime, tap, finalize, switchAll } from 'rxjs/operators';
 import { CreateCommunityComponent } from 'src/app/components/create-community/create-community.component';
@@ -20,13 +20,13 @@ export class SelectCommunityComponent implements OnInit {
   searchResults;
   isLoading: Boolean = false;
   isbuttonLoaderOn: Boolean = false;
-  constructor(public dialogRef: MatDialogRef<SelectCommunityComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public homeDashboardService: HomeDashboardService, public dialog: MatDialog, private confirmationDialogService: ConfirmationDialogService, private toastr: ToastrService) {
+  constructor(public dialogRef: MatDialogRef<SelectCommunityComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public commonService: CommonService, public dialog: MatDialog, private confirmationDialogService: ConfirmationDialogService, private toastr: ToastrService) {
     this.episodeId = this.data.episodeId;
   }
 
   ngOnInit(): void {
 
-    // this.homeDashboardService.searchCommunity('super').subscribe((res: any) => {
+    // this.commonService.searchCommunity('super').subscribe((res: any) => {
     //   console.log(res);
     //   this.searchResults = res.allCommunity;
     // });
@@ -39,7 +39,7 @@ export class SelectCommunityComponent implements OnInit {
           this.searchResults = [];
           this.isLoading = true;
         }),
-        switchMap(value => this.homeDashboardService.searchCommunity(value)
+        switchMap(value => this.commonService.searchCommunity(value)
           .pipe(
             finalize(() => {
             }),
@@ -59,7 +59,7 @@ export class SelectCommunityComponent implements OnInit {
 
   getCurrentCommunity() {
     this.isbuttonLoaderOn = true;
-    this.homeDashboardService.getEpisodeCommunity(this.episodeId).subscribe((res: any) => {
+    this.commonService.getEpisodeCommunity(this.episodeId).subscribe((res: any) => {
       this.currentCommunities = res.allCommunity;
       console.log(res);
       this.isbuttonLoaderOn = false;
@@ -72,7 +72,7 @@ export class SelectCommunityComponent implements OnInit {
     body.append('community_id', community.id);
     body.append('episode_id', this.episodeId);
     body.append('user_id', localStorage.getItem('userId'));
-    this.homeDashboardService.assignCommunity(body).subscribe((res: any) => {
+    this.commonService.assignCommunity(body).subscribe((res: any) => {
       if (res.msg) {
         this.confirmationDialogService.confirm('Please confirm..', res.msg + '\n Proceed to follow and continue adding episode to community.', 'Proceed', 'Cancel')
           .then((confirmed) => {
@@ -80,7 +80,7 @@ export class SelectCommunityComponent implements OnInit {
             let body1 = new FormData;
             body1.append('community_id', community.id);
             body1.append('user_id', localStorage.getItem('userId'));
-            this.homeDashboardService.subscribeCommunity(body1).subscribe((res: any) => {
+            this.commonService.subscribeCommunity(body1).subscribe((res: any) => {
               if (res.msg) {
                 this.toastr.error(res.msg);
               } else {
@@ -102,7 +102,7 @@ export class SelectCommunityComponent implements OnInit {
     body.append('community_id', community.id);
     body.append('episode_id', this.episodeId);
     body.append('user_id', localStorage.getItem('userId'));
-    this.homeDashboardService.removeCommunity(body).subscribe((res: any) => {
+    this.commonService.removeCommunity(body).subscribe((res: any) => {
       this.isbuttonLoaderOn = false;
       this.getCurrentCommunity();
     })

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Comment } from "./comment.model";
-import { HomeDashboardService } from 'src/app/pages/home-dashboard/home-dashboard.service';
+import {CommonService} from 'src/app/services/common.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -16,7 +16,7 @@ export class CommentComponent implements OnInit {
   isAddingComment = false;
   isUpvotingComment = false;
 
-  constructor(private homeDashboardService: HomeDashboardService, private toastr: ToastrService) { }
+  constructor(private commonService : CommonService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
@@ -36,7 +36,7 @@ export class CommentComponent implements OnInit {
     body.append('hive_username', localStorage.getItem('hive_username'));
     body.append('comment_id', id);
     body.append('user_id', localStorage.getItem('userId'));
-    this.homeDashboardService.upvoteComment(body).subscribe((res:any) =>{
+    this.commonService.upvoteComment(body).subscribe((res:any) =>{
       this.isUpvotingComment = false;
       if(res.msg){
         this.toastr.error("Couldn't upvote !");
@@ -52,7 +52,7 @@ export class CommentComponent implements OnInit {
       body.append('comment_id', id);
       body.append('text', $event);
       body.append('hive_username', localStorage.getItem('hive_username'));
-      this.homeDashboardService.addReply(body).subscribe((res:any) =>{
+      this.commonService.addReply(body).subscribe((res:any) =>{
         this.isAddingComment = false;
         if(res.reply){
           this.refresh.emit("true");

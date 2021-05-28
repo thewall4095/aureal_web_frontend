@@ -1,0 +1,78 @@
+<div class="explore-container">
+    <!-- <div>
+        <h3 class="the-text">Explore</h3>
+    </div> -->
+    <div class="catgories-section mb-4">
+        <div *ngFor="let category of categories" class="each-category" 
+            [ngClass]="{'selected' : selectedCategories.includes(category.id)}"
+            >
+            <span (click)="selectCategory(category)">
+                {{category.name}}
+            </span>
+            <span class="icon ml-2 pointer accenttwo" (click)="removeSelectedCategory(category)"
+                *ngIf="selectedCategories.includes(category.id)" >x</span>
+         </div>
+    </div>
+
+    <div class="custom-card" style="margin-top: 60px;">
+        <div class="d-flex align-items-center justify-content-between custom-card-heading">
+           <span class="accent f500 card-heading">
+                Top Podcasts
+           </span>
+        </div>
+        <div class="custom-row" *ngIf="tabsSection[1].isLoaded">
+            <div *ngFor="let podcast of tabsSection[1].data; let i = index" class="custom-col" style="margin-top: 20px;">
+                <app-podcast-card [podcastData]="podcast"></app-podcast-card>
+            </div>
+        </div>
+        <div class="custom-row mt-4" *ngIf="!tabsSection[1].isLoaded">
+            <div *ngFor="let episode of [].constructor(tabsSection[1].pageSize) let i = index" class="custom-col">
+                <app-podcast-card [podcastData]="episode" isLoading="true"></app-podcast-card>
+            </div>
+        </div>
+        <!-- <div *ngIf="!tabsSection[1].isLoaded">
+            <app-loader></app-loader>
+        </div> -->
+    </div>
+    <div class="custom-card" style="margin-top: 60px; margin-bottom: 60px;">
+        <div class="d-flex align-items-center justify-content-between custom-card-heading">
+           <span class="accent f500 card-heading">
+                New Podcasts
+           </span>
+        </div>
+        <div class="custom-row" *ngIf="tabsSection[2].isLoaded">
+            <div *ngFor="let podcast of tabsSection[2].data; let i = index" class="custom-col" style="margin-top: 20px;">
+                <app-podcast-card [podcastData]="podcast"></app-podcast-card>
+            </div>
+        </div>
+        <div class="custom-row" *ngIf="!tabsSection[2].isLoaded">
+            <div *ngFor="let episode of [].constructor(tabsSection[2].pageSize) let i = index" class="custom-col" style="margin-top: 20px;">
+                <app-podcast-card [podcastData]="episode" isLoading="true"></app-podcast-card>
+            </div>
+        </div>
+        <!-- <div *ngIf="!tabsSection[2].isLoaded">
+            <app-loader></app-loader>
+        </div> -->
+    </div>
+    <!-- <div class="custom-card mt-4">
+        <div class="d-flex align-items-center justify-content-between mb-1">
+           <span class="accent f500 card-heading">
+                Recommended episodes
+           </span> 
+           <span class="accenttwo card-side-heading pointer" (click)="getRecommendedEpisodes()" *ngIf="tabsSection[0].data.length">
+               <span>See more</span>
+           </span>
+        </div>
+        <div class="custom-row" *ngIf="tabsSection[0].isLoaded || tabsSection[0].data.length">
+            <div *ngFor="let episode of tabsSection[0].data; let i = index" class="custom-col mt-3">
+                <app-episode-card [episodeData]="episode"></app-episode-card>
+            </div>
+            <div *ngIf="!tabsSection[0].data.length" class="d-flex align-items-center justify-content-center mt-5 mb-5 w100">
+                <span class="accenttwo">You don't follow any podcasts yet! Follow some to help us curate better.</span>
+            </div>
+        </div>
+        <div *ngIf="!tabsSection[0].isLoaded">
+            <app-loader></app-loader>
+        </div>
+    </div> -->
+</div>

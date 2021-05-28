@@ -1,27 +1,24 @@
-<div class="hive-auth">
-    <div class="d-flex align-items-center logos">
-        <img src="./../../../assets/launch_icon.png">
-        <mat-icon>add</mat-icon>
-        <img src="./../../../assets/hive-logo.png">
+<div class="m-block">
+    <div class="l-block">
+        <img src="https://aurealbucket.s3.us-east-2.amazonaws.com/Mascot.png" class="lazyload">
     </div>
-    <div class="message" *ngIf="autoCheck">
-        <h6>Your Aureal account is not connected to HIVE yet.</h6>
-    </div>
-    <div class="message" *ngIf="!autoCheck">
-        <h6>Get onboard using your Hive account</h6>
-        <p>OR</p>
-        <h6 class="g-signin2" data-onsuccess="onSignIn">Use your Google account</h6>
-    </div>
-    <div class="d-flex flex-wrap align-center justify-content-between">
-        <a (click)="connectHive(autoCheck)">
-            <button mat-raised-button color="primary">CONNECT MY EXISTING HIVE ACCOUNT</button>
-        </a>
-        <a href="https://hiveonboard.com/create-account">
-            <button mat-raised-button color="secondary">GET NEW HIVE ACCOUNT</button>
-        </a>
-
-        <a *ngIf="!autoCheck">
-            <button mat-raised-button color="secondary" (click)="authService.googleSignin()">Google Account</button>
-        </a>
+    <div class="r-block">
+        <h2 class="text-center f500 mt-5 accenttwo" *ngIf="!justHiveLogin">Sign up/ Log in using</h2>
+        <h2 class="text-center f500 mt-5 accenttwo" *ngIf="justHiveLogin">Connect your HIVE account</h2>
+        <div class="mt-4 mb-5 d-flex flex-column">
+            <button class="custom-primary-button" *ngIf="!justHiveLogin" (click)="signIn('google')">
+                <span class="icon icon-google-dark mr-2"></span>
+                <span>Google Account</span>
+            </button>
+            <button class="custom-primary-button red" (click)="signIn('hive')">
+                <span class="icon icon-hivesigner-white mr-2"></span>
+                <span>Hivesigner</span>
+            </button>
+        </div>
+        <span class="divider"></span>
+        <p class="accenttwo text-center mt-4 mb-4" style="font-size: 12px; font-weight: 300;">Aureal enables your content monetisation through web 3.0, We recommend you to create and connect your HIVE account with Aureal.</p>
+        <button class="custom-secondary-button" (click)="routeto('hive-onboarding')">
+            <span>Create HIVE Account</span>
+        </button>
     </div>
 </div>

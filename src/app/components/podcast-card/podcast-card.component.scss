@@ -1,0 +1,148 @@
+.podcast-card{
+    background: var(--secondary-background);
+    // border: 1px solid var(--primary-border);
+    // display: flex;
+    // margin-right: 20px;
+    padding: 15px;
+    width: inherit;
+    border-radius: 20px;
+    position: relative;
+    .img{
+        width: 75%;
+        height: auto;
+        min-height: 150px;
+        border-radius: 10px;
+        transition: background-image 1s ease-out;
+        // background-image: url('./../../../assets/thumbnail.png');
+    }
+    .content{
+        margin-top: 5px;
+        display: flex;
+        flex-direction: column;
+        .podcast_name{
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .author{
+            font-size: 12px;
+            font-weight: 400;
+        }
+        .vote-icon{
+            color: var(--accenttwo);
+            font-size: 24px;
+            margin-top: 5px;
+            &.voted{
+                color: var(--primary);
+            }
+            cursor: pointer;
+        }
+        .vote-count{
+            margin-top: 5px;
+            margin-right: 10px;
+            color: var(--accent);
+            font-size: 10px;
+            // border: 1px solid var(--primary-border);
+            background: var(--tertiary-background);
+            padding: 2px 7px;
+            display: flex;
+            align-items: center;
+            border-radius: 15px;
+            .icon{
+                font-size: 14px;
+                margin-right: 3px;
+            }
+        }
+        .comment-count{
+            margin-top: 5px;
+            margin-left: 10px;
+            color: var(--accent);
+            font-size: 12px;
+            background: var(--tertiary-background);
+            padding: 0px 7px;
+            display: flex;
+            align-items: center;
+            border-radius: 15px;
+            width: fit-content;
+            .icon{
+                font-size: 14px;
+                margin-right: 3px;
+            }
+            cursor: pointer;
+        }
+    }
+}
+
+
+/* loader */
+.timeline-item {
+    background: var(--secondary-background);
+    border-radius: 3px;
+    padding: 12px;
+    // border: 1px solid var(--primary-border);
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 20px;
+}
+@keyframes placeHolderShimmer{
+    0%{
+        background-position: -468px 0
+    }
+    100%{
+        background-position: 468px 0
+    }
+}
+.animated-background {
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: infinite;
+    animation-name: placeHolderShimmer;
+    animation-timing-function: linear;
+    background: var(--tertiary-background);
+    background: linear-gradient(to right, var(--tertiary-background) 8%, var(--accenttwo) 18%, var(--tertiary-background) 33%);
+    background-size: 800px 104px;
+    height: 230px;
+    position: relative;
+}
+.background-masker {
+    background: var(--secondary-background);
+    position: absolute;
+}
+/* Every thing below this is just positioning */
+.background-masker.header-top,.background-masker.header-bottom,.background-masker.subheader-bottom {
+    top: 150px;
+    left: 0px;
+    right: 0;
+    height: 15px;
+}
+.background-masker.header-bottom {
+    top: 190px;
+    height: 15px;
+}
+.background-masker.subheader-left,.background-masker.subheader-right {
+    top: 184px;
+    height: 6px;
+}
+.background-masker.subheader-bottom {
+    top: 190px;
+    height: 10px;
+}
+.background-masker.content-top,.background-masker.content-second-line,.background-masker.content-third-line,
+.background-masker.content-second-end,.background-masker.content-third-end,.background-masker.content-first-end {
+    top: 185px;
+    left: 150px;
+    right: 0;
+    height: 151px;
+}
+.background-masker.content-top {
+    height: 12px;
+}
+.background-masker.content-first-end,.background-masker.content-second-end,.background-masker.content-third-end{
+    width: auto;
+    left: 380px;
+    right: 0;
+    top: 120px;
+    height: 8px;
+}
+.background-masker.content-second-line  {
+    top: 0px;
+}

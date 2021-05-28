@@ -2,7 +2,7 @@
   <div>
     <div class="login-part" *ngIf="isLoginFormShown">
       <div *ngIf="!isForgotPassword">
-        <h2 class="the-text">Login</h2>
+        <h3 class="the-text">Login</h3>
         <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)" class="form">
           <mat-form-field class="form-element">
             <input matInput placeholder="Username" formControlName="username" />
@@ -90,7 +90,7 @@
       <!-- <button mat-raised-button color="secondary" class="button" (cl)>Forgot Password ?</button> -->
     </div>
     <div class="signup-part" *ngIf="!isLoginFormShown">
-      <h2 class="the-text">Signup</h2>
+      <h3 class="the-text">Signup</h3>
       <form [formGroup]="signupForm" (ngSubmit)="onSubmitSignup(signupForm.value)" class="form" *ngIf="!isOtpFormShown">
         <!-- <mat-form-field class="form-element"> -->
         <!-- <input matInput placeholder="Mobile" formControlName="mobile"> -->

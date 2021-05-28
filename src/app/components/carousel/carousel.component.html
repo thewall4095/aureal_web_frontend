@@ -1,0 +1,66 @@
+<!-- carousel -->
+<div class="carousel">
+    <ng-container *ngFor="let slide of slides; let i = index" class="d-flex justify-content-center">
+      <img
+        *ngIf="i === currentSlide"
+        [src]="slide.src"
+        class="slide lazyload"
+        [@slideAnimation]="animationType"
+      />
+      <div class="content">
+        <div *ngIf="i === currentSlide" [innerHTML]="slide.headline | safeHtml">
+        </div>
+        <!-- <div *ngIf="currentSlide === 1">
+          <h3>You will see your proposed account information here.</h3>
+          <h3>Download a backup of the keys and store it someplace safe and secure. This is <strong>important</strong> for you to have an access of your account all the time. </h3>
+          <h3>Check the box and click on "CREATE HIVE ACCOUNT"</h3>
+        </div>
+        <div *ngIf="currentSlide === 2">
+          <h3>You will see your proposed account information here.</h3>
+          <h3>Download a backup of the keys and store it someplace safe and secure. This is <strong>important</strong> for you to have an access of your account all the time. </h3>
+          <h3>Check the box and click on "CREATE HIVE ACCOUNT"</h3>
+        </div>
+        <div *ngIf="currentSlide === 3">
+          <h3>Next step is to verify your accout using your phone number.</h3>
+          <h3>Select your country code, type in your number and click on "REQUEST SMS" </h3>
+          <h3>You will receive an OTP on the number you used. Enter it and your account will be verified.</h3>
+          <h3>Your phone number is only used for this verification and won't be given to 3rd parties or used for any other purposes.</h3>
+        </div>
+        <div *ngIf="currentSlide === 4">
+          <h3>Your HIVE account is created now </h3>
+          <h3>Here you can explore other apps you can access using your HIVE account. </h3>
+        </div>
+        <div *ngIf="currentSlide === 5">
+          <h3>Head back to aureal.one </h3>
+          <h3>Click on Log in with Hivesigner </h3>
+          <h3>Input your username and Master Password in the fields. </h3>
+          <h3>Click on Continue </h3>
+        </div>
+        <div *ngIf="currentSlide === 6">
+          <h3>Here you have to set a password for Hivesigner. This is different from your HIVE account private key. </h3>
+          <h3>Once you confirm the password, you will be able to login with Hivesigner using this password. </h3>
+          <h3>Click on 'Import Account' </h3>
+        </div>
+        <div *ngIf="currentSlide === 7">
+          <h3>Clicking on 'Authorize' enables your activity on Aureal </h3>
+          <h3>You can withdraw this at any time you want. </h3>
+          <h3>Done. Welcome to Aureal </h3>
+        </div> -->
+      </div>
+    </ng-container>
+  
+    <!-- controls -->
+
+    <button class="control prev" (click)="onPreviousClick()" *ngIf="currentSlide!=0">
+      <div class="isode prev">
+        <span class="arrow left"></span>
+      </div>
+    </button>
+    <button class="control next" (click)="onNextClick()"  *ngIf="currentSlide!=slides.length-1">
+      <div class="isode next">
+        <span class="arrow right"></span>
+      </div>
+      <!-- <span class="arrow right"></span> -->
+    </button>
+  </div>
+  

@@ -1,0 +1,365 @@
+.episode-details-container{
+  width: 100%;
+  padding: 25px 40px;
+  min-height: 100vh;
+  .podcast-card {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    padding: 20px;
+    @media (max-width: 576px) {
+      padding: 0px;
+      margin-bottom: 20px;
+    }
+    .content {
+      // margin-left: 15px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  
+    img {
+      width: 25%;
+      border-radius: 8px;
+      margin-right: 25px;
+      @media (max-width: 576px) {
+        max-height: 80px;
+      }
+    }
+    .name {
+      color: var(--accent);
+      font-size: 16px !important;
+      font-weight: 500;
+      margin-bottom: 10px;
+      @media (max-width: 576px) {
+        font-size: 16px !important;
+        line-height: 1.4em;
+      }
+    }
+    .podcast-name {
+      color: var(--accent);
+      font-size: 18px !important;
+      font-weight: 500;
+      margin-bottom: 0px;
+      margin-left: 10px;
+      @media (max-width: 576px) {
+        font-size: 13px !important;
+      }
+    }
+    .author {
+      color: var(--accenttwo);
+      font-size: 14px !important;
+      max-width: 200px;
+      margin-bottom: 0px;
+      @media (max-width: 576px) {
+        font-size: 12px !important;
+      }
+    }
+    .player-section{
+      .time-slider {
+        width: 100% !important;
+        // margin-left: 20px;
+        margin-right: -15px;
+        font-size: 12px;
+        .mat-slider-wrapper{
+          background: var(--accent);
+        }
+      }
+      .mat-icon {
+        height: 30px !important;
+        width: 30px !important;
+        font-size: 30px !important;
+      }
+      .buttons{
+        margin-left: -20px;
+      }
+    }
+    .vote-count{
+      background: var(--tertiary-background);
+      color: var(--accent);
+      font-size: 12px;
+      padding: 0px 10px;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      border-radius: 15px;
+      cursor: pointer;
+      .icon{
+          font-size: 14px;
+          margin-right: 3px;
+  
+      }
+      .vote-icon{
+        &.voted{
+          .icon{
+            color: var(--primary);
+          }
+        }
+      }
+    }
+    .comment-count{
+      margin-right: 10px;
+      color: var(--accent);
+      font-size: 12px;
+      border: 1px solid var(--primary-border);
+      padding: 0px 7px;
+      display: flex;
+      align-items: center;
+      border-radius: 15px;
+      .icon{
+          font-size: 14px;
+          margin-right: 3px;
+      }
+      cursor: pointer;
+    }
+  
+    .duration {
+      display: flex;
+      margin-right: 20px;
+      color: var(--accent);
+      p {
+        font-size: 14px !important;
+        margin-bottom: 0px;
+        @media (max-width: 576px) {
+          font-size: 11px !important;
+        }
+      }
+    }
+    .views {
+      display: flex;
+      margin-right: 20px;
+      color: var(--accenttwo);
+      p {
+        font-size: 14px !important;
+        margin-left: 5px;
+        margin-bottom: 0px;
+        @media (max-width: 576px) {
+          font-size: 11px !important;
+        }
+      }
+    }
+    .upvotes {
+      display: flex;
+      color: var(--accenttwo);
+      p {
+        font-size: 14px !important;
+        margin-left: 5px;
+        margin-bottom: 5px;
+      }
+    }
+    .upvote-button {
+      min-width: 100px;
+      height: 40px;
+    }
+    .tags {
+      display: flex;
+      color: var(--accenttwo);
+      p {
+        font-size: 14px !important;
+        margin-bottom: 0px;
+        @media (max-width: 576px) {
+          font-size: 10px !important;
+        }
+      }
+    }
+  
+  }
+  
+  .description {
+    font-size: 12px;
+    max-height: 120px;
+    overflow-y: scroll;
+    /* this will hide the scrollbar in mozilla based browsers */
+    overflow: -moz-scrollbars-none;
+    /* this will hide the scrollbar in internet explorers */
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { 
+        width: 0 !important;
+        display: none; 
+    }
+    p,h1,h3{
+        font-size: 12px !important;
+        color: var(--accenttwo) !important;
+    }
+  }
+  // .view-more{
+  //   color: var(--accenttwo);
+  //   font-size: 10px;
+  //   font-weight: 400;
+  //   margin-bottom: 20px;
+  //   cursor: pointer;
+  //   display: flex;
+  //   align-items: center;
+  //   .icon{
+  //     font-size: 14px;
+  //     margin-top: 2px;
+  //   }
+  // }
+  .outside-other-episods{
+    width: 33%;
+    &.fullwidth{
+      width: 90%;
+    }
+  }
+  .other-episodes{
+    width: 100%;
+    background: var(--secondary-background);
+    padding: 30px;
+    border-radius: 20px;
+    .heading {
+      font-size: 16px;
+      color: var(--accent);
+      font-weight: bold;
+      text-transform: capitalize;
+      margin-bottom: 30px;
+    }
+    .each-episode{
+      border-bottom: 1px solid var(--primary-border);
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      .episode-name{
+        font-size: 14px;
+        color: var(--accent);
+        margin-bottom: 5px;
+      }
+      .published_at{
+        font-size: 12px;
+        color: var(--accenttwo);
+      }
+    }
+  }
+  .truncate-overflow {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+  }
+  
+  .more-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 60px;
+    .upvote-button {
+      min-width: 100px;
+      height: 40px;
+    }
+  
+    .episode-data-card {
+      padding: 20px;
+      background: white;
+      border-radius: 8px;
+      @media (max-width: 576px) {
+        padding: 10px;
+      }
+      img {
+        max-width: 50%;
+        // border-radius: 8px;
+        margin-bottom: 20px;
+      }
+      .other {
+        max-width: 50%;
+        margin-left: 10px;
+        .views {
+          display: flex;
+          color: var(--accenttwo);
+        }
+        .upvotes {
+          display: flex;
+          color: var(--accenttwo);
+        }
+      }
+      .description {
+        display: flex;
+        color: var(--accenttwo);
+        max-height: 120px;
+        overflow-y: scroll;
+        p {
+          font-size: 16px !important;
+          margin-bottom: 5px;
+          @media (max-width: 576px) {
+            font-size: 11px !important;
+          }
+        }
+      }
+    }
+  
+    .the-text {
+      font-size: 14px !important;
+      color: var(--accenttwo);
+    }
+  
+    .upcoming-cards {
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      background: white;
+      border: 1px solid var(--light);
+      border-radius: 8px;
+  
+      .upcoming-card {
+        padding: 20px;
+        display: flex;
+        align-items: start;
+        justify-content: space-between;
+        border-bottom: 1px solid var(--light);
+        &:hover {
+          background: #f9f9f9;
+          cursor: pointer;
+        }
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 8px;
+        }
+        .name {
+          font-size: 13px !important;
+          font-weight: 500;
+          width: 250px;
+          margin-bottom: 5px;
+        }
+        .author {
+          font-size: 13px !important;
+          color: var(--accenttwo);
+          width: 250px;
+        }
+      }
+    }
+  }
+  
+  .similar-podcasts {
+    @media (max-width: 576px) {
+      display: none;
+    }
+  }
+  
+  .comments-container {
+    padding: 30px;
+    border-radius: 20px;
+    background: var(--secondary-background);
+    width: 65%;
+    .heading {
+      font-size: 16px;
+      color: var(--accent);
+      font-weight: bold;
+      text-transform: capitalize;
+      margin-bottom: 20px;
+    }
+    .comments{
+      // border: 1px solid var(--primary-border);
+    }
+  }
+  
+  .search-control {
+    flex: 1;
+    font-size: 1rem;
+    border: 0;
+    outline: none;
+    padding-left: 10px;
+  }
+  .mat-toolbar-multiple-rows {
+    min-height: 40px !important;
+  }
+}
+

@@ -1,0 +1,30 @@
+<div class="podcast-card" *ngIf="!isLoading">
+    <img class="img lazyload" defaultImage="https://aurealbucket.s3.us-east-2.amazonaws.com/thumbnailnew.png" [lazyLoad]="podcastData.image"
+     (click)="openPodcast(podcastData)">
+    <div class="content mt-2">
+        <span class="podcast_name text-truncate accent mb-1 pointer" (click)="openPodcast(podcastData)">{{podcastData.name}}</span>
+        <span class="author text-truncate accenttwo mb-1">{{podcastData.author}}</span>
+        <div class="d-flex align-center">
+            <div class="vote-count" (click)="openPodcast(podcastData)">
+                <span>{{podcastData.episodes_count}} Episodes</span>
+            </div>
+            <div class="vote-count pointer" (click)="followPodcast()">
+                <span *ngIf="podcastData.ifFollows">Followed</span>
+                <span *ngIf="!podcastData.ifFollows">Follow</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="isLoading">
+    <div class="timeline-wrapper">
+        <div class="timeline-item">
+          <div class="animated-background">
+            <div class="background-masker header-top"></div>
+            <div class="background-masker header-bottom"></div>
+            <!-- <div class="background-masker content-top"></div> -->
+            <div class="background-masker content-second-line"></div>
+          </div>
+        </div>
+    </div>
+</div>

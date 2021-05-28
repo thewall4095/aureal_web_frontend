@@ -1,0 +1,48 @@
+<div class="landing-container">
+    <div class="home-header">
+      <img src="./assets/Aureal_full_light.png" *ngIf="dark" class="lazyload">
+      <img src="./assets/aureal_full_dark.png" *ngIf="!dark" class="lazyload">
+      <div class="d-flex align-items-center">
+        <div class="some-buttons mr-3">
+          <button class="primary-but" (click)="getStarted()">Login / Sign up</button>
+        </div>
+        <div class="mr-3">
+          <a href="https://play.google.com/store/apps/details?id=co.titandlt.auditory" style="color: var(--accenttwo);">
+            <span class="name accenttwo font-weight-bold">Download</span>
+          </a>
+        </div>
+        <div class="d-flex">
+          <span class="d-flex align-items-center icon icon-moon-o pointer accenttwo" *ngIf="!dark" (click)="toggleTheme(true)"></span>
+          <span class="d-flex align-items-center icon icon-light-up pointer accenttwo" *ngIf="dark" (click)="toggleTheme(false)"></span>
+        </div>
+      </div>
+    </div>
+    <div class="d-block d-sm-none">
+      <img src="./assets/Aureal_full_light.png" *ngIf="dark" class="lazyload" style="width: 100%;
+      padding: 20px 100px;">
+      <img src="./assets/aureal_full_dark.png" *ngIf="!dark" class="lazyload" style="width: 100%;
+      padding: 20px 100px;">
+    </div>
+    <div class="banner-container">
+        <div class="image-section">
+            <div id="container" #container (mousemove)="onMouseMoveHandler($event)" (mouseleave)="onMouseMoveHandler($event)" (mouseenter)="onMouseMoveHandler($event)">
+                <div id="inner" #inner>
+                    <div class="demo-img">
+                        <img class="lazyload" src="./assets/landingpageillustration.png">
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="text-section">
+          <div class="main-heading">
+            Your Voice is Worth Something.
+          </div>
+          <div class="sub-text">
+            Monetise your podcasts easily without ads or sponsorships on decentralised platform.
+          </div>
+          <div class="some-buttons">
+            <button class="primary-but" (click)="getStarted()">Get Started for free</button>
+          </div>
+        </div>
+    </div>
+</div>

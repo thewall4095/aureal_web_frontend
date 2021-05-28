@@ -1,6 +1,22 @@
-:host textarea {
+.comment-box{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    padding: 5px;
-    margin: 5px 0px;
-    border-color: var(--light);
+    textarea {
+        width: calc(100% - 50px);
+        padding: 5px;
+        margin: 5px 0px;
+        border: none;
+        border-bottom: 1px solid var(--primary-border);
+        background-color: var(--theme-background);
+        color: var(--accent);
+        font-size: 14px;
+    }
+    .send-but{
+        margin-right: 0;
+        background: inherit;
+        border: none;
+        color: var(--accenttwo);
+    }
 }

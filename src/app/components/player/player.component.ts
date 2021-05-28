@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Renderer2, ElementRef, AfterViewInit } from '@angular/core';
 import { AudioService } from 'src/app/services/audio.service';
 import { StreamState } from 'src/app/interfaces/stream-state';
+import { PlayerService } from 'src/app/services/player.service';
 
 import { Track } from 'ngx-audio-player';
 @Component({
@@ -17,7 +18,11 @@ export class PlayerComponent implements OnInit {
   prevToPlayData;
   globalListenFunc: Function;
 
-  constructor(private audioService: AudioService, private renderer: Renderer2) {
+  constructor(
+    private audioService: AudioService,
+    private renderer: Renderer2,
+    public playerService: PlayerService,
+    ) {
     // get media files
     this.files = [
       // tslint:disable-next-line: max-line-length
@@ -57,16 +62,16 @@ export class PlayerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.globalListenFunc = this.renderer.listen('document', 'keypress', e => {
-      console.log(e.code);
-      if (e.code == 'Space' && this.state.canplay) {
-        if (this.state.playing) {
-          this.pause();
-        } else {
-          this.play();
-        }
-      }
-    });
+    // this.globalListenFunc = this.renderer.listen('document', 'keypress', e => {
+    //   console.log(e.code);
+    //   if (e.code == 'Space' && this.state.canplay) {
+    //     if (this.state.playing) {
+    //       this.pause();
+    //     } else {
+    //       this.play();
+    //     }
+    //   }
+    // });
     console.log('chalja', this.toPlayData);
     if (this.toPlayData) {
       this.prevToPlayData = this.toPlayData;
@@ -93,6 +98,12 @@ export class PlayerComponent implements OnInit {
       .subscribe(events => {
         // listening for fun here
       });
+  }
+
+  stopPlaying(){
+    this.playerService.setCurrentModule(null);
+    this.playStream(null);
+    this.stop();
   }
 
   openFile(file, index) {
@@ -156,6 +167,7 @@ export class PlayerComponent implements OnInit {
 
   ngOnDestroy() {
     // remove listener
-    this.globalListenFunc();
+    // this.globalListenFunc();
   }
+
 }

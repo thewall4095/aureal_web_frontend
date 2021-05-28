@@ -1,107 +1,32 @@
-<div class="container">
-    <!-- <nav mat-tab-nav-bar>
-        <a mat-tab-link routerLinkActive #PodcastTab="routerLinkActive" [active]="PodcastTab.isActive">
-            Podcasts
-        </a>
-        <a mat-tab-link routerLinkActive #EpisodeTab="routerLinkActive" [active]="EpisodeTab.isActive">
-            Episodes
-        </a>
-    </nav> -->
-    <mat-tab-group style="margin-bottom: 20px;" #changeEvent (selectedIndexChange)="tabChanged($event)">
-        <mat-tab label="Podcasts"></mat-tab>
-        <mat-tab label="Episodes"></mat-tab>
-    </mat-tab-group>
-    <div *ngIf="currentTab == 'Podcasts'" infinite-scroll [infiniteScrollDistance]="scrollDistance"
-        [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown()">
-        <div class="outside-container"
-            *ngIf="searchResults && searchResults.PodcastList && searchResults.PodcastList.length">
-            <div *ngFor="let eachPodcast of searchResults.PodcastList" class="upcoming-card"
-                (click)="redirectToPodcast(eachPodcast)">
-                <img [src]="eachPodcast.image">
-                <div class="content">
-                    <h6 class="name">{{eachPodcast.name}}</h6>
-                    <p class="author text-truncate">By {{eachPodcast.author}}</p>
-                    <div class="categories d-flex flex-wrap">
-                        <p *ngFor="let tag of eachPodcast.Categories; let cardIndex = index;">
-                            <span *ngIf="tag.name && cardIndex<5">{{tag.name}}</span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="outside-container" *ngIf="isLoading">
-            <div *ngFor="let loaderNum of [0,1,2,3,4,5,6,7,8,9]">
-                <div class="timeline-wrapper">
-                    <div class="timeline-item">
-                        <div class="animated-background">
-                            <div class="vertical-bottom"></div>
-                            <div class="horizontal-bottom"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div *ngIf="currentTab == 'Episodes'" infinite-scroll [infiniteScrollDistance]="scrollDistance"
-        [infiniteScrollUpDistance]="scrollUpDistance" [infiniteScrollThrottle]="throttle" (scrolled)="onScrollDown()">
-        <div class="outside-container"
-            *ngIf="searchResults && searchResults.EpisodeList && searchResults.EpisodeList.length">
-
-            <div *ngFor="let eachEpisode of searchResults.EpisodeList" class="upcoming-card"
-                (click)="playEpisode(eachEpisode);">
-                <div class="podcast-card">
-                    <div class="itemsContainer">
-                        <img [src]="eachEpisode.image">
-                        <div class="play"><img src="./../../../../../assets/play.png" /> </div>
-                    </div>
-
+<div class="search-container">
+    <div class="inside-search-container">
+        <div>
+            <div class="outside-container"
+                *ngIf="searchResults && searchResults.PodcastList && searchResults.PodcastList.length">
+                <div *ngFor="let eachPodcast of searchResults.PodcastList" class="upcoming-card"
+                    (click)="redirectToPodcast(eachPodcast)">
+                    <img defaultImage="https://aurealbucket.s3.us-east-2.amazonaws.com/thumbnailnew.png" [lazyLoad]="eachPodcast.image" class="lazyload">
                     <div class="content">
-                        <h6 class="name truncate-overflow">{{eachEpisode.name}}</h6>
-                        <h6 class="podcast-name truncate-overflow">{{eachEpisode.podcast_name}}</h6>
-                        <!-- <p class="author text-truncate">by {{eachEpisode.author}}</p> -->
-                        <div class="d-flex justify-content-between align-center">
-                            <div class="d-flex">
-                                <div class="duration">
-                                    <i class="far fa-clock-o" aria-hidden="true"></i>
-                                    <p>{{formatDuration(eachEpisode.duration)}}</p>
-                                </div>
-                                <div class="views">
-                                    <i class="fas fa-headphones" aria-hidden="true"></i>
-                                    <p>{{eachEpisode.views}}</p>
-                                </div>
-                            </div>
+                        <h6 class="name">{{eachPodcast.name}}</h6>
+                        <p class="author text-truncate">By {{eachPodcast.author}}</p>
+                        <div class="categories d-flex flex-wrap">
+                            <p *ngFor="let tag of eachPodcast.Categories; let cardIndex = index;">
+                                <span *ngIf="tag.name && cardIndex<5">{{tag.name}}</span></p>
                         </div>
-                        <div class="d-none d-sm-block">
-                            <div class="tags d-flex flex-wrap">
-                                <p *ngFor="let tag of eachEpisode.Tags; let cardIndex = index;">
-                                    <span *ngIf="tag && cardIndex<5">{{'#'+tag+'  '}}</span></p>
-                            </div>
-                        </div>
-
-                        <!-- <div class="description">
-                                <p class="truncate-overflow" [innerHTML]="eachEpisode.summary"></p>
-                            </div> -->
                     </div>
-                    <!-- <div class="d-flex">
-                            <div class="upvotes">
-                                <i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
-                                <p>{{eachEpisode.duration}} </p>
-                            </div>
-                        </div> -->
+                </div>
+                <div class="mt-3 mb-3 d-flex align-center justify-content-between">
+                    <span></span>
+                    <span class="show-more" (click)="onScrollDown()">Show more</span>
                 </div>
             </div>
-        </div>
-        <div class="outside-container" *ngIf="isLoading">
-            <div *ngFor="let loaderNum of [0,1,2,3,4,5,6,7,8,9]">
-                <div class="timeline-wrapper">
-                    <div class="timeline-item">
-                        <div class="animated-background">
-                            <div class="vertical-bottom"></div>
-                            <div class="horizontal-bottom"></div>
-                        </div>
-                    </div>
-                </div>
+            <div class="outside-container" *ngIf="!isLoading && !searchResults.PodcastList.length">
+                <span class="no-results">No results found for your search</span>
+            </div>
+            <div class="outside-container" *ngIf="isLoading">
+                <app-loader></app-loader>
             </div>
         </div>
     </div>
+
 </div>

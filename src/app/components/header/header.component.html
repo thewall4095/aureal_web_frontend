@@ -1,105 +1,36 @@
 <div class="w100 header-container">
-    <div class="container">
-        <div class="d-block d-sm-none" [class.hidden]="toggleSearch">
-            <div class="d-flex align-items-center justify-content-between inside-header">
-                <div class="d-flex">
-                    <div dropdown style="position: relative;" (click)="openSidebar()">
-                        <i class="fas fa-bars" aria-hidden="true" style="font-size: 20px;"></i>
-                    </div>
-                    <mat-icon (click)="openSearch()" style="padding-left: 15px;">search</mat-icon>
-                </div>
-                <div class="logo">
-                    <a (click)="navigateHome()">
-                        <img src="./assets/launch_icon.png">
+    <div class="">
+        <div class="d-flex align-items-center justify-content-between inside-header">
+            <div class="d-flex align-items-center justify-content-start">
+                <div class="logo" *ngFor="let item of routes" (click)="navigateTo(item.route)">
+                    <a [class.active]="isActive(item.route)">
+                        <span class="name">{{ item.name }}</span>
                     </a>
-                </div>
-                <div class="tabs">
-                    <div class="each-tab" *ngIf="authService.isAuthenticated()" style="margin-right: 10px;">
-                        <button mat-raised-button color="primary" (click)="redirectPost()">Publish your Podcast</button>
-                    </div>
-                    <div class="each-tab">
-                        <a (click)="openHiveAuthDialog(false)" *ngIf="!authService.isAuthenticated()">
-                            <button mat-raised-button color="primary">Log in / Sign Up</button>
-                        </a>
-                        <div *ngIf="authService.isAuthenticated()" dropdown style="position: relative;">
-                            <img id="button-basic"
-                                [src]="userDetailsService.UserDetails?.img ? userDetailsService.UserDetails?.img : './assets/headphone_user.png'"
-                                style="height: 40px; cursor: pointer;border-radius: 50%;" dropdownToggle
-                                class="dropdown-toggle">
-                            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu dropdown-menu-right">
-                                <div class="font-weight-bold mb-2">Hello, {{authService.getUsername()}}</div>
-                                <div class="font-italic font-weight-bold mb-2" *ngIf="!authService.isHiveConnected()">
-                                    You are not connected to Hive</div>
-                                <li role="menuitem font-weight-bold mb-2" *ngIf="!authService.isHiveConnected()"
-                                    (click)="openHiveAuthDialog(false)">CONNECT HIVE</li>
-                                <li role="menuitem font-weight-bold mb-2" (click)="goToProfile()">MY PROFILE</li>
-                                <li role="menuitem font-weight-bold mb-2" (click)="authService.logout()">LOGOUT</li>
-                            </ul>
-                        </div>
-                    </div>
                 </div>
             </div>
-        </div>
-        <div class="d-none d-sm-block" [class.hidden]="toggleSearch">
-            <div class="d-flex align-items-center justify-content-between inside-header">
-                <div class="logo">
-                    <a (click)="navigateHome()">
-                        <img src="./assets/launch_icon.png">
-                    </a>
-                    <div class="search-part" (click)="openSearch()">
-                        <mat-icon>search</mat-icon>
-                        <h6>Search for your favorite podcast...</h6>
+            <div class="d-flex align-center">
+                <div class="d-flex align-items-center justify-content-end right-section">
+                    <div>
+                        <span class="icon icon-moon-o pointer accenttwo" *ngIf="!dark" (click)="toggleTheme(true)"></span>
+                        <span class="icon icon-light-up pointer accenttwo" *ngIf="dark" (click)="toggleTheme(false)"></span>
                     </div>
-                    <a (click)="navigateHome()">
-                        Home
-                    </a>
+                    <div class="search-container relative">
+                        <input [(ngModel)]="searchText" class="accenttwo" (keyup.enter)="triggerSearch($event)">
+                        <span class="icon icon-search-1 accenttwo" (click)="triggerSearch(true)"></span>
+                    </div>
                 </div>
-                <div class="tabs">
-                    <div class="each-tab">
-                        <a href='https://buymeberri.es/@titandlt' target='_blank'><img src='https://buymeberries.com/assets/bmb-4-s.png'/></a>
+                <div class="user" (click)="navigateProfile()" *ngIf="userDetailsService.UserDetails?.username">
+                    <div>
+                      <img *ngIf="userDetailsService.UserDetails?.img" class="lazyload" 
+                      defaultImage="https://aurealbucket.s3.us-east-2.amazonaws.com/thumbnailnew.png" [lazyLoad]="userDetailsService.UserDetails?.img"/>
+                      <span *ngIf="!userDetailsService.UserDetails?.img" class="icon icon-user"></span>
                     </div>
-                    <div class="each-tab" *ngIf="authService.isAuthenticated()">
-                        <button mat-raised-button color="primary" (click)="redirectPost()">Publish your Podcast</button>
-                    </div>
-                    <div class="each-tab">
-                        <a (click)="openHiveAuthDialog(false)" *ngIf="!authService.isAuthenticated()">
-                            <button mat-raised-button color="primary">Log in / Sign Up</button>
-                        </a>
-                        <div *ngIf="authService.isAuthenticated()" dropdown style="position: relative;">
-                            <img id="button-basic"
-                                [src]="userDetailsService.UserDetails?.img ? userDetailsService.UserDetails?.img : './assets/headphone_user.png'"
-                                style="height: 40px; cursor: pointer; border-radius: 50%;" dropdownToggle
-                                class="dropdown-toggle">
-                            <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu">
-                                <div class="font-weight-bold mb-2">Hello, {{authService.getUsername()}}</div>
-                                <div class="font-italic font-weight-bold mb-2" *ngIf="!authService.isHiveConnected()">
-                                    You are not connected to Hive</div>
-                                <li role="menuitem font-weight-bold mb-2" (click)="goToProfile()">MY PROFILE</li>
-                                <li role="menuitem font-weight-bold mb-2" *ngIf="!authService.isHiveConnected()"
-                                    (click)="openHiveAuthDialog(false)">CONNECT HIVE</li>
-                                <li role="menuitem font-weight-bold mb-2" (click)="authService.logout()">LOGOUT</li>
-                            </ul>
-                        </div>
-                    </div>
+                    <!-- <div class="user-name text-truncate">
+                      {{userDetailsService.UserDetails?.username}}
+                    </div> -->
+                </div>
+            </div>
 
-                </div>
-            </div>
         </div>
-        <mat-toolbar class="search-block mat-elevation-z4" [class.active]="toggleSearch">
-            <mat-toolbar-row style="padding: 0 5px;height: 40px !important;">
-                <button class="search-icon" mat-icon-button disabled>
-                    <mat-icon>search</mat-icon>
-                </button>
-                <input class="search-control" type="text" placeholder="Search" [(ngModel)]="searchText" #searchbar
-                    (keydown)="keyDownFunction($event)">
-                <button mat-button mat-icon-button (click)="searchWord()">
-                    <mat-icon>search</mat-icon>
-                </button>
-                <button mat-button mat-icon-button (click)="searchClose()">
-                    <mat-icon>close</mat-icon>
-                </button>
-            </mat-toolbar-row>
-        </mat-toolbar>
     </div>
-
 </div>

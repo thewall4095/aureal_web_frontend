@@ -1,0 +1,30 @@
+.live-container{
+    width: 100%;
+    padding: 25px 40px;
+    min-height: 100vh;
+    .heading{
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 30px;
+        color: var(--accent);
+    }
+    .userprofile-section {
+        width: 100%;
+        background: var(--theme-background);
+        border: 1px solid var(--primary-border);
+        border-radius: 20px;
+        padding: 30px;
+        display: flex;
+        justify-content: space-between;
+        .icon{
+            font-size: 22px;
+            margin-top: 2px;
+        }
+        .side-icon{
+            .icon{
+                font-size: 200px;
+                color: var(--tertiary-background);
+            }
+        }
+    }
+}

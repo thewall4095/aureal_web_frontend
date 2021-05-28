@@ -1,3 +1,158 @@
+.post-container {
+  width: 100%;
+  padding: 25px 35px;
+  min-height: 100vh;
+  .part {
+    // margin: auto;
+    // max-width: 300px;
+    .the-text{
+      font-size: 18px;
+      font-weight: 500;
+      margin-bottom: 30px;
+    }
+    .stepper{
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      .step{
+        background: var(--theme-background);
+        color: var(--theme-color);
+        border: 0.5px solid var(--theme-color);
+        height: 40px;
+        width: 40px;
+        border-radius: 37px;
+        // margin-right: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.active{
+          background: var(--theme-color);
+          color: var(--theme-background);
+          border: none;
+        }
+      }
+      .step-divider{
+        border-top-width: 1px;
+        border-top-style: dashed;
+        &.active{
+          border-top-style: solid;
+        }
+        height: 0;
+        width: 150px;
+      }
+    }
+    .c-card{
+      border: 0.5px solid var(--primary-border);
+      border-radius: 10px;
+      padding: 25px;
+      .left-content{
+        .left-content-heading{
+          font-size: 16px;
+          color: var(--accent);
+          margin-bottom: 20px;
+        }
+        .left-content-content{
+          font-size: 14px;
+          color: var(--accenttwo);
+          margin-bottom: 40px;
+          &.podcast{
+            img{
+              width: 180px;
+              height: 180px;
+            }
+            .podcast-name{
+              color: var(--accent);
+              font-size: 18px;
+              margin-bottom: 10px;
+              font-weight: 500;
+            }
+            .podcast-author{
+              color: var(--accenttwo);
+              font-size: 16px;
+              margin-bottom: 20px;
+              font-weight: 500;
+            }
+            .podcast-description{
+              color: var(--accenttwo);
+              font-size: 14px;
+            }
+            .view-more{
+              color: var(--accenttwo);
+              font-size: 12px;
+              font-weight: 400;
+              margin-bottom: 20px;
+              cursor: pointer;
+              display: flex;
+              align-items: center;
+              .icon{
+                font-size: 14px;
+                margin-top: 2px;
+              }
+            }
+            .episodes-count{
+              font-size: 16px;
+              font-weight: 500;
+              color: var(--accent);
+              margin-bottom: 20px;
+            }
+            .episodes{
+
+              border-bottom: 1px solid var(--primary-border);
+              margin-bottom: 20px;
+              padding-bottom: 20px;
+              .episode-name{
+                font-size: 14px;
+                color: var(--accent);
+                font-weight: 500;
+                margin-bottom: 10px;
+              }
+              .episode-createdAt{
+                color: var(--accenttwo);
+                font-size: 12px;
+                margin-bottom: 10px;
+              }
+              .episode-duration{
+                border: 0.5px solid var(--primary-border);
+                padding: 0px 10px;
+                color: var(--accenttwo);
+                font-size: 12px;
+                cursor: pointer;
+                border-radius: 20px;
+              }
+              .episode-publish{
+                background: var(--tertiary-background);
+                padding: 2px 15px;
+                color: var(--accent);
+                font-size: 12px;
+                cursor: pointer;
+                margin-left: 20px;
+                border-radius: 20px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.search-container{
+  position: relative;
+  margin: 20px 0;
+  width: 100%;
+  input{
+    border-radius: 20px;
+    border: 0.5px solid var(--primary-border);
+    background: inherit;
+    padding: 10px 20px;
+    font-size: 14px;
+    width: 100%;
+    &:focus{
+      outline: none;
+    }
+  }
+}
+
 .form-part {
   padding: 20px;
   // margin: 20px;
@@ -11,10 +166,7 @@
   }
 }
 
-.part {
-  margin: auto;
-  max-width: 300px;
-}
+
 
 table {
   width: 100%;
@@ -88,7 +240,15 @@ table {
 .no-account {
   margin-top: 20px;
   cursor: pointer;
+  color: var(--accenttwo);
   &:hover {
     text-decoration: underline;
   }
+}
+
+.truncate-overflow {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  overflow: hidden;
 }

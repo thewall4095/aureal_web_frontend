@@ -16,4 +16,8 @@ export class FooterComponent implements OnInit {
   navigateHome() {
     this.router.navigateByUrl('/');
   }
+
+  redirectToAbout() {
+    this.router.navigateByUrl('/about-us');
+  }
 }

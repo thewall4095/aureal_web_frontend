@@ -38,7 +38,7 @@ export class CommentBoxComponent implements OnInit {
 
   openHiveAuthDialog(autoCheck: Boolean): void {
     this.dialog.open(HiveAuthComponent, {
-      width: '400px',
+      width: '800px',
       // height:  '350px',
       maxWidth: '95vw',
       hasBackdrop: true,

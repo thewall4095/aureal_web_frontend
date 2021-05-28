@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { MatDialog } from "@angular/material/dialog";
 import { HiveAuthComponent } from 'src/app/components/hive-auth/hive-auth.component';
 import { UserDetailsService } from 'src/app/services/user-details.service';
+import { appConstants } from 'src/app/app.constants';
+import { ThemeService } from 'src/app/services/theme.service';
 
 
 @Component({
@@ -19,22 +21,30 @@ export class HeaderComponent implements OnInit {
 
   toggleSearch: boolean = false;
   searchText = '';
+  routes = appConstants.routes;
 
-  constructor(public authService: AuthService, private route: ActivatedRoute, public router: Router, public dialog: MatDialog, public userDetailsService: UserDetailsService) { }
+  constructor(
+    public authService: AuthService,
+    public router: Router,
+    public dialog: MatDialog,
+    public userDetailsService: UserDetailsService,
+    private themeService: ThemeService,
+    private activatedRoute: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
     let a = parseInt((moment().unix()).toString()) + 68400;
     let b = moment().unix();
     console.log(a - b);
-    if (!this.authService.isHiveConnected() && this.authService.isAuthenticated()) {
-      this.openHiveAuthDialog(true);
-    }
-    if (!this.userDetailsService.UserDetails && this.authService.isAuthenticated()) {
-      this.userDetailsService.getUserDetails(localStorage.getItem('userId')).then((res: any) => {
-        console.log(res);
-        this.userDetailsService.UserDetails = res.users;
-      });
-    }
+    // if (!this.authService.isHiveConnected() && this.authService.isAuthenticated()) {
+    //   this.openHiveAuthDialog(true);
+    // }
+    this.updateSearch();
+    setTimeout(()=>{
+      if(this.authService.isAuthenticated()){
+        this.getUserDetails();
+      }
+    },1000);
   }
 
   navigateHome() {
@@ -78,7 +88,7 @@ export class HeaderComponent implements OnInit {
 
   openHiveAuthDialog(autoCheck: Boolean): void {
     this.dialog.open(HiveAuthComponent, {
-      width: '400px',
+      width: '800px',
       // height:  '350px',
       maxWidth: '95vw',
       hasBackdrop: true,
@@ -87,6 +97,45 @@ export class HeaderComponent implements OnInit {
   }
 
   goToProfile() {
+    this.router.navigateByUrl('/profile');
+  }
+
+  navigateTo(route){
+    this.router.navigateByUrl(route);
+  }
+
+  isActive(route){
+    return window.location.pathname == ('/' + route)
+  }
+
+  toggleTheme(isDark){
+    this.themeService.theme = isDark ? 'dark' : null;
+  }
+
+  get dark() {
+    return this.themeService.theme === 'dark';
+  }
+  
+  triggerSearch(event){
+    this.router.navigateByUrl('search/'+this.searchText);
+  }
+
+  updateSearch(){
+    if(window.location.pathname.split('/')[1] == 'search'){
+      this.searchText = window.location.pathname.split('/')[2];
+    }
+  }
+
+  getUserDetails(){
+    if (!this.userDetailsService.UserDetails && this.authService.isAuthenticated()) {
+      this.userDetailsService.getUserDetails(localStorage.getItem('userId')).then((res: any) => {
+        console.log(res);
+        this.userDetailsService.UserDetails = res.users;
+      });
+    }
+  }
+
+  navigateProfile(){
     this.router.navigateByUrl('/profile');
   }
 }

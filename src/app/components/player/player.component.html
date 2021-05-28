@@ -1,39 +1,48 @@
 <div class="media-footer">
   <mat-toolbar color="primary">
-    <mat-toolbar-row>
-      {{ state?.readableCurrentTime }}
-      <mat-slider class="time-slider" min="0" [max]="state?.duration" step="1" [value]="state?.currentTime"
-        (input)="onSliderChangeEnd($event)" [disabled]="state?.error"></mat-slider>
-      {{ state?.readableDuration }}
-    </mat-toolbar-row>
-    <mat-toolbar-row class="d-block d-sm-none">
+    <!-- <mat-toolbar-row class="d-block d-sm-none">
       <marquee>
         <h6 class="name">{{toPlayData.name}}</h6>
       </marquee>
-    </mat-toolbar-row>
-    <mat-toolbar-row class="media-action-bar d-flex justify-content-between">
+    </mat-toolbar-row> -->
+    <mat-toolbar-row class="media-action-bar relative d-flex justify-content-center">
       <div class="d-none d-sm-block">
         <div class="upcoming-card ">
-          <img [src]="toPlayData.image">
+          <img defaultImage="https://aurealbucket.s3.us-east-2.amazonaws.com/thumbnailnew.png" [lazyLoad]="toPlayData.image" class="lazyload">
           <div class="desc">
-            <h6 class="name">{{toPlayData.name}}</h6>
-            <p class="author text-truncate">{{toPlayData.author}}</p>
+            <h6 class="name text-truncate">
+              <!-- <marquee> -->
+                {{toPlayData.name}}
+              <!-- </marquee> -->
+            </h6>
+            <p class="author text-truncate">{{toPlayData.podcast_name}}</p>
           </div>
         </div>
       </div>
-      <div>
-        <button mat-button [disabled]="isReplayDisabled()" (click)="replay()">
-          <mat-icon mat-list-icon>replay_10</mat-icon>
-        </button>
-        <button mat-button (click)="play()" [disabled]="state?.error" *ngIf="!state?.playing">
-          <mat-icon mat-list-icon>play_circle_filled</mat-icon>
-        </button>
-        <button mat-button (click)="pause()" *ngIf="state?.playing">
-          <mat-icon mat-list-icon>pause</mat-icon>
-        </button>
-        <button mat-button [disabled]="isForwardDisabled()" (click)="forward()">
-          <mat-icon mat-list-icon>forward_10</mat-icon>
-        </button>
+      <div class="middle-content">
+        <div class="buttons">
+          <button mat-button [disabled]="isReplayDisabled()" (click)="replay()">
+            <mat-icon mat-list-icon>replay_10</mat-icon>
+          </button>
+          <button mat-button (click)="play()" [disabled]="state?.error" *ngIf="!state?.playing">
+            <mat-icon mat-list-icon>play_circle_filled</mat-icon>
+          </button>
+          <button mat-button (click)="pause()" *ngIf="state?.playing">
+            <mat-icon mat-list-icon>pause</mat-icon>
+          </button>
+          <button mat-button [disabled]="isForwardDisabled()" (click)="forward()">
+            <mat-icon mat-list-icon>forward_10</mat-icon>
+          </button>
+        </div>
+        <div class="time-slider">
+          {{ state?.readableCurrentTime }}
+          <mat-slider min="0" [max]="state?.duration" step="1" [value]="state?.currentTime"
+            (input)="onSliderChangeEnd($event)" [disabled]="state?.error"></mat-slider>
+          {{ state?.readableDuration }}
+        </div>
+      </div>
+      <div class="close-icon" (click)="stopPlaying()">
+        <span class="icon icon-times" style="font-size: 18px;"></span>
       </div>
     </mat-toolbar-row>
   </mat-toolbar>

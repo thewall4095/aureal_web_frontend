@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { environment } from 'src/environments/environment';
-import { HomeDashboardService } from 'src/app/pages/home-dashboard/home-dashboard.service';
+import {CommonService} from 'src/app/services/common.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 
@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 export class CreateCommunityComponent implements OnInit {
   createCommunityForm: FormGroup;
   isbuttonLoaderOn: Boolean = false;
-  constructor(public dialogRef: MatDialogRef<CreateCommunityComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public homeDashboardService: HomeDashboardService, private toastr: ToastrService) { }
+  constructor(public dialogRef: MatDialogRef<CreateCommunityComponent>, @Inject(MAT_DIALOG_DATA) public data: any, public commonService: CommonService, private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.createCommunityForm = new FormGroup({
@@ -28,7 +28,7 @@ export class CreateCommunityComponent implements OnInit {
     body.append('description', data.description);
     body.append('user_id', localStorage.getItem('userId'));
     this.isbuttonLoaderOn = true;
-    this.homeDashboardService.createCommunity(body).subscribe((res: any) => {
+    this.commonService.createCommunity(body).subscribe((res: any) => {
       this.isbuttonLoaderOn = false;
 
       if (res.msg) {

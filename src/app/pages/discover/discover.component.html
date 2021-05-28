@@ -1,0 +1,96 @@
+<div class="discover-container">
+    <div class="custom-card">
+        <div class="d-flex align-items-center justify-content-between custom-card-heading">
+            <span class="accent f500 card-heading">
+                    Favorites
+            </span> 
+            <div class="d-flex align-center">
+                <span class="icon icon-left ml-1 mr-1" (click)="leftScroll($event)"></span>
+                <span class="icon icon-right ml-1 mr-1" (click)="rightScroll($event)"></span>
+            </div>
+        </div>
+        <div class="custom-infinite-row scrollable-episodes-1" *ngIf="tabsSection[0].isLoaded" #mattable>
+            <div *ngFor="let episode of tabsSection[0].data; let i = index" class="custom-col-episode mt-3">
+                <app-favorite-episode [episodeData]="episode"></app-favorite-episode>
+            </div>
+            <div *ngIf="!tabsSection[0].data.length" class="d-flex align-items-center justify-content-center mt-5 mb-5 w100">
+                <span class="accenttwo">You don't follow any podcasts yet! Follow some to help us curate better.</span>
+            </div>
+        </div>
+        <div class="custom-infinite-row" *ngIf="!tabsSection[0].isLoaded">
+            <div *ngFor="let episode of [].constructor(tabsSection[0].pageSize) let i = index" class="custom-col-episode mt-3">
+                <app-favorite-episode [episodeData]="episode" isLoading="true"></app-favorite-episode>
+            </div>
+        </div>
+    </div>
+    <div class="custom-card" *ngIf="authService.isAuthenticated()" style="margin-top: 60px;">
+        <div class="d-flex align-items-center justify-content-between custom-card-heading">
+           <span class="accent f500 card-heading">
+                Recommended Podcasts
+           </span>
+        </div>
+        <div class="custom-row" *ngIf="tabsSection[1].isLoaded">
+            <div *ngFor="let podcast of tabsSection[1].data; let i = index" class="custom-col mt-3">
+                <app-podcast-card [podcastData]="podcast"></app-podcast-card>
+            </div>
+        </div>
+        <div class="custom-row" *ngIf="!tabsSection[1].isLoaded">
+            <div *ngFor="let episode of [].constructor(tabsSection[1].pageSize) let i = index" class="custom-col mt-3">
+                <app-podcast-card [podcastData]="episode" isLoading="true"></app-podcast-card>
+            </div>
+        </div>
+    </div>
+    <div class="custom-card" style="margin-top: 60px; margin-bottom: 60px;">
+        <div class="d-flex align-items-center justify-content-between custom-card-heading">
+           <span class="accent f500 card-heading">
+                Newly Released
+           </span> 
+           <div class="d-flex align-center">
+                <span class="icon icon-left ml-1 mr-1" (click)="leftScroll2($event)"></span>
+                <span class="icon icon-right ml-1 mr-1" (click)="rightScroll2($event)"></span>
+            </div>
+        </div>
+        <div class="custom-infinite-row scrollable-episodes-2" *ngIf="tabsSection[2].isLoaded || tabsSection[2].data.length">
+            <div *ngFor="let episode of [].constructor(tabsSection[2].data.length); let i = index; let even = even;" class="custom-col-podcast mt-3" [ngClass]="{'hideit' : !even}">
+                <div class="d-flex flex-column" *ngIf="even" id="point_{{i}}">
+                    <app-episode-card [episodeData]="tabsSection[2]?.data[i]"></app-episode-card>
+                    <app-episode-card [episodeData]="tabsSection[2]?.data[i+1]" style="margin-top: 20px;"></app-episode-card>
+                </div>
+            </div>
+        </div>
+        <div class="custom-infinite-row" *ngIf="!tabsSection[2].isLoaded">
+            <div *ngFor="let episode of [].constructor(tabsSection[2].pageSize) let i = index;  let even = even;" class="custom-col-podcast" style="margin-top: 20px;" [ngClass]="{'hideit' : !even}">
+                <div class="d-flex flex-column" *ngIf="even">
+                    <app-episode-card [episodeData]="episode" isLoading="true"></app-episode-card>
+                    <app-episode-card [episodeData]="episode" isLoading="true"></app-episode-card>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mobile-container">
+    <div class="w100 d-flex flex-column align-items-center justify-content-center">
+        <img src="./assets/Aureal_full_light.png" *ngIf="dark" class="lazyload">
+        <img src="./assets/aureal_full_dark.png" *ngIf="!dark" class="lazyload">
+    </div>
+    <div class="tet-section mt-5">
+        <h4 class="accent text-center mb-5">Aureal is a decentralised podcast platform built on hive blockchain that enables you to monetise your podcast and rewards you for your interactions.</h4>
+        <p class="accenttwo text-center mb-3">Web platform is best viewed on Desktop. For a seamless experience on mobile devices download the app from </p>
+        <div class="d-flex align-center justify-content-center apps">
+            <div class="d-flex flex-column align-items-center">
+                <span class="accenttwo icon icon-apple mb-2"></span>
+                <div class="accenttwo" style="font-size: 12px;">(coming soon)</div>
+            </div>
+            <div class="ml-4 mr-4 mb-auto mt-auto">
+                <span class="accenttwo">OR</span>
+            </div>
+            <div>
+                <a href="https://play.google.com/store/apps/details?id=co.titandlt.auditory">
+                    <span class="accenttwo icon icon-android"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

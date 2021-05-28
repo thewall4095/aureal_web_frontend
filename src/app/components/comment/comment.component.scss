@@ -1,13 +1,20 @@
 :host {
   display: block;
 }
-
+.comment{
+  font-size: 14px;
+}
 .the-but-reply {
   color: var(--accenttwo);
-  font-weight: bold;
   cursor: pointer;
+  border-radius: 20px;
+  font-size: 24px;
+  display: flex;
+  align-items: center;
 }
 i {
   margin-left: 5px;
   cursor: pointer;
+  font-size: 20px;
+  margin-top: 3px;
 }

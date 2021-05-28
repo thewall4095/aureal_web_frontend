@@ -1,33 +1,30 @@
-<div class="container">
+<div class="profile-container">
+    <div class="heading">My Profile</div>
     <div class="userprofile-section" *ngIf="userDetails">
-        <div class="d-flex w100 row">
+        <div class="d-flex w100 mb-2">
             <div class="user-image">
                 <div>
                     <div class="user-image-avatar" *ngIf="!userDetails.img">
-                        <span *ngIf="!isImageUploading">{{getAvatarText(userDetails?.fullname)}}</span>
+                        <span *ngIf="!isImageUploading">{{getAvatarText(userDetails?.username)}}</span>
                         <span *ngIf="isImageUploading"><i class="fas fa-spinner fa-spin" aria-hidden="true"></i></span>
                     </div>
                     <div *ngIf="userDetails.img">
-                        <img [src]="userDetails.img">
+                        <img [src]="userDetails.img" class="lazyload">
                     </div>
                 </div>
-                <div class="edit-icon">
+                <!-- <div class="edit-icon">
                     <input type="file" (change)="onFileChanged($event)" style="display: none" #fileInput>
                     <mat-icon (click)="fileInput.click()">edit</mat-icon>
-                </div>
+                </div> -->
             </div>
-            <div class="user-details" *ngIf="!isProfileFormOpen">
-                <h2>{{userDetails?.fullname}}</h2>
-                <p class="text-truncate" [innerHTML]="userDetails?.settings?.Account?.Bio"></p>
-            </div>
-            <div class="the-form" *ngIf="isProfileFormOpen">
+            <!-- <div class="the-form" *ngIf="isProfileFormOpen">
 
                 <form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm.value)" class="form">
                     <mat-form-field class="form-element">
-                        <input matInput placeholder="Full Name" formControlName="fullname">
+                        <input matInput placeholder="Full Name" formControlName="username">
                         <mat-error
-                            *ngIf="!profileForm.controls['fullname'].valid && profileForm.controls['fullname'].touched">
-                            {{ getErrorFullname(profileForm) }}
+                            *ngIf="!profileForm.controls['username'].valid && profileForm.controls['username'].touched">
+                            {{ getErrorusername(profileForm) }}
                         </mat-error>
                     </mat-form-field>
                     <mat-form-field class="form-element">
@@ -39,14 +36,18 @@
                                 *ngIf="isImageUploading" aria-hidden="true"></i></button>
                     </div>
                 </form>
-            </div>
+            </div> -->
         </div>
-        <div>
+        <div class="user-details" *ngIf="!isProfileFormOpen">
+            <h3>{{userDetails?.username}}</h3>
+            <p class="text-truncate" [innerHTML]="userDetails?.settings?.Account?.Bio"></p>
+        </div>
+        <!-- <div>
             <div class="edit-all-icon" (click)="isProfileFormOpen = !isProfileFormOpen">
                 <mat-icon *ngIf="!isProfileFormOpen">edit</mat-icon>
                 <mat-icon *ngIf="isProfileFormOpen">close</mat-icon>
             </div>
-        </div>
+        </div> -->
     </div>
     <div class="userprofile-section" *ngIf="unclaimedText">
         <div class="d-flex justify-content-between align-items-center w100 row" style="padding:15px;">
@@ -56,36 +57,75 @@
         </div>
     </div>
     <div class="userpodcasts-section">
-        <mat-tab-group style="margin-bottom: 20px;" [(selectedIndex)]="index">
-            <mat-tab label="Podcasts">
-                <div>
-                    <div *ngFor="let podcast of podcasts; let podcastIndex = index;">
-                        <div *ngFor="let episode of podcast?.Episodes; let episodeIndex = index;" class="the-episodes">
-                            <app-podcast-card [episodeData]="episode" showUpvote="false" class="w100">
-                            </app-podcast-card>
-                            <div class="d-flex flex-column justify-content-around" style="padding-right: 20px;">
-                                <div class="status" (click)="triggerHive(episode)">
-                                    {{episode.hive_status == 'invalid' ? 'Not published' : episode.hive_status}}
-                                </div>
-                                <div (click)="redirectToEmbed(episode.id)">
-                                    <button mat-raised-button color="primary">Embed a Badge</button>
-                                </div>
-                                <div (click)="openCommentDialog(episode.id)">
-                                    <button mat-raised-button color="primary">Add Community</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+        <div class="heading">Your Podcasts</div>
+        <div class="d-flex">
+            <div class="podcast-card" *ngFor="let podcast of podcasts; let podcastIndex = index;">
+                <img defaultImage="https://aurealbucket.s3.us-east-2.amazonaws.com/thumbnailnew.png" [lazyLoad]="podcast.image" class="lazyload">
+                <div class="flex flex-column">
+                  <div class="podcast-name">
+                    {{podcast.name}}
+                  </div>
+                  <div>
+                      <span class="vote-count" (click)="redirectToPodcast(podcast)"> 
+                        <span>
+                            Go to podcast page
+                        </span>  
+                        <span class="icon icon-right-open-big">
+                        </span>
+                      </span>
+                  </div>
                 </div>
-            </mat-tab>
-        </mat-tab-group>
-
-        <div *ngIf="currentTab == 'Communities'">
-
-
+            </div>
+            <div class="podcast-card" (click)="redirectToPost()">
+                <div class="dummy-image">
+                    <span class="icon icon-plus-square-o"></span>
+                </div>
+                <div class="flex flex-column">
+                  <div class="podcast-name">
+                   Add a podcast
+                  </div>
+                </div>
+            </div>
         </div>
     </div>
-
+    <div class="userpodcasts-section">
+        <div class="heading">Preferences</div>
+        <div class="userprofile-section">
+            <div class="sub-heading">
+                Your interests
+            </div>
+            <div class="catgories-section mt-2 mb-4">
+                <div *ngFor="let category of categories" class="each-category" 
+                    [ngClass]="{'selected' : category.follows}"
+                    >
+                    <span (click)="selectCategory(category)">
+                        {{category.name}}
+                    </span>
+                    <span class="icon ml-2 pointer accenttwo" (click)="removeSelectedCategory(category)"
+                        *ngIf="category.follows" >x</span>
+                 </div>
+            </div>
+            <!-- <div class="sub-heading">
+                Language
+            </div>
+            <div class="catgories-section mt-2 mb-4">
+                <div *ngFor="let category of languages" class="each-category" 
+                    [ngClass]="{'selected' : category.follows}"
+                    >
+                    <span (click)="selectLanguages(category)">
+                        {{category.name}}
+                    </span>
+                    <span class="icon ml-2 pointer accenttwo" (click)="removeSelectedLanguages(category)"
+                        *ngIf="category.follows" >x</span>
+                 </div>
+            </div> -->
+        </div>
+    </div>
+    <div class="userpodcasts-section">
+        <div class="heading">Account</div>
+        <div class="logout-but pointer" (click)="logout()">
+            Sign Out
+        </div>
+    </div>
 
 </div>

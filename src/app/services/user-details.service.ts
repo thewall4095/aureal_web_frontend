@@ -27,11 +27,31 @@ export class UserDetailsService {
 
 
   getUserHiveDetails() {
-    return this.api.get(this.apiUrl + '/public/clientMe').toPromise();
+    return this.api.get(this.apiUrl + '/public/getHiveAccountDetails?hiveusername='+localStorage.getItem('hive_username')).toPromise();
+  }
+
+  getUserNotifications(){
+    return this.api.get(this.apiUrl + '/public/getNotifications?user_id='+localStorage.getItem('userId')).toPromise();
   }
 
   claimRewards(body) {
     return this.api.post(this.apiUrl + '/private/claimRewards', body).toPromise();
+  }
+
+  getCategories(){
+    return this.api.get(this.apiUrl + '/public/getCategory?user_id='+localStorage.getItem('userId')).toPromise();
+  }
+
+  updateUserCategory(body) {
+    return this.api.post(this.apiUrl + '/private/addUserCategory', body).toPromise();
+  }
+
+  updateUserLanguage(body) {
+    return this.api.post(this.apiUrl + '/private/addUserLanguage', body).toPromise();
+  }
+
+  getLanguages(){
+    return this.api.get(this.apiUrl + '/public/getLanguage?user_id='+localStorage.getItem('userId')).toPromise();
   }
 
 }

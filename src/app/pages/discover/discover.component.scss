@@ -1,0 +1,71 @@
+.discover-container {
+    width: 100%;
+    padding: 20px;
+    padding-right: 0;
+    @media (max-width: 767px) {
+        display: none;
+    }
+}
+
+.mobile-container{
+    display: none;
+    @media (max-width: 767px) {
+        display: block;
+        width: 100%;
+        padding: 30px;
+        img{
+            max-width: 51vw;
+        }
+        .tet-section{
+            padding: 50px 0;
+            .apps{
+                font-size: 14px;
+                margin: 20px auto;
+                .icon{
+                    font-size: 50px;
+                }
+            }
+        }
+    }
+}
+.tabs{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    overflow-x: scroll;
+    margin: 20px 0;
+    /* this will hide the scrollbar in mozilla based browsers */
+    overflow: -moz-scrollbars-none;
+    /* this will hide the scrollbar in internet explorers */
+    -ms-overflow-style: none;
+    &::-webkit-scrollbar { 
+        width: 0 !important;
+        display: none; 
+    }
+    .each-tab{
+        margin-right: 30px;
+        cursor: pointer;
+        font-size: 18px;
+        font-weight: 300;
+        &.active{
+            color: var(--primary);
+            font-weight: 400;
+        }
+    }
+}
+.tab-content{
+    .cards-list{
+        display: flex;
+        justify-content: start;
+        overflow: scroll;
+        margin-right: 0;
+        /* this will hide the scrollbar in mozilla based browsers */
+        overflow: -moz-scrollbars-none;
+        /* this will hide the scrollbar in internet explorers */
+        -ms-overflow-style: none;
+        &::-webkit-scrollbar { 
+          width: 0 !important;
+          display: none; 
+        }
+    }
+}

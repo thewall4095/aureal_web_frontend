@@ -1,0 +1,62 @@
+<div class="podcast-card-1 d-flex flex-column" *ngIf="!isLoading">
+    <div class="d-flex align-items-start">
+        <img class="img lazyload"
+        defaultImage="https://aurealbucket.s3.us-east-2.amazonaws.com/thumbnailnew.png" [lazyLoad]="episodeData.image">
+        <div class="content">
+            <div class="d-flex flex-column">
+                <span class="podcast_name text-truncate accent mb-1 pointer" (click)="openEpisode(episodeData)">{{episodeData.name}}</span>
+                <span class="author text-truncate accenttwo mb-1 pointer" (click)="openPodcast(episodeData)">{{episodeData.podcast_name}}</span>
+            </div>
+            <!-- <span class="description truncate-overflow accenttwo mb-2" [innerHTML]="episodeData.summary | safeHtml"></span> -->
+            <div style="min-height: 30px;">
+                <div class="d-flex flex-wrap align-center">
+                    <!-- <div class="vote-icon" [ngClass]="{'voted' : episodeData.ifVoted}">
+                        <span class="icon icon-vote-up-arrow" *ngIf="!upvoteOngoing" (click)="upvote(episodeData)"></span>
+                        <i class="fas fa-spinner fa-spin" aria-hidden="true" *ngIf="upvoteOngoing"></i>
+                    </div>
+                    <div class="vote-count" *ngIf="episodeData?.permlink">
+                        <span>{{episodeData.votes}}</span>
+                    </div>
+                    <div class="vote-count" *ngIf="episodeData?.permlink">
+                        <span>{{episodeData.payout_value.replace("HBD", "$")}}</span>
+                    </div> -->
+                    <div class="comment-count" (click)="playEpisode(episodeData)">
+                        <span class="icon icon-play accent"></span>
+                        <span>{{formatDuration(episodeData.duration)}}</span>
+                    </div>
+                    <div class="comment-count" *ngIf="episodeData?.permlink && !isPaidOut()" [ngClass]="{'voted' : episodeData.ifVoted}">
+                        <span class="icon icon-vote-up-arrow" *ngIf="!upvoteOngoing" (click)="upvote(episodeData)"></span>
+                        <i class="fas fa-spinner fa-spin" aria-hidden="true" *ngIf="upvoteOngoing"></i>
+                        <span class="mr-1 ml-1">{{episodeData.votes}}</span>
+                        <span class="ml-1 mr-1">|</span>
+                        <span>{{episodeData.payout_value.replace("HBD", "$")}}</span>
+                    </div>
+                    <div class="comment-count" (click)="openEpisode(episodeData)" *ngIf="episodeData?.permlink">
+                        <span class="icon icon-comment" style="font-size: 14px;"></span>
+                        <span>{{episodeData.comments_count}}</span>
+                    </div>
+                    <div *ngIf="episodeData?.permlink && isPaidOut() && episodeData?.author_hiveusername">
+                        <div class="comment-count" style="margin-left: 0;" (click)="tipAuthor(episodeData)" *ngIf="episodeData?.permlink">
+                            <!-- <i class="icon fa fa-gift" aria-hidden="true"></i> -->
+                            <span>Tip Author</span>
+                        </div>
+                    </div>
+                </div>
+          
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div *ngIf="isLoading">
+    <div class="timeline-wrapper">
+        <div class="timeline-item">
+          <div class="animated-background-1">
+            <div class="background-masker-1 header-top-1"></div>
+            <div class="background-masker-1 header-bottom-1"></div>
+            <div class="background-masker-1 content-top-1"></div>
+          </div>
+        </div>
+    </div>
+</div>

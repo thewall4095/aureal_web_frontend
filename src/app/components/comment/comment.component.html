@@ -5,16 +5,22 @@
 		</div>
 		<div class="right">
 			<div class="detail">
-				<span class="user">{{comment.author}}</span>
+				<span class="user accent">{{comment.author}}</span>
 				<span class="date">{{comment.createdAt | dateAgo }}</span>
 			</div>
-			<div class="comment">
-				<p style="margin-bottom: 5px;">{{comment.text}}</p>
+			<div class="comment mb-2">
+				<span style="margin-bottom: 5px;">{{comment.text}}</span>
 			</div>
-			<a (click)="replyClick()" class="the-but-reply">reply</a>
-			<i class="fa fa-chevron-circle-up" aria-hidden="true" (click)="upvoteComment(comment.permlink, comment.id)"
-				*ngIf="!isUpvotingComment"></i>
-			<i class="fas fa-spinner fa-spin" aria-hidden="true" *ngIf="isUpvotingComment"></i>
+			<div class="d-flex align-center">
+				<a (click)="replyClick()" class="the-but-reply">
+					<span class="icon icon-reply mr-1"></span>
+				</a>
+				<span class="ml-2">
+					<i class="fa fa-chevron-circle-up" aria-hidden="true" (click)="upvoteComment(comment.permlink, comment.id)"
+					*ngIf="!isUpvotingComment"></i>
+					<i class="fas fa-spinner fa-spin" aria-hidden="true" *ngIf="isUpvotingComment"></i>
+				</span>
+			</div>
 			<app-comment-box (add)="onAdd($event, comment.id)" *ngIf="isEditing" [isLoading]="isAddingComment">
 			</app-comment-box>
 		</div>

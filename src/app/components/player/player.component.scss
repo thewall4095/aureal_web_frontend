@@ -1,17 +1,20 @@
 .media-footer {
   position: absolute;
   bottom: 0;
+  top: 25px;
   width: 100%;
 
   .time-slider {
     width: 100% !important;
     margin-left: 20px;
     margin-right: 20px;
+    font-size: 12px;
   }
   .media-action-bar {
     width: 100%;
     padding: 2rem 1rem;
     justify-content: center;
+    position: relative;
     @media (max-width: 576px) {
       padding: 1.5rem;
       justify-content: center !important;
@@ -21,16 +24,38 @@
       width: 30px !important;
       font-size: 30px !important;
     }
+    .middle-content{
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .close-icon{
+      position: absolute;
+      right: 15px;
+      top: -15px;
+      cursor: pointer;
+    }
   }
+}
+
+.mat-slider-horizontal{
+  width: calc(100% - 50px);
 }
 
 .upcoming-card {
   display: flex;
   align-items: start;
   justify-content: flex-start;
+  position: absolute;
+  left: 20px;
+  top: 0;
+  width: 35%;
   // border-bottom: 1px solid var(--light);
   .desc {
     margin-left: 20px;
+    width: calc(100% - 20px);
   }
   img {
     width: 50px;
@@ -41,14 +66,16 @@
     font-size: 13px !important;
     font-weight: 500;
     line-height: 1em;
-    width: 250px;
+    // width: 250px;
     margin-bottom: 5px;
+    color: #FFFFFF;
   }
   .author {
     font-size: 13px !important;
     line-height: 1em;
     font-weight: 400;
     // color: var(--accenttwo);[2:13 PM, 1/19/2021] Shubham: #52BFF9 #5F51F6
-    width: 250px;
+    // width: 250px;
+    color: #E8E8E8;
   }
 }

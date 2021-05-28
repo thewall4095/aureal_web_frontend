@@ -4,13 +4,14 @@ import { ApiService } from 'src/app/services/api.service';
 
 import { SocialAuthService } from "angularx-social-login";
 import { FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   apiUrl: string = environment.apiUrl;
-  constructor(private api: ApiService, private socialAuthService: SocialAuthService
+  constructor(private api: ApiService, private socialAuthService: SocialAuthService, private router: Router
   ) { }
 
   googleSignin() {
@@ -51,7 +52,10 @@ export class AuthService {
 
   logout() {
     localStorage.clear();
-    location.reload();
+    this.router.navigateByUrl('/');
+    setTimeout(()=>{
+      location.reload();
+    },100);
   }
 
   registerHiveUser(body) {

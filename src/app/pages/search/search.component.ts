@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, PLATFORM_ID } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { HomeDashboardService } from 'src/app/pages/home-dashboard/home-dashboard.service';
+import {CommonService} from 'src/app/services/common.service';
 import * as moment_ from 'moment';
 const moment = moment_;
 import { PlayerService } from 'src/app/services/player.service';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+import { MetatagsService } from 'src/app/services/metatags.service';
 
 @Component({
   selector: 'app-search',
@@ -12,7 +14,6 @@ import { PlayerService } from 'src/app/services/player.service';
 })
 export class SearchComponent implements OnInit {
   searchQuery = '';
-  currentTab = 'Podcasts';
   isLoading: Boolean = true;
   searchResults = { EpisodeList: [], PodcastList: [] };
 
@@ -24,39 +25,46 @@ export class SearchComponent implements OnInit {
   page = 0;
   pageSize = 10;
 
-  constructor(public playerService: PlayerService, private activatedRoute: ActivatedRoute, private homeDashboardService: HomeDashboardService, private router: Router) { }
+  constructor(
+    public playerService: PlayerService,
+    private activatedRoute: ActivatedRoute,
+    private commonService : CommonService,
+    private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object,
+    public metatagsService: MetatagsService,
+    ) {
+    if (isPlatformBrowser(this.platformId)) {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }
+    this.metatagsService.defaultTags();
+  }
 
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(paramMap => {
       this.searchQuery = paramMap.get('query');
       this.page = 0;
+      this.searchResults = { EpisodeList: [], PodcastList: [] };
       this.getSearchResults();
     });
   }
 
   getSearchResults() {
     this.isLoading = true;
-    this.homeDashboardService.search(this.searchQuery, this.page, this.pageSize).subscribe((res: any) => {
+    this.commonService.search(this.searchQuery, this.page, this.pageSize).subscribe((res: any) => {
       this.isLoading = false;
       console.log(res);
       this.searchResults.PodcastList = this.searchResults.PodcastList.concat(res.PodcastList);
-      this.searchResults.EpisodeList = this.searchResults.EpisodeList.concat(res.EpisodeList);
     });
-  }
-
-  tabChanged(tabChangeEvent: number) {
-    if (tabChangeEvent) {
-      this.currentTab = 'Episodes';
-    } else {
-      this.currentTab = 'Podcasts';
-    }
-    console.log(this.currentTab);
-    console.log(this.searchResults.EpisodeList);
   }
 
 
   formatDuration(seconds) {
-    return (Math.floor(moment.duration(seconds, 'seconds').asHours()) > 0 ? Math.floor(moment.duration(seconds, 'seconds').asHours()) + ':' : '') + moment.duration(seconds, 'seconds').minutes() + ':' + moment.duration(seconds, 'seconds').seconds();
+    // return (Math.floor(moment.duration(seconds, 'seconds').asHours()) > 0 ? Math.floor(moment.duration(seconds, 'seconds').asHours()) + ':' : '') + moment.duration(seconds, 'seconds').minutes() + ':' + moment.duration(seconds, 'seconds').seconds();
+    if((Math.floor(parseInt(seconds) / 60)) > 0){
+      return Math.floor(parseInt(seconds) / 60 ) + ' min';
+    }else{
+      return Math.floor(parseInt(seconds) / 60 ) + ' sec';
+    }
   }
 
   playEpisode(episodeData) {

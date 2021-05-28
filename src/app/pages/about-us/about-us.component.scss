@@ -1,0 +1,29 @@
+.live-container{
+    width: 100%;
+    padding: 25px 40px;
+    min-height: 100vh;
+    .heading{
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 30px;
+        color: var(--accent);
+    }
+    .userprofile-section {
+        width: 65%;
+        background: var(--theme-background);
+        border: 1px solid var(--primary-border);
+        border-radius: 20px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+    }
+    .image-section{
+        width: 25%;
+        margin-left: 80px;
+        img{
+            padding: 30px;
+            width: 100%;
+        }
+    }
+
+}
