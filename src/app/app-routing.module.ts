@@ -16,6 +16,7 @@ import { HiveonboardComponent } from './pages/hiveonboard/hiveonboard.component'
 import { LiveComponent } from './pages/live/live.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { LandingComponent } from './pages/landing/landing.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
 
 const routes: Routes = [
   // { path: "", loadChildren: './pages/home-dashboard/home-dashboard.module#HomeDashboardModule' },
@@ -37,6 +38,8 @@ const routes: Routes = [
   { path: 'episode/:episode_id', component: EpisodeDetailsComponent },
   { path: 'hive-onboarding', component: HiveonboardComponent },
   { path: 'about-us', component: AboutUsComponent },
+  { path: 'privacy-policy', component: PrivacyPolicyComponent },
+
 ];
 
 @NgModule({

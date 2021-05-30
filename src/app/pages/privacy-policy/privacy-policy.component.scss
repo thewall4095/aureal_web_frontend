@@ -1,0 +1,32 @@
+.privacy-container{
+    width: 100%;
+    padding: 25px 40px;
+    min-height: 100vh;
+    .heading{
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 30px;
+        color: var(--accent);
+    }
+    .userprofile-section {
+        width: 100%;
+        background: var(--theme-background);
+        border: 1px solid var(--primary-border);
+        border-radius: 20px;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        p{
+            font-size: 14px;
+        }
+        h3{
+            font-size: 16px;
+            font-weight: 500;
+            margin-top: 20px;
+        }
+        h4{
+            font-size: 16px;
+            font-weight: normal;
+        }
+    }
+}

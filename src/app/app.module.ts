@@ -40,6 +40,8 @@ import { ExploreComponent } from './pages/explore/explore.component';
 import { LiveComponent } from './pages/live/live.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { LandingComponent } from './pages/landing/landing.component';
+import { PrivacyPolicyComponent } from './pages/privacy-policy/privacy-policy.component';
+
 
 @NgModule({
   declarations: [
@@ -68,6 +70,7 @@ import { LandingComponent } from './pages/landing/landing.component';
     LiveComponent,
     AboutUsComponent,
     LandingComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
