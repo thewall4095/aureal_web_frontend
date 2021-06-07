@@ -14,13 +14,13 @@ export class SocialShareComponent implements OnInit {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
     console.log(data);
     if (data.type == 'episode') {
-      this.url = 'https://aureal.one/podcast/' + data.attributes.podcast_id + '?episode_id=' + data.attributes.id;
-      this.image = 'https://aureal.one/podcast/' + data.attributes.image;
-      this.description = this.description + data.attributes.name + ' by ' + data.attributes.author + ' on ';
+      this.url = 'https://aureal.one/episode/'+ data.attributes.id;
+      this.image = data.attributes.image;
+      this.description = this.description + data.attributes.name + ' on Aureal';
     } else {
       this.url = 'https://aureal.one/podcast/' + data.attributes.id
-      this.image = 'https://aureal.one/podcast/' + data.attributes.image;
-      this.description = this.description + data.attributes.name + ' by ' + data.attributes.author + ' on ';
+      this.image = data.attributes.image;
+      this.description = this.description + data.attributes.name + ' by ' + data.attributes.author + ' on Aureal';
     }
   }
 

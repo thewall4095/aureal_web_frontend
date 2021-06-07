@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from "@angular/router";
-
+import * as keychain from '@hiveio/keychain';
 
 @Component({
   selector: 'app-hive-auth',
@@ -51,5 +51,10 @@ export class HiveAuthComponent implements OnInit {
   routeto(url){
     this.dialogRef.close();
     this.router.navigateByUrl(url);
+  }
+
+  async triggerKeychain(){
+    let a = await keychain.isKeychainInstalled(window);
+    console.log(a);
   }
 }
