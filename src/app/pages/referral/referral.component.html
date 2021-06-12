@@ -1,0 +1,48 @@
+<div class="landing-container">
+    <div class="home-header">
+      <img src="./assets/Aureal_full_light.png" *ngIf="dark" class="lazyload">
+      <img src="./assets/aureal_full_dark.png" *ngIf="!dark" class="lazyload">
+      <div class="d-flex align-items-center">
+        <div class="some-buttons mr-3">
+          <button class="primary-but" (click)="getStarted()">Login / Sign up</button>
+        </div>
+        <div class="mr-3">
+          <a href="https://play.google.com/store/apps/details?id=co.titandlt.auditory" style="color: var(--accenttwo);">
+            <span class="name accenttwo font-weight-bold">Download</span>
+          </a>
+        </div>
+        <div class="d-flex">
+          <span class="d-flex align-items-center icon icon-moon-o pointer accenttwo" *ngIf="!dark" (click)="toggleTheme(true)"></span>
+          <span class="d-flex align-items-center icon icon-light-up pointer accenttwo" *ngIf="dark" (click)="toggleTheme(false)"></span>
+        </div>
+      </div>
+    </div>
+    <div class="d-block d-sm-none">
+      <img src="./assets/Aureal_full_light.png" *ngIf="dark" class="lazyload" style="width: 100%;
+      padding: 20px 100px;">
+      <img src="./assets/aureal_full_dark.png" *ngIf="!dark" class="lazyload" style="width: 100%;
+      padding: 20px 100px;">
+    </div>
+    <div class="banner-container">
+        <div class="image-section">
+            <div id="container">
+                <div>
+                    <div class="demo-img">
+                        <img class="lazyload" src="https://aurealbucket.s3.us-east-2.amazonaws.com/Mascot.png">
+                    </div>
+                  </div>
+            </div>
+        </div>
+        <div class="text-section">
+          <div class="main-heading">
+            Referral Program
+          </div>
+          <div class="sub-text">
+            this entire page is gonna change soon 
+          </div>
+          <div class="some-buttons">
+            <button class="primary-but" (click)="getStarted()">Login to get your referral link</button>
+          </div>
+        </div>
+    </div>
+</div>

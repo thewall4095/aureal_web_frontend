@@ -79,7 +79,7 @@ export class AppComponent implements OnInit {
 
       // this.preloadThumbnail();
 
-      if(window.location.pathname == '/'){
+      if(window.location.pathname == '/' || window.location.pathname == '/referral'){
         this.hideit = true;
       }else{
         this.hideit = false;
@@ -160,6 +160,9 @@ export class AppComponent implements OnInit {
       //   this.getUserNotifications();
       // }
     }
+    if(window.location.pathname == '/referral'){
+      this.hideit = true; 
+    }
   }
 
   navigateTo(route){
@@ -172,10 +175,10 @@ export class AppComponent implements OnInit {
         console.log(res);
         this.userDetailsService.UserDetails = res.users;
       });
-      this.userDetailsService.getUserHiveDetails().then((res:any) => {
-        console.log(res);
-        this.userHiveDetails = res;
-      })
+      // this.userDetailsService.getUserHiveDetails().then((res:any) => {
+      //   console.log(res);
+      //   this.userHiveDetails = res;
+      // })
     }
   }
 

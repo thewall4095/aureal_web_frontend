@@ -13,11 +13,15 @@ import { ActivatedRoute, Router } from "@angular/router";
 export class HiveAuthComponent implements OnInit {
   autoCheck: Boolean = false;
   justHiveLogin:Boolean = false;
+  fromReferral:Boolean = false;
   constructor(public dialogRef: MatDialogRef<HiveAuthComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
      public authService: AuthService,
      public router: Router) {
     console.log(data);
     this.autoCheck = data.autoCheck;
+    if(data?.fromReferral){
+      this.fromReferral = true;
+    }
   }
 
   ngOnInit(): void {

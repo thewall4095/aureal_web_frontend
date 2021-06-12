@@ -231,6 +231,33 @@
   margin-bottom: 50px;
 }
 
+.referral-container{
+  position: relative;
+  .icon{
+    cursor: pointer;
+    color: var(--accenttwo);
+  }
+  .input-container{
+    border-radius: 20px;
+    border: 0.5px solid var(--primary-border);
+    background: inherit;
+    padding: 5px 15px;
+    font-size: 14px;
+    color: var(--accent);
+  }
+}
+.invite-but{
+  background: var(--tertiary-background);
+  color: var(--accent);
+  font-size: 14px;
+  padding: 5px 20px;
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  cursor: pointer;
+  width: fit-content;
+}
 .logout-but{
   background: var(--tertiary-background);
   color: var(--accent);

@@ -121,6 +121,27 @@
             </div> -->
         </div>
     </div>
+    <div class="userpodcasts-section" *ngIf="ownReferralLink">
+        <div class="heading">Your referral link</div>
+        <div class="sub-heading">
+            Invite your podcaster friends to Aureal and get 10% percent of Author rewards for their first 2 episodes published on Aureal!
+        </div>
+        <div class="referral-container relative pointer">
+           <!-- <input class="accenttwo" [disabled]="true" [(ngModel)]="ownReferralLink"> -->
+           <div class="mt-3 mb-3">
+            <span class="accenttwo mr-3"> Copy your code</span>
+            <span class="input-container">
+                <span class="accent font-weight-bold mr-2">{{ownReferralLink}}</span>
+                <!-- <span class="icon icon-copy2" [cdkCopyToClipboard]="ownReferralLink"></span> -->
+                <span class="icon icon-copy2" (click)="copyReferralCode()"></span>
+            </span>
+
+           </div>
+           <div class="invite-but mt-3 mb-3" (click)="redirectToReferral()">
+            Invite
+           </div>
+        </div>
+    </div>
     <div class="userpodcasts-section">
         <div class="heading">Account</div>
         <div class="logout-but pointer" (click)="logout()">

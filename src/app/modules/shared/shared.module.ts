@@ -37,6 +37,7 @@ import { LoaderComponent } from 'src/app/components/loader/loader.component';
 import { FavoriteEpisodeComponent } from 'src/app/components/favorite-episode/favorite-episode.component';
 import { CarouselComponent } from 'src/app/components/carousel/carousel.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
+import { ClipboardModule } from '@angular/cdk/clipboard'
 
 @NgModule({
   declarations: [
@@ -88,7 +89,9 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     FormsModule,
     ReactiveFormsModule,
     MatListModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    ClipboardModule
+
   ],
   exports: [
     DateAgoPipe, 
@@ -134,7 +137,9 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     LoaderComponent,
     CarouselComponent,
     FavoriteEpisodeComponent,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    ClipboardModule
+
   ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },

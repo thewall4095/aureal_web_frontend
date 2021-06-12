@@ -12,7 +12,7 @@ import { ConfirmationDialogService } from 'src/app/confirmation-dialog/confirmat
 import { AuthService } from 'src/app/services/auth.service';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { MetatagsService } from 'src/app/services/metatags.service';
-
+import { Clipboard } from "@angular/cdk/clipboard"
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -42,6 +42,8 @@ export class UserProfileComponent implements OnInit {
   languagesLoading: Boolean = false;
   languages = [];
 
+  ownReferralLink = '';
+
   constructor(
     private userDetailsService: UserDetailsService,
     public rssFeedDetailsService: RssFeedDetailsService,
@@ -53,6 +55,7 @@ export class UserProfileComponent implements OnInit {
     public authService: AuthService,
     @Inject(PLATFORM_ID) private platformId: Object,
     public metatagsService: MetatagsService,
+    private clipboard: Clipboard
   ) {
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -79,15 +82,19 @@ export class UserProfileComponent implements OnInit {
         // })
       }
     });
-    this.userDetailsService.getUserHiveDetails().then((res: any) => {
-      console.log('hererere', res.client.account.reward_vesting_hive.split(' ')[0]);
-      if (res.client && res.client.account.reward_hive_balance.split(' ')[0] != '0.000' && res.client.account.reward_hbd_balance.split(' ')[0] != '0.000' && res.client.account.reward_vesting_hive.split(' ')[0] != '0.000') {
-        this.unclaimedText = `Unclaimed balance for ${localStorage.getItem('hive_username')}: ${res.client.account.reward_hive_balance}, ${res.client.account.reward_hbd_balance}, ${res.client.account.reward_vesting_hive.split(' ')[0]} HP = ${res.client.account.reward_vesting_balance}`;
-      } else {
-        ;
-      }
-    });
-
+    // this.userDetailsService.getUserHiveDetails().then((res: any) => {
+    //   console.log('hererere', res.client.account.reward_vesting_hive.split(' ')[0]);
+    //   if (res.client && res.client.account.reward_hive_balance.split(' ')[0] != '0.000' && res.client.account.reward_hbd_balance.split(' ')[0] != '0.000' && res.client.account.reward_vesting_hive.split(' ')[0] != '0.000') {
+    //     this.unclaimedText = `Unclaimed balance for ${localStorage.getItem('hive_username')}: ${res.client.account.reward_hive_balance}, ${res.client.account.reward_hbd_balance}, ${res.client.account.reward_vesting_hive.split(' ')[0]} HP = ${res.client.account.reward_vesting_balance}`;
+    //   } else {
+    //     ;
+    //   }
+    // });
+    this.userDetailsService.getPersonalReferralLink().then((res:any) =>{
+      console.log(res);
+      if(res.data.code)
+        this.ownReferralLink = res.data.code;        
+      });
     this.getCategoryLanguages();
   }
 
@@ -233,8 +240,16 @@ export class UserProfileComponent implements OnInit {
       this.userDetailsService.UserDetails = res.users;
       this.userDetails = res.users;
       this.profileForm.controls['username'].setValue(this.userDetails.username);
-      this.profileForm.controls['bio'].setValue(this.userDetails.settings.Account.Bio);
+      // this.profileForm.controls['bio'].setValue(this.userDetails.settings.Account.Bio);
     });
+  }
+
+  redirectToReferral() {
+    this.router.navigateByUrl('referral');
+  }
+
+  copyReferralCode(){
+    this.clipboard.copy(this.ownReferralLink);
   }
 
   redirectToPost() {
