@@ -58,4 +58,12 @@ export class UserDetailsService {
     return this.api.get(this.apiUrl + '/public/getPersonalReferralLink?user_id='+localStorage.getItem('userId')).toPromise();
   }
 
+  getUsedReferralInfo(){
+    return this.api.get(this.apiUrl + '/public/getUsedReferralInfo?user_id='+localStorage.getItem('userId')).toPromise();
+  }
+
+  validateReferral(body){
+    return this.api.post(this.apiUrl + '/public/validateReferral', body).toPromise();
+  }
+
 }

@@ -38,6 +38,7 @@ import { FavoriteEpisodeComponent } from 'src/app/components/favorite-episode/fa
 import { CarouselComponent } from 'src/app/components/carousel/carousel.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { ClipboardModule } from '@angular/cdk/clipboard'
+import { ReferralInputComponent } from 'src/app/components/referral-input/referral-input.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { ClipboardModule } from '@angular/cdk/clipboard'
     LoaderComponent,
     CarouselComponent,
     FavoriteEpisodeComponent,
+    ReferralInputComponent
   ],
   imports: [
     CommonModule,
@@ -138,8 +140,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard'
     CarouselComponent,
     FavoriteEpisodeComponent,
     LazyLoadImageModule,
-    ClipboardModule
-
+    ClipboardModule,
+    ReferralInputComponent
   ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },

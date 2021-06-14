@@ -40,7 +40,6 @@ export class HiveTokenRegisterComponent implements OnInit {
         if (res.msg) {
           this.toastr.error(res.msg);
         } else {
-
           localStorage.setItem('hive_username', this.route.snapshot.queryParamMap.get("username"));
           localStorage.setItem('access_token', res.access_token);
           this.router.navigateByUrl('/');

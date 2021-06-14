@@ -122,7 +122,12 @@ export class AppComponent implements OnInit {
         let body = new FormData;
         body.append('identifier', user.idToken);
         body.append('loginType', 'google');
+        let used_referal_code = localStorage.getItem('used_referal_code');
+        if(used_referal_code){
+          body.append('used_referal_code', used_referal_code);
+        }
         this.commonService.userAuth(body).subscribe((res:any) => {
+          localStorage.removeItem('used_referal_code');
           localStorage.setItem('userId',res.userData.id);
           localStorage.setItem('userName',res.userData.username);
           localStorage.setItem('token',res.userData.token);

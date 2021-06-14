@@ -1,0 +1,39 @@
+<div class="referral-container">
+    <h2>Have a referral code?</h2>
+    <img src="./assets/Aureal_full_light.png">
+    <input class="referral-input mt-3" [(ngModel)]="referralCode">
+    <div class="mt-3 mb-3" *ngIf="!referer">
+        <div class="d-flex align-items-center">
+            <button class="secondary-but mr-3" style="border: 1px solid var(--accenttwo);" (click)="proceed()">
+                <span>
+                    Skip
+                </span>
+            </button>
+            <button class="primary-but" (click)="validateReferral()">
+                Continue
+                <i class="fas fa-spinner fa-spin" *ngIf="validatingReferral"
+                 aria-hidden="true"></i>
+            </button>
+        </div>
+    </div>
+    <div class="mt-3 mb-3" *ngIf="referer">
+        <div class="d-flex align-items-center">
+            <button class="secondary-but mr-3" style="border: 1px solid var(--accenttwo);" (click)="referer = ''; removeReferrelCode()">
+                <span>
+                    Cancel
+                </span>
+            </button>
+            <button class="primary-but" (click)="proceed()">
+                Proceed
+                <i class="fas fa-spinner fa-spin" *ngIf="validatingReferral"
+                 aria-hidden="true"></i>
+            </button>
+        </div>
+        <div class="mt-2 mb-2">
+            <span class="accent">You were referred to Aureal by <span class="font-weight-bold">{{referer}}</span></span>
+        </div>
+    </div>
+    <div>
+        <a href="referral">Know more about the referral program</a>
+    </div>
+</div>

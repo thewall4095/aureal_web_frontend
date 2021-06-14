@@ -43,7 +43,12 @@ export class HiveTokenComponent implements OnInit {
       let body = new FormData;
       body.append('identifier', this.route.snapshot.queryParamMap.get("code"));
       body.append('loginType', 'hive');
+      let used_referal_code = localStorage.getItem('used_referal_code');
+      if(used_referal_code){
+        body.append('used_referal_code', used_referal_code);
+      }
       this.commonService.userAuth(body).subscribe((res:any) => {
+          localStorage.removeItem('used_referal_code');
           localStorage.setItem('access_token',res.userData.hiveAccessToken);
           localStorage.setItem('userId',res.userData.id);
           localStorage.setItem('userName',res.userData.username);

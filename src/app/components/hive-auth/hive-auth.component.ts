@@ -3,7 +3,10 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { environment } from 'src/environments/environment';
 import { AuthService } from 'src/app/services/auth.service';
 import { ActivatedRoute, Router } from "@angular/router";
-
+import * as keychain from '@hiveio/keychain';
+import { ReferralInputComponent } from 'src/app/components/referral-input/referral-input.component';
+import { MatDialog } from "@angular/material/dialog";
+import { UserDetailsService } from 'src/app/services/user-details.service';
 
 @Component({
   selector: 'app-hive-auth',
@@ -14,9 +17,14 @@ export class HiveAuthComponent implements OnInit {
   autoCheck: Boolean = false;
   justHiveLogin:Boolean = false;
   fromReferral:Boolean = false;
-  constructor(public dialogRef: MatDialogRef<HiveAuthComponent>, @Inject(MAT_DIALOG_DATA) public data: any,
-     public authService: AuthService,
-     public router: Router) {
+  constructor(
+    public dialogRef: MatDialogRef<HiveAuthComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public authService: AuthService,
+    public router: Router,
+    public dialog: MatDialog,
+    public userDetailsService: UserDetailsService,
+  ) {
     console.log(data);
     this.autoCheck = data.autoCheck;
     if(data?.fromReferral){
@@ -43,17 +51,36 @@ export class HiveAuthComponent implements OnInit {
   }
 
   signIn(type){
-    if(type=='google'){
-      this.authService.googleSignin();
-    }else{
-      if(this.authService.isAuthenticated() && !this.authService.isHiveConnected())
+    this.userDetailsService.getUsedReferralInfo().then((res:any)=>{
+      if(res.success){
         this.connectHive(true);
-      else
-        this.connectHive(false);
-    }
+      }else{
+        this.dialog.open(ReferralInputComponent, {
+          width: '400px',
+          height:  '400px',
+          maxWidth: '95vw',
+          hasBackdrop: true,
+          data: { type: type, connectHive : true }
+        });
+      }
+    });
+
+    // if(type=='google'){
+    //   this.authService.googleSignin();
+    // }else{
+    //   if(this.authService.isAuthenticated() && !this.authService.isHiveConnected())
+    //     this.connectHive(true);
+    //   else
+    //     this.connectHive(false);
+    // }
   }
   routeto(url){
     this.dialogRef.close();
     this.router.navigateByUrl(url);
+  }
+
+  async triggerKeychain(){
+    let a = await keychain.isKeychainInstalled(window);
+    console.log(a);
   }
 }
