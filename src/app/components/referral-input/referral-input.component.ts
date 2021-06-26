@@ -27,6 +27,10 @@ export class ReferralInputComponent implements OnInit {
     if(data?.connectHive){
       this.type = 'hive';
     }
+    this.referralCode = localStorage.getItem('used_referal_code');
+    if(this.referralCode){
+      this.validateReferral();
+    }
   }
 
   ngOnInit(): void {

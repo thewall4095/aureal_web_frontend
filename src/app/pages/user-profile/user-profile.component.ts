@@ -94,7 +94,7 @@ export class UserProfileComponent implements OnInit {
       console.log(res);
       if(res.data.code)
         this.ownReferralLink = res.data.code;        
-      });
+    });
     this.getCategoryLanguages();
   }
 

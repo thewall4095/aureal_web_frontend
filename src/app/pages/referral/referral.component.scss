@@ -20,57 +20,207 @@
       @media (max-width: 767px) {
         display: none;
       }
-    }
-    .banner-container{
-        width: 100%;
-        display: flex;
-        height: 70vh;
-        padding: 30px 0;
-        @media (max-width: 767px) {
-          width: 100%;
-          height: inherit;
-          flex-direction: column;
-        }
-    }
-    .image-section{
-        width: 40%;
+      .user{
         display: flex;
         align-items: center;
-        @media (max-width: 767px) {
-          width: 100%;
-        }
-    }
-    .text-section{
-        width: 60%;
-        @media (max-width: 767px) {
-          width: 100%;
-        }
-        background: var(--tertiary-background);
-        padding: 30px 80px;
-        border-radius: 20px;
-        border-bottom-right-radius: 0;
-        border-top-right-radius: 0;
-        display: flex;
-        flex-direction: column;
         justify-content: center;
-        @media (max-width: 767px) {
-          padding: 30px 40px;
-          margin: 20px;
+        margin-left: 20px;
+        cursor: pointer;
+        img{
+          width: 35px;
+          border-radius: 25px;
         }
-        .main-heading{
-          font-size: 50px;
-          @media (max-width: 767px) {
-            font-size: 32px;
-          }
-          font-weight: 500;
+        .icon{
+          font-size: 30px;
           color: var(--primary);
-          line-height: 1.4em;
-          margin-bottom: 40px;
         }
-        .sub-text{
-          margin-bottom: 40px;
-          font-size: 18px;
-          margin-bottom: 60px;
+        .user-name{
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--accent);
+            margin-left: 10px;
         }
+      }
+    }
+    .banner-container{
+      padding: 40px;
+      .primary{
+        color: var(--primary);
+      }
+      .creatives{
+        padding: 40px 20px;
+        .each-step{
+          padding: 40px;
+          width: 30%;
+          ul{
+            padding-left: 10px !important;
+            p{
+              font-size: 14px !important;
+            }
+          }
+        }
+        .each-divider{
+          width: 5%;
+          .icon{
+            font-size: 24px;
+            color: var(--primary);
+          }
+        }
+      }
+      .own-referral-link{
+        background: var(--secondary-background);
+        border-radius: 20px;
+        padding: 20px 25px;
+        display: flex;
+        .icon{
+          cursor: pointer;
+          color: var(--accenttwo);
+        }
+        .input-container{
+          border-radius: 20px;
+          border: 0.5px solid var(--primary-border);
+          background: var(--tertiary-background);
+          padding: 5px 15px;
+          font-size: 14px;
+          color: var(--accent);
+        }
+        .invite-but{
+          background: var(--tertiary-background);
+          color: var(--accent);
+          font-size: 14px;
+          padding: 5px 20px;
+          margin-right: 10px;
+          display: flex;
+          align-items: center;
+          border-radius: 15px;
+          cursor: pointer;
+          width: fit-content;
+        }
+        .vertical-divider{
+          border-right: 1px solid;
+          height: 70px;
+          margin: 0 15px;
+          display: block;
+          border-image-source: linear-gradient(to bottom, #5d5da8, #5bc3ef);
+          border-image-slice: 1;
+          border-width: 1px;
+        }
+      }
+      .calcu{
+        color: var(--accenttwo);
+        input{
+          background: var(--accenttwo);
+          border: none;
+          max-width: 50px;
+          padding: 5px 15px;
+          border-radius: 8px;
+          margin: 0 15px;
+          color: var(--accent);
+        }
+      }
+
+      .referral-reward-box.home-page-sticky-cta-trigger {
+        width: 100%;
+        max-width: 740px;
+        margin: auto;
+      }
+
+      .referral-reward-box {
+          position: relative;
+          display: -ms-grid;
+          display: grid;
+          overflow: hidden;
+          grid-auto-columns: 1fr;
+          grid-auto-rows: 0px;
+          -ms-grid-columns: 1fr 1fr;
+          grid-template-columns: 1fr 1fr;
+          -ms-grid-rows: auto;
+          grid-template-rows: auto;
+          border-radius: 20px;
+          background-color: var(--secondary-background);
+      }
+
+      .referral-position-reward-box-left.landing-page-reward {
+        padding-top: 18px;
+        padding-bottom: 19px;
+      }
+      .referral-position-reward-table {
+        display: -ms-grid;
+        display: grid;
+        grid-auto-columns: 1fr;
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        -ms-grid-rows: auto auto auto auto auto auto;
+        grid-template-rows: auto auto auto auto auto auto;
+      }
+      .rpr-table-title-box-left.landing-page-reward-item {
+        padding-left: 74px;
+        border-bottom: 2px solid var(--accenttwo);
+      }
+      .rpr-table-title-box-left {
+        position: relative;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        padding: 8px 60px 8px 208px;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .referral-position-reward-box.landing-page-reward {
+        padding-top: 18px;
+        padding-bottom: 19px;
+      }
+
+      .referral-position-reward-box {
+        padding-top: 40px;
+        padding-bottom: 80px;
+        background-color: var(--tertiary-background);
+      }
+
+      .rpr-table-title-text.home-reward-table {
+        font-size: 20px;
+      }
+
+      .rpr-table-title-text {
+        padding-bottom: 24px;
+        color: var(--accent);
+        font-size: 24px;
+        line-height: 28px;
+        font-weight: 600;
+      }
+
+
+      .rpr-table-item-text.home-reward-table-text {
+        font-size: 15px;
+        line-height: 20px;
+        padding: 25px;
+        text-align: center;
+      }
+
+      .rpr-table-item-text {
+        color: var(--accent);
+        font-size: 18px;
+        line-height: 28px;
+        font-weight: 500;
+      }
+
+      .rpr-table-title-text.home-reward-table {
+        font-size: 20px;
+      }
+      .rpr-table-title-text.percentage-table-text {
+        text-align: center;
+      }
+      .rpr-table-title-text {
+        padding-bottom: 24px;
+        color: var(--accent);
+        font-size: 24px;
+        line-height: 28px;
+        font-weight: 600;
+      }
+    
     }
 }

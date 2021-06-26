@@ -79,7 +79,7 @@ export class AppComponent implements OnInit {
 
       // this.preloadThumbnail();
 
-      if(window.location.pathname == '/' || window.location.pathname == '/referral'){
+      if(window.location.pathname == '/'){
         this.hideit = true;
       }else{
         this.hideit = false;
@@ -164,9 +164,6 @@ export class AppComponent implements OnInit {
       // if(this.authService.isHiveConnected()){
       //   this.getUserNotifications();
       // }
-    }
-    if(window.location.pathname == '/referral'){
-      this.hideit = true; 
     }
   }
 

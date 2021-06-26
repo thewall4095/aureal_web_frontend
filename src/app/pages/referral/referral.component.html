@@ -1,48 +1,165 @@
 <div class="landing-container">
-    <div class="home-header">
-      <img src="./assets/Aureal_full_light.png" *ngIf="dark" class="lazyload">
-      <img src="./assets/aureal_full_dark.png" *ngIf="!dark" class="lazyload">
-      <div class="d-flex align-items-center">
-        <div class="some-buttons mr-3">
-          <button class="primary-but" (click)="getStarted()">Login / Sign up</button>
+  <div class="banner-container">
+    <div class="program-header">
+      <h1 class="primary"> Aureal Referral Programme</h1>
+      <h6 class="accenttwo">Earn rewards for onboarding podcasters</h6>
+    </div>
+    <div class="row creatives">
+      <div class="each-step">
+        <div class="d-flex flex-column">
+          <img src="https://aurealbucket.s3.us-east-2.amazonaws.com/ref_invite.png">
+          <h3 class="accent text-center">
+            Get your invite code
+          </h3>
+          <ul class="accenttwo">
+            <li>
+              <p class="accenttwo">Login to get your invite link.</p>
+            </li>
+            <li>
+              <p class="accenttwo">You will need to login with Hivesigner or connect your Hive account.</p>
+            </li>
+            <button class="primary-but" (click)="getStarted()">Get Started</button>
+          </ul>
         </div>
-        <div class="mr-3">
-          <a href="https://play.google.com/store/apps/details?id=co.titandlt.auditory" style="color: var(--accenttwo);">
-            <span class="name accenttwo font-weight-bold">Download</span>
-          </a>
+      </div>
+      <div class="each-divider d-flex align-items-center justify-content-center">
+        <span class="icon icon-right-open-big"></span>
+      </div>
+      <div class="each-step">
+        <div class="d-flex flex-column">
+          <img src="https://aurealbucket.s3.us-east-2.amazonaws.com/ref_share.png">
+          <h3 class="accent text-center">
+            Share it with podcasters
+          </h3>
+          <ul class="accenttwo">
+            <li>
+              <p class="accenttwo">Share the unique referral link to your podcaster friends.</p>
+            </li>
+            <li>
+              <p class="accenttwo">You can find the unique referral link <a href="referral">here</a> or on <a
+                  href="profile">profile</a>.</p>
+            </li>
+          </ul>
         </div>
+      </div>
+      <div class="each-divider d-flex align-items-center justify-content-center">
+        <span class="icon icon-right-open-big"></span>
+      </div>
+      <div class="each-step">
+        <div class="d-flex flex-column">
+          <img src="https://aurealbucket.s3.us-east-2.amazonaws.com/ref_earn.png">
+          <h3 class="accent text-center">
+            Earn extra rewards
+          </h3>
+          <ul class="accenttwo">
+            <li>
+              <p class="accenttwo">Your referral needs to join and connects the podcast on Aureal.</p>
+            </li>
+            <li>
+              <p class="accenttwo">You are eligible for 10% of author rewards on the first 2 episodes published on
+                Aureal.</p>
+            </li>
+            <li>
+              <p class="accenttwo">Earn additional rewards as you continue to refer more podcasters on Aureal.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+    <div class="own-referral-link" *ngIf="ownReferralLink">
+      <div class="d-flex flex-column">
+        <p>Your invite link</p>
         <div class="d-flex">
-          <span class="d-flex align-items-center icon icon-moon-o pointer accenttwo" *ngIf="!dark" (click)="toggleTheme(true)"></span>
-          <span class="d-flex align-items-center icon icon-light-up pointer accenttwo" *ngIf="dark" (click)="toggleTheme(false)"></span>
+          <div class="input-container">
+            <span class="accent font-weight-bold mr-2">{{ownReferralLink}}</span>
+            <!-- <span class="icon icon-copy2" (click)="copyReferralLink()"></span> -->
+          </div>
+          <div class="invite-but ml-3" (click)="copyReferralLink()">
+            <span class="icon-copy2 mr-2 mt-1" *ngIf="!copied">
+            </span>
+            <span class="icon-task-alt-black-24dp mt-1 mr-2" *ngIf="copied">
+            </span>
+            Copy link
+          </div>
+          <div class="invite-but ml-3" (click)="shareReferral()">
+            <span class="icon-share mt-1 mr-2">
+            </span>
+            Share link
+          </div>
+        </div>
+      </div>
+      <div class="vertical-divider">
+      </div>
+      <div class="flex flex-column">
+        <div>
+          <h3>{{referCount}}</h3>
+        </div>
+        <div>
+          <p class="accenttwo">Podcaster(s) Signed Up</p>
         </div>
       </div>
     </div>
-    <div class="d-block d-sm-none">
-      <img src="./assets/Aureal_full_light.png" *ngIf="dark" class="lazyload" style="width: 100%;
-      padding: 20px 100px;">
-      <img src="./assets/aureal_full_dark.png" *ngIf="!dark" class="lazyload" style="width: 100%;
-      padding: 20px 100px;">
-    </div>
-    <div class="banner-container">
-        <div class="image-section">
-            <div id="container">
-                <div>
-                    <div class="demo-img">
-                        <img class="lazyload" src="https://aurealbucket.s3.us-east-2.amazonaws.com/Mascot.png">
-                    </div>
-                  </div>
+    <!-- <div class="mt-3 mb-3 d-flex align-items-center justify-content-center" *ngIf="!ownReferralLink">
+        <button class="primary-but" (click)="getStarted()">Get Started</button>
+      </div> -->
+    <div class="mt-5 mb-5">
+      <h1 class="primary text-center mt-5 mb-5">Share more, earn more</h1>
+      <div class="mt-5 mb-5">
+        <h3 class="text-center">Get 10% percent of Author rewards for the first 2 episodes published on Aureal from your referral podcasts!
+        </h3>
+        <div class="referral-reward-box home-page-sticky-cta-trigger mt-5 mb-5">
+          <div class="referral-position-reward-box-left landing-page-reward">
+            <div class="referral-position-reward-table">
+              <div class="rpr-table-title-box-left landing-page-reward-item">
+                <div class="rpr-table-title-text home-reward-table">Podcasters Onboarded</div>
+                <div class="rpr-table-separator-left home-page-reward-separator"></div>
+              </div>
+              <div class="rpr-table-item-box-left landing-page-reward-item">
+                <div class="rpr-table-item-text home-reward-table-text calcu">
+                  <input [(ngModel)]="cnt"> 
+                </div>
+              </div>
             </div>
+          </div>
+          <div class="referral-position-reward-box landing-page-reward">
+            <div class="referral-position-reward-title"></div>
+            <div class="referral-position-reward-table">
+              <!-- <div class="rpr-table-title-box landing-page-reward-item-right-heading">
+                <div class="rpr-table-title-text percentage-table-text home-reward-table">🤑 Rewards</div>
+                <div class="rpr-table-separator home-page-reward-separator-right"></div>
+              </div> -->
+              <div class="rpr-table-title-box-left landing-page-reward-item">
+                <div class="rpr-table-title-text home-reward-table">🤑 Rewards</div>
+                <div class="rpr-table-separator-left home-page-reward-separator"></div>
+              </div>
+              <div class="rpr-table-item-box landing-page-reward-item-right">
+                <div class="rpr-table-item-text percentage-table-text home-reward-table-text">
+                  <span style="padding: 5px 15px;">{{(cnt * 2.1).toFixed(1)}} USD</span>
+                  <span style="font-size: 12px;" class="accenttwo"> *worth of Hive tokens</span>
+                </div>
+                <div class="rpr-table-separator home-page-reward-separator-right"></div>
+              </div>
+              <!-- <div class="rpr-table-item-box landing-page-reward-item-right">
+                <div class="rpr-table-item-text percentage-table-text home-reward-table-text">5%</div>
+                <div class="rpr-table-separator home-page-reward-separator-right"></div>
+              </div>
+              <div class="rpr-table-item-box landing-page-reward-item-right">
+                <div class="rpr-table-item-text percentage-table-text home-reward-table-text">3%</div>
+                <div class="rpr-table-separator home-page-reward-separator-right"></div>
+              </div>
+              <div class="rpr-table-item-box landing-page-reward-item-right">
+                <div class="rpr-table-item-text percentage-table-text home-reward-table-text">2%</div>
+                <div class="rpr-table-separator home-page-reward-separator-right"></div>
+              </div>
+              <div class="rpr-table-item-box landing-page-reward-item-right">
+                <div class="rpr-table-item-text percentage-table-text home-reward-table-text">1.5%</div>
+                <div class="rpr-table-separator home-page-reward-separator-right"></div>
+              </div> -->
+            </div>
+          </div>
         </div>
-        <div class="text-section">
-          <div class="main-heading">
-            Referral Program
-          </div>
-          <div class="sub-text">
-            this entire page is gonna change soon 
-          </div>
-          <div class="some-buttons">
-            <button class="primary-but" (click)="getStarted()">Login to get your referral link</button>
-          </div>
-        </div>
+      </div>
     </div>
+  </div>
 </div>
