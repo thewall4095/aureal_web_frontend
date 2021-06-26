@@ -40,6 +40,7 @@ import { ExploreComponent } from './pages/explore/explore.component';
 import { LiveComponent } from './pages/live/live.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { LandingComponent } from './pages/landing/landing.component';
+import { EpisodeembedComponent } from './pages/episodeembed/episodeembed.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { LandingComponent } from './pages/landing/landing.component';
     LiveComponent,
     AboutUsComponent,
     LandingComponent,
+    EpisodeembedComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

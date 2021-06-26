@@ -1,0 +1,14 @@
+.embedcontainer{
+    width: 100%;
+    display: flex;
+    justify-content: start;
+    max-height: 200px;
+    img{
+        // width: 20%;
+        height: 100%;
+    }
+    .ex-player{
+        width: 80%;
+        padding: 20px;
+    }
+}
