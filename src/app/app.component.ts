@@ -88,8 +88,8 @@ export class AppComponent implements OnInit {
       if(this.commonService.isMobile()){
         this.appMode = 'over';
         this.isSidebarOpened = false;
-        if(window.location.pathname != '/')
-          this.router.navigateByUrl('/home');
+        // if(window.location.pathname != '/')
+        //   this.router.navigateByUrl('/home');
       }
 
       this.currentModule = this.playerService.getCurrentModule();

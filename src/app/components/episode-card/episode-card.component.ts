@@ -14,7 +14,7 @@ const moment = moment_;
   selector: 'app-episode-card',
   templateUrl: './episode-card.component.html',
   styleUrls: ['./episode-card.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  // encapsulation: ViewEncapsulation.None,
 })
 export class EpisodeCardComponent implements OnInit {
   @Input() episodeData;

@@ -1,8 +1,76 @@
 <div class="embedcontainer">
-    <img [src]="episodeData.podcast_image">
-    <div class="ex-player">
-        <div class="episode-name">
-            {{episodeData.name}}
+    <div class="image-section">
+        <div class="over-image-buttons">
+            <button mat-button (click)="play()" [disabled]="state?.error" *ngIf="!state?.playing">
+                <mat-icon mat-list-icon>play_circle_filled</mat-icon>
+            </button>
+            <button mat-button (click)="pause()" *ngIf="state?.playing">
+                <mat-icon mat-list-icon>pause</mat-icon>
+            </button>
+        </div>
+        <img [src]="episodeData.image">
+        <div class="over-image-slider">
+            <mat-slider min="0" [max]="state?.duration" step="1" [value]="state?.currentTime"
+            (input)="onSliderChangeEnd($event)" [disabled]="state?.error" style="width: 100%;"></mat-slider>
         </div>
     </div>
+    <div class="ex-player">
+        <div class="podcast-name text-truncate">
+            {{episodeData.podcast_name}}
+        </div>
+        <div class="d-flex align-items-center justify-content-start outside-episode-name">
+            <div class="episode-name truncate-overflow">
+                {{episodeData.name}}
+            </div>
+        </div>
+        <div class="author-etc">
+            <div>
+                {{episodeData.author}}
+            </div>
+            <div class="only-desk">
+                <span class="dot"></span>
+            </div>
+            <div class="only-desk">
+                {{episodeData.published_at | date: 'MMM dd yyyy'}}
+            </div>
+            <div class="only-mob" *ngIf="state?.readableCurrentTime || state?.readableDuration">
+                <span class="dot"></span>
+            </div>
+            <div class="only-mob" *ngIf="state?.readableCurrentTime || state?.readableDuration">
+                {{ state?.readableCurrentTime }} / {{ state?.readableDuration }}
+            </div>
+        </div>
+
+        <div class="time-slider-embed">
+            <div class="playtime">
+                <div>
+                    {{ state?.readableCurrentTime }}
+                </div>
+                <div>
+                    {{ state?.readableDuration }}
+                </div>
+            </div>
+            <mat-slider min="0" [max]="state?.duration" step="1" [value]="state?.currentTime"
+              (input)="onSliderChangeEnd($event)" [disabled]="state?.error" style="width: 100%;"></mat-slider>
+        </div>
+        <div class="d-flex flex-wrap justify-content-around">
+            <div class="buttons only-desk">
+                <button mat-button [disabled]="isReplayDisabled()" (click)="replay()">
+                  <mat-icon mat-list-icon>replay_10</mat-icon>
+                </button>
+                <button mat-button (click)="play()" [disabled]="state?.error" *ngIf="!state?.playing">
+                    <mat-icon mat-list-icon>play_circle_filled</mat-icon>
+                </button>
+                <button mat-button (click)="pause()" *ngIf="state?.playing">
+                    <mat-icon mat-list-icon>pause</mat-icon>
+                </button>
+                <button mat-button [disabled]="isForwardDisabled()" (click)="forward()">
+                  <mat-icon mat-list-icon>forward_10</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <a class="aureal-favicon">
+        <img src="favicon.ico">
+    </a>
 </div>
