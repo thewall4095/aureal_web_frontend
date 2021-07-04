@@ -19,15 +19,15 @@
                         <span class="icon icon-search-1 accenttwo" (click)="triggerSearch(true)"></span>
                     </div>
                 </div>
-                <div class="user" (click)="navigateProfile()" *ngIf="userDetailsService.UserDetails?.username">
+                <div class="some-buttons ml-2" *ngIf="!authService.isAuthenticated()">
+                    <button class="primary-but" (click)="getStarted()">Login / Sign up</button>
+                </div>
+                <div class="user" (click)="navigateProfile()" *ngIf="authService.isAuthenticated() && userDetailsService.UserDetails?.username">
                     <div>
                       <img *ngIf="userDetailsService.UserDetails?.img" class="lazyload" 
                       defaultImage="https://aurealbucket.s3.us-east-2.amazonaws.com/thumbnailnew.png" [lazyLoad]="userDetailsService.UserDetails?.img"/>
                       <span *ngIf="!userDetailsService.UserDetails?.img" class="icon icon-user"></span>
                     </div>
-                    <!-- <div class="user-name text-truncate">
-                      {{userDetailsService.UserDetails?.username}}
-                    </div> -->
                 </div>
             </div>
 

@@ -5,6 +5,9 @@ import { AuthService } from 'src/app/services/auth.service';
 import { ThemeService } from 'src/app/services/theme.service';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { MetatagsService } from 'src/app/services/metatags.service';
+import { ActivatedRoute, Router } from "@angular/router";
+import { MatDialog } from "@angular/material/dialog";
+import { HiveAuthComponent } from 'src/app/components/hive-auth/hive-auth.component';
 
 @Component({
   selector: 'app-discover',
@@ -62,6 +65,8 @@ export class DiscoverComponent implements OnInit {
     private themeService: ThemeService,
     @Inject(PLATFORM_ID) private platformId: Object,
     public metatagsService: MetatagsService,
+    public router: Router,
+    public dialog: MatDialog,
   ) { 
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -194,5 +199,25 @@ export class DiscoverComponent implements OnInit {
 
   get dark() {
     return this.themeService.theme === 'dark';
+  }
+
+  getStarted(){
+    if (!this.authService.isAuthenticated()) {
+      if(window.innerWidth < 756) {
+        this.router.navigateByUrl('/home');
+      }else{
+        this.openHiveAuthDialog(true);
+      }
+    }
+  }
+
+  openHiveAuthDialog(autoCheck: Boolean): void {
+    this.dialog.open(HiveAuthComponent, {
+      width: '800px',
+      // height:  '350px',
+      maxWidth: '95vw',
+      hasBackdrop: true,
+      data: { autoCheck: autoCheck }
+    });
   }
 }

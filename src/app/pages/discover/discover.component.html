@@ -13,8 +13,14 @@
             <div *ngFor="let episode of tabsSection[0].data; let i = index" class="custom-col-episode mt-3">
                 <app-favorite-episode [episodeData]="episode"></app-favorite-episode>
             </div>
-            <div *ngIf="!tabsSection[0].data.length" class="d-flex align-items-center justify-content-center mt-5 mb-5 w100">
+            <div *ngIf="!tabsSection[0].data.length && authService.isAuthenticated()" class="d-flex align-items-center justify-content-center mt-5 mb-5 w100">
                 <span class="accenttwo">You don't follow any podcasts yet! Follow some to help us curate better.</span>
+            </div>
+            <div *ngIf="!authService.isAuthenticated()" class="d-flex align-items-center justify-content-center mt-5 mb-5 w100">
+                <span class="accenttwo">
+                    <a (click)="getStarted()">
+                        Login/Signup
+                    </a>to see some personalised podcasts</span>
             </div>
         </div>
         <div class="custom-infinite-row" *ngIf="!tabsSection[0].isLoaded">
@@ -79,15 +85,16 @@
         <p class="accenttwo text-center mb-3">Web platform is best viewed on Desktop. For a seamless experience on mobile devices download the app from </p>
         <div class="d-flex align-center justify-content-center apps">
             <div class="d-flex flex-column align-items-center">
-                <span class="accenttwo icon icon-apple mb-2"></span>
-                <div class="accenttwo" style="font-size: 12px;">(coming soon)</div>
+                <a href="https://apps.apple.com/us/app/aureal/id1569963165">
+                    <img src="./assets/appstore.png" style="max-height: 30px;">
+                </a>
             </div>
-            <div class="ml-4 mr-4 mb-auto mt-auto">
+            <div class="ml-2 mr-2 mb-auto mt-auto">
                 <span class="accenttwo">OR</span>
             </div>
             <div>
                 <a href="https://play.google.com/store/apps/details?id=co.titandlt.auditory">
-                    <span class="accenttwo icon icon-android"></span>
+                    <img src="./assets/playstore.png" style="max-height: 30px;">
                 </a>
             </div>
         </div>

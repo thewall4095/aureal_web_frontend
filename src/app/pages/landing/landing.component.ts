@@ -106,8 +106,6 @@ export class LandingComponent implements OnInit {
       }else{
         this.openHiveAuthDialog(true);
       }
-    }else{
-      // this.router.navigateByUrl('/home');
     }
   }
 

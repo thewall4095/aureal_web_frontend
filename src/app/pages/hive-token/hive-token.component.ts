@@ -51,12 +51,16 @@ export class HiveTokenComponent implements OnInit {
           localStorage.setItem('token',res.userData.token);
           this.userDetailsService.UserDetails = res.userData;
           this.router.navigateByUrl('/');
+          setTimeout(()=>{
+           location.reload();
+          },300);
       })
     }else{
       this.toastr.error('Something went wrong');
+      this.router.navigateByUrl('/');
       setTimeout(()=>{
-        this.router.navigateByUrl('/');
-      },3000);
+        location.reload();
+       },300);
     }
 
 

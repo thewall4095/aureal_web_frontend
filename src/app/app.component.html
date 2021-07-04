@@ -50,7 +50,7 @@
       <router-outlet style="margin-top: 70px; display: block; z-index: 1;"></router-outlet>
       <app-player class="the-player" *ngIf="playingEpisode && !isEmbedPlayer" [ngClass]="{'dark' : dark}" [toPlayData]="playingEpisode">
       </app-player>
-      <app-footer class="the-footer" *ngIf="hideit"></app-footer>
+      <app-footer class="the-footer"></app-footer>
     </mat-drawer-content>
 </mat-drawer-container>
   

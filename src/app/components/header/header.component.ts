@@ -33,12 +33,9 @@ export class HeaderComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    let a = parseInt((moment().unix()).toString()) + 68400;
-    let b = moment().unix();
-    console.log(a - b);
-    // if (!this.authService.isHiveConnected() && this.authService.isAuthenticated()) {
-    //   this.openHiveAuthDialog(true);
-    // }
+    if(!this.authService.isAuthenticated()){
+      this.routes = this.routes.filter((route) => route.route != 'home');
+    }
     this.updateSearch();
     setTimeout(()=>{
       if(this.authService.isAuthenticated()){
@@ -94,6 +91,16 @@ export class HeaderComponent implements OnInit {
       hasBackdrop: true,
       data: { autoCheck: autoCheck }
     });
+  }
+
+  getStarted(){
+    if (!this.authService.isAuthenticated()) {
+      if(window.innerWidth < 756) {
+        this.router.navigateByUrl('/home');
+      }else{
+        this.openHiveAuthDialog(true);
+      }
+    }
   }
 
   goToProfile() {

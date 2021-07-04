@@ -77,12 +77,8 @@ export class AppComponent implements OnInit {
     private authService: AuthService
     ) {
 
-      // this.preloadThumbnail();
-
-      if(window.location.pathname == '/'){
-        this.hideit = true;
-      }else{
-        this.hideit = false;
+      if(!this.authService.isAuthenticated()){
+        this.routes = this.routes.filter((route) => route.route != 'home');
       }
 
       if(this.commonService.isMobile()){
@@ -99,14 +95,8 @@ export class AppComponent implements OnInit {
       }else{
         this.isEmbedPlayer = false;
       }
-      console.log(this.isEmbedPlayer);
       this.setTheme();
   }
-
-  // preloadThumbnail(){
-  //   let a = new Image();
-  //   a.src = 'https://aurealbucket.s3.us-east-2.amazonaws.com/thumbnailnew.png';
-  // }
 
   setTheme(){
     if(localStorage.getItem('theme')){
@@ -154,11 +144,8 @@ export class AppComponent implements OnInit {
     });  
 
     if(this.authService.isAuthenticated()){
-      this.hideit = false;
+      // this.hideit = false;
       this.getUserDetails();
-      // if(this.authService.isHiveConnected()){
-      //   this.getUserNotifications();
-      // }
     }
   }
 
@@ -231,7 +218,6 @@ export class AppComponent implements OnInit {
   openAuth(): void {
     this.dialog.open(HiveAuthComponent, {
       width: '800px',
-      // height:  '350px',
       maxWidth: '95vw',
       hasBackdrop: true,
       data: { autoCheck: false }
