@@ -159,10 +159,10 @@ export class AppComponent implements OnInit {
         console.log(res);
         this.userDetailsService.UserDetails = res.users;
       });
-      this.userDetailsService.getUserHiveDetails().then((res:any) => {
-        console.log(res);
-        this.userHiveDetails = res;
-      })
+      // this.userDetailsService.getUserHiveDetails().then((res:any) => {
+      //   console.log(res);
+      //   this.userHiveDetails = res;
+      // })
     }
   }
 

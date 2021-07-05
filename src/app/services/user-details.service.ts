@@ -26,9 +26,9 @@ export class UserDetailsService {
   }
 
 
-  getUserHiveDetails() {
-    return this.api.get(this.apiUrl + '/public/getHiveAccountDetails?hiveusername='+localStorage.getItem('hive_username')).toPromise();
-  }
+  // getUserHiveDetails() {
+  //   return this.api.get(this.apiUrl + '/public/getHiveAccountDetails?hiveusername='+localStorage.getItem('hive_username')).toPromise();
+  // }
 
   getUserNotifications(){
     return this.api.get(this.apiUrl + '/public/getNotifications?user_id='+localStorage.getItem('userId')).toPromise();

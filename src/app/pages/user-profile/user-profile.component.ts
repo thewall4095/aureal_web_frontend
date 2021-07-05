@@ -63,7 +63,11 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.profileForm = new FormGroup({
       'username': new FormControl('', [Validators.required]),
-      'bio': new FormControl('', []), //this.checkPassword]),
+      'bio': new FormControl('', []),
+      'linkedin': new FormControl('', []),
+      'website': new FormControl('', []),
+      'instagram': new FormControl('', []),
+      'twitter': new FormControl('', []),
     });
 
     this.getUserDetails();
@@ -79,14 +83,14 @@ export class UserProfileComponent implements OnInit {
         // })
       }
     });
-    this.userDetailsService.getUserHiveDetails().then((res: any) => {
-      console.log('hererere', res.client.account.reward_vesting_hive.split(' ')[0]);
-      if (res.client && res.client.account.reward_hive_balance.split(' ')[0] != '0.000' && res.client.account.reward_hbd_balance.split(' ')[0] != '0.000' && res.client.account.reward_vesting_hive.split(' ')[0] != '0.000') {
-        this.unclaimedText = `Unclaimed balance for ${localStorage.getItem('hive_username')}: ${res.client.account.reward_hive_balance}, ${res.client.account.reward_hbd_balance}, ${res.client.account.reward_vesting_hive.split(' ')[0]} HP = ${res.client.account.reward_vesting_balance}`;
-      } else {
-        ;
-      }
-    });
+    // this.userDetailsService.getUserHiveDetails().then((res: any) => {
+    //   console.log('hererere', res.client.account.reward_vesting_hive.split(' ')[0]);
+    //   if (res.client && res.client.account.reward_hive_balance.split(' ')[0] != '0.000' && res.client.account.reward_hbd_balance.split(' ')[0] != '0.000' && res.client.account.reward_vesting_hive.split(' ')[0] != '0.000') {
+    //     this.unclaimedText = `Unclaimed balance for ${localStorage.getItem('hive_username')}: ${res.client.account.reward_hive_balance}, ${res.client.account.reward_hbd_balance}, ${res.client.account.reward_vesting_hive.split(' ')[0]} HP = ${res.client.account.reward_vesting_balance}`;
+    //   } else {
+    //     ;
+    //   }
+    // });
 
     this.getCategoryLanguages();
   }
@@ -234,6 +238,10 @@ export class UserProfileComponent implements OnInit {
       this.userDetails = res.users;
       this.profileForm.controls['username'].setValue(this.userDetails.username);
       this.profileForm.controls['bio'].setValue(this.userDetails.settings.Account.Bio);
+      this.profileForm.controls['linkedin'].setValue(this.userDetails.linkedin);
+      this.profileForm.controls['website'].setValue(this.userDetails.website);
+      this.profileForm.controls['instagram'].setValue(this.userDetails.instagram);
+      this.profileForm.controls['twitter'].setValue(this.userDetails.twitter);
     });
   }
 
@@ -252,6 +260,10 @@ export class UserProfileComponent implements OnInit {
     body.append('password', data.password);
     this.userDetails.username = data.username;
     this.userDetails.settings.Account.Bio = data.bio;
+    this.userDetails.linkedin = data.linkedin;
+    this.userDetails.website = data.website;
+    this.userDetails.instagram = data.instagram;
+    this.userDetails.twitter = data.twitter;
     this.updateUser();
   }
 
@@ -269,6 +281,10 @@ export class UserProfileComponent implements OnInit {
     let body = new FormData;
     body.append('user_id', localStorage.getItem('userId'));
     body.append('img', this.userDetails.img);
+    body.append('linkedin', this.userDetails.linkedin);
+    body.append('website', this.userDetails.website);
+    body.append('instagram', this.userDetails.instagram);
+    body.append('twitter', this.userDetails.twitter);
     body.append('username', this.userDetails.username);
     body.append('settings_Account_Bio', this.userDetails.settings.Account.Bio);
     this.userDetailsService.updateUser(body).then((res) => {

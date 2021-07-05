@@ -12,42 +12,119 @@
                         <img [src]="userDetails.img" class="lazyload">
                     </div>
                 </div>
-                <!-- <div class="edit-icon">
+                <div class="edit-icon" *ngIf="isProfileFormOpen">
                     <input type="file" (change)="onFileChanged($event)" style="display: none" #fileInput>
                     <mat-icon (click)="fileInput.click()">edit</mat-icon>
-                </div> -->
+                </div>
             </div>
-            <!-- <div class="the-form" *ngIf="isProfileFormOpen">
-
+            <div class="the-form" *ngIf="isProfileFormOpen">
                 <form [formGroup]="profileForm" (ngSubmit)="onSubmit(profileForm.value)" class="form">
-                    <mat-form-field class="form-element">
-                        <input matInput placeholder="Full Name" formControlName="username">
-                        <mat-error
-                            *ngIf="!profileForm.controls['username'].valid && profileForm.controls['username'].touched">
-                            {{ getErrorusername(profileForm) }}
-                        </mat-error>
-                    </mat-form-field>
-                    <mat-form-field class="form-element">
-                        <textarea matInput placeholder="Bio" formControlName="bio"></textarea>
-                    </mat-form-field>
+                    <div class="row">
+                        <div class="col-6">
+                            <mat-form-field class="form-element">
+                                <label class="accenttwo">Display name</label>
+                                <input matInput formControlName="username">
+                                <mat-error
+                                    *ngIf="!profileForm.controls['username'].valid && profileForm.controls['username'].touched">
+                                    {{ getErrorusername(profileForm) }}
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-6">
+                            <mat-form-field class="form-element">
+                                <label class="accenttwo">Website</label>
+                                <input matInput formControlName="website">
+                            </mat-form-field>
+    
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-form-field class="form-element">
+                                <label class="accenttwo">About</label>
+                                <textarea matInput formControlName="bio"></textarea>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <mat-form-field class="form-element">
+                                <label class="accenttwo">Linkedin</label>
+                                <input matInput formControlName="linkedin">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4">
+                            <mat-form-field class="form-element">
+                                <label class="accenttwo">Instagram</label>
+                                <input matInput formControlName="instagram">
+                            </mat-form-field>
+                        </div>
+                        <div class="col-4">
+                            <mat-form-field class="form-element">
+                                <label class="accenttwo">Twitter</label>
+                                <input matInput formControlName="twitter">
+                            </mat-form-field>
+                        </div>
+                    </div>
+
                     <div class="form-element">
-                        <button mat-raised-button color="primary" type="submit" class="button"
+                        <div class="d-flex align-items-center">
+                            <!-- <button mat-raised-button color="primary" type="submit" class="button"
                             [disabled]="!profileForm.valid || isImageUploading">Edit<i class="fas fa-spinner fa-spin"
-                                *ngIf="isImageUploading" aria-hidden="true"></i></button>
+                                *ngIf="isImageUploading" aria-hidden="true"></i></button> -->
+
+                            <button class="primary-but" type="submit" [disabled]="!profileForm.valid || isImageUploading">
+                                Update
+                                <i class="fas fa-spinner fa-spin"
+                                *ngIf="isImageUploading" aria-hidden="true"></i>
+                            </button>
+                            <button class="secondary-but ml-3" (click)="isProfileFormOpen=false">
+                                <span>
+                                    Discard
+                                </span>
+                            </button>
+                        </div>
+
                     </div>
                 </form>
-            </div> -->
+            </div>
         </div>
         <div class="user-details" *ngIf="!isProfileFormOpen">
             <h3>{{userDetails?.username}}</h3>
-            <p class="text-truncate" [innerHTML]="userDetails?.settings?.Account?.Bio"></p>
+            <p class="text-truncate accenttwo" [innerHTML]="userDetails?.settings?.Account?.Bio"></p>
+            <div class="social-links">
+                <div class="each-link" *ngIf="userDetails?.website">
+                    <a [href]="userDetails?.website">
+                        <span class="icon icon-web">
+                        </span>
+                    </a>
+                </div>
+                <div class="each-link" *ngIf="userDetails?.instagram">
+                    <a [href]="userDetails?.instagram">
+                        <span class="icon icon-instagrem">
+                        </span>
+                    </a>
+                </div>
+                <div class="each-link" *ngIf="userDetails?.twitter">
+                    <a [href]="userDetails?.twitter">
+                        <span class="icon icon-social-twitter">
+                        </span>
+                    </a>
+                </div>
+                <div class="each-link" *ngIf="userDetails?.linkedin">
+                    <a [href]="userDetails?.linkedin">
+                        <span class="icon icon-linkedin">
+                        </span>
+                    </a>
+                </div>
+            </div>
         </div>
-        <!-- <div>
+        <div>
             <div class="edit-all-icon" (click)="isProfileFormOpen = !isProfileFormOpen">
                 <mat-icon *ngIf="!isProfileFormOpen">edit</mat-icon>
                 <mat-icon *ngIf="isProfileFormOpen">close</mat-icon>
             </div>
-        </div> -->
+        </div>
     </div>
     <div class="userprofile-section" *ngIf="unclaimedText">
         <div class="d-flex justify-content-between align-items-center w100 row" style="padding:15px;">
