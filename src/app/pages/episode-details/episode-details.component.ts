@@ -71,9 +71,9 @@ export class EpisodeDetailsComponent implements OnInit {
         this.episodeData = res.episode;
         this.metatagsService.assignTags(
           this.episodeData.name,
-          this.episodeData.summary,
+          this.episodeData.podcast_name,
           'https://aureal.one/episode/'+this.episodeData.id,
-          this.episodeData.image,
+          this.episodeData.image ? this.episodeData.image : this.episodeData.podcast_image,
         );
         this.episodeLoading = false;
         this.getOtherEpisodes(this.episodeData.podcast_id);
