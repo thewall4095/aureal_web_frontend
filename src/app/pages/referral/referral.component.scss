@@ -1,0 +1,226 @@
+.landing-container{
+    width: 100%;
+    padding: 50px 0px;
+    min-height: 80vh;
+    margin-top: -50px;
+    min-height: 95vh;
+    .home-header{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 25px;
+      border-bottom: 1px solid var(--primary-border);
+      img{
+        max-width: 200px;
+      }
+      .icon{
+        font-size: 20px;
+      }
+      @media (max-width: 767px) {
+        display: none;
+      }
+      .user{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-left: 20px;
+        cursor: pointer;
+        img{
+          width: 35px;
+          border-radius: 25px;
+        }
+        .icon{
+          font-size: 30px;
+          color: var(--primary);
+        }
+        .user-name{
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--accent);
+            margin-left: 10px;
+        }
+      }
+    }
+    .banner-container{
+      padding: 40px;
+      .primary{
+        color: var(--primary);
+      }
+      .creatives{
+        padding: 40px 20px;
+        .each-step{
+          padding: 40px;
+          width: 30%;
+          ul{
+            padding-left: 10px !important;
+            p{
+              font-size: 14px !important;
+            }
+          }
+        }
+        .each-divider{
+          width: 5%;
+          .icon{
+            font-size: 24px;
+            color: var(--primary);
+          }
+        }
+      }
+      .own-referral-link{
+        background: var(--secondary-background);
+        border-radius: 20px;
+        padding: 20px 25px;
+        display: flex;
+        .icon{
+          cursor: pointer;
+          color: var(--accenttwo);
+        }
+        .input-container{
+          border-radius: 20px;
+          border: 0.5px solid var(--primary-border);
+          background: var(--tertiary-background);
+          padding: 5px 15px;
+          font-size: 14px;
+          color: var(--accent);
+        }
+        .invite-but{
+          background: var(--tertiary-background);
+          color: var(--accent);
+          font-size: 14px;
+          padding: 5px 20px;
+          margin-right: 10px;
+          display: flex;
+          align-items: center;
+          border-radius: 15px;
+          cursor: pointer;
+          width: fit-content;
+        }
+        .vertical-divider{
+          border-right: 1px solid;
+          height: 70px;
+          margin: 0 15px;
+          display: block;
+          border-image-source: linear-gradient(to bottom, #5d5da8, #5bc3ef);
+          border-image-slice: 1;
+          border-width: 1px;
+        }
+      }
+      .calcu{
+        color: var(--accenttwo);
+        input{
+          background: var(--accenttwo);
+          border: none;
+          max-width: 50px;
+          padding: 5px 15px;
+          border-radius: 8px;
+          margin: 0 15px;
+          color: var(--accent);
+        }
+      }
+
+      .referral-reward-box.home-page-sticky-cta-trigger {
+        width: 100%;
+        max-width: 740px;
+        margin: auto;
+      }
+
+      .referral-reward-box {
+          position: relative;
+          display: -ms-grid;
+          display: grid;
+          overflow: hidden;
+          grid-auto-columns: 1fr;
+          grid-auto-rows: 0px;
+          -ms-grid-columns: 1fr 1fr;
+          grid-template-columns: 1fr 1fr;
+          -ms-grid-rows: auto;
+          grid-template-rows: auto;
+          border-radius: 20px;
+          background-color: var(--secondary-background);
+      }
+
+      .referral-position-reward-box-left.landing-page-reward {
+        padding-top: 18px;
+        padding-bottom: 19px;
+      }
+      .referral-position-reward-table {
+        display: -ms-grid;
+        display: grid;
+        grid-auto-columns: 1fr;
+        -ms-grid-columns: 1fr;
+        grid-template-columns: 1fr;
+        -ms-grid-rows: auto auto auto auto auto auto;
+        grid-template-rows: auto auto auto auto auto auto;
+      }
+      .rpr-table-title-box-left.landing-page-reward-item {
+        padding-left: 74px;
+        border-bottom: 2px solid var(--accenttwo);
+      }
+      .rpr-table-title-box-left {
+        position: relative;
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -ms-flexbox;
+        display: flex;
+        padding: 8px 60px 8px 208px;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+      }
+
+      .referral-position-reward-box.landing-page-reward {
+        padding-top: 18px;
+        padding-bottom: 19px;
+      }
+
+      .referral-position-reward-box {
+        padding-top: 40px;
+        padding-bottom: 80px;
+        background-color: var(--tertiary-background);
+      }
+
+      .rpr-table-title-text.home-reward-table {
+        font-size: 20px;
+      }
+
+      .rpr-table-title-text {
+        padding-bottom: 24px;
+        color: var(--accent);
+        font-size: 24px;
+        line-height: 28px;
+        font-weight: 600;
+      }
+
+
+      .rpr-table-item-text.home-reward-table-text {
+        font-size: 15px;
+        line-height: 20px;
+        padding: 25px;
+        text-align: center;
+      }
+
+      .rpr-table-item-text {
+        color: var(--accent);
+        font-size: 18px;
+        line-height: 28px;
+        font-weight: 500;
+      }
+
+      .rpr-table-title-text.home-reward-table {
+        font-size: 20px;
+      }
+      .rpr-table-title-text.percentage-table-text {
+        text-align: center;
+      }
+      .rpr-table-title-text {
+        padding-bottom: 24px;
+        color: var(--accent);
+        font-size: 24px;
+        line-height: 28px;
+        font-weight: 600;
+      }
+    
+    }
+}

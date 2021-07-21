@@ -13,6 +13,7 @@ import { StreamState } from 'src/app/interfaces/stream-state';
 import { AudioService } from 'src/app/services/audio.service';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { MetatagsService } from 'src/app/services/metatags.service';
+import { SocialShareComponent } from 'src/app/components/social-share/social-share.component';
 
 @Component({
   selector: 'app-episode-details',
@@ -307,5 +308,16 @@ export class EpisodeDetailsComponent implements OnInit {
     // this.globalListenFunc();
     if(this.subscription)
       this.subscription.unsubscribe();
+  }
+
+
+  socialShare(type, episodeData) {
+    this.dialog.open(SocialShareComponent, {
+      width: '400px',
+      // height:  '350px',
+      maxWidth: '95vw',
+      hasBackdrop: true,
+      data: { type: type, attributes: episodeData }
+    });
   }
 }

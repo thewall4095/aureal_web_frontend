@@ -1,6 +1,10 @@
 {
   "configVersion": 1,
+<<<<<<< HEAD
   "timestamp": 1625574429577,
+=======
+  "timestamp": 1623675408696,
+>>>>>>> 3f9cabc364c2d215763cc5cfb57ee8d839846cf8
   "index": "/index.html",
   "assetGroups": [
     {
@@ -10,14 +14,23 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
+<<<<<<< HEAD
         "/main-es2015.d73a38dbc36ed0780254.js",
         "/main-es5.d73a38dbc36ed0780254.js",
+=======
+        "/main-es2015.aa35e51776e4190daaff.js",
+        "/main-es5.aa35e51776e4190daaff.js",
+>>>>>>> 3f9cabc364c2d215763cc5cfb57ee8d839846cf8
         "/manifest.webmanifest",
         "/polyfills-es2015.d91d0e6e872ed96a40d9.js",
         "/polyfills-es5.d3e0f4cb3844cdb47335.js",
         "/runtime-es2015.0dae8cbc97194c7caed4.js",
         "/runtime-es5.0dae8cbc97194c7caed4.js",
+<<<<<<< HEAD
         "/styles.0eb171b2a278e1781ebb.css"
+=======
+        "/styles.f4aff99d6760c9c8188a.css"
+>>>>>>> 3f9cabc364c2d215763cc5cfb57ee8d839846cf8
       ],
       "patterns": []
     },
@@ -122,10 +135,17 @@
         "/fa-solid-900.f4f93856730733912b1e.woff",
         "/flags.007b2705c0a8f69dfdf6.png",
         "/flags@2x.9d5328fb490cddd43f66.png",
+<<<<<<< HEAD
         "/untitled-font-5.059ad66650feeb0c4b81.eot",
         "/untitled-font-5.1ff4ecf554fdbc84ee66.woff",
         "/untitled-font-5.27d71e90f3694ef87fc9.ttf",
         "/untitled-font-5.f49e21b54d0b191d3948.svg"
+=======
+        "/untitled-font-5.230df30566b7e97447e9.eot",
+        "/untitled-font-5.9e30167abdf8799e6195.svg",
+        "/untitled-font-5.cf492df2a28efe79bd51.ttf",
+        "/untitled-font-5.f72b1feb5c9a9d6a9569.woff"
+>>>>>>> 3f9cabc364c2d215763cc5cfb57ee8d839846cf8
       ],
       "patterns": []
     }
@@ -229,19 +249,33 @@
     "/favicon.ico": "daad91cb29af6b661e6ee0478484a49fbdd2a232",
     "/flags.007b2705c0a8f69dfdf6.png": "21572c9751e5a3dc20395befa0fcb349c32c4811",
     "/flags@2x.9d5328fb490cddd43f66.png": "d6f843711c3cfe6d9a037e4c61d293f563e55802",
+<<<<<<< HEAD
     "/index.html": "ff0c816c5f15d1655202f42184c4b0839e8373cd",
     "/main-es2015.d73a38dbc36ed0780254.js": "ccf98d8575ce5b18b66f575146131dc3a2d986c4",
     "/main-es5.d73a38dbc36ed0780254.js": "28f2f950004fe6be94eef551d381e5cc3e745572",
+=======
+    "/index.html": "df130612a52034faac20639fd4a51f78df480cbf",
+    "/main-es2015.aa35e51776e4190daaff.js": "5e61d4b28cddcbf7e3681bbeaae4d3376f91af6f",
+    "/main-es5.aa35e51776e4190daaff.js": "286dd35c924d93cb8394708ec86041e2963c14a2",
+>>>>>>> 3f9cabc364c2d215763cc5cfb57ee8d839846cf8
     "/manifest.webmanifest": "ae12ab8d19e26d7b7bdf52e11eccfdfad13b8c3f",
     "/polyfills-es2015.d91d0e6e872ed96a40d9.js": "90fb474e1a7d87bd57bc8a95fb3fd361b919d815",
     "/polyfills-es5.d3e0f4cb3844cdb47335.js": "84e8b9a7ddd8d45baa610cd2371a46c64658feea",
     "/runtime-es2015.0dae8cbc97194c7caed4.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
     "/runtime-es5.0dae8cbc97194c7caed4.js": "a9aafcf49f49145093fc831efd9b8e2f6c71bb9c",
+<<<<<<< HEAD
     "/styles.0eb171b2a278e1781ebb.css": "79a9a95541bd55ef82fe60216f611969421e1cfa",
     "/untitled-font-5.059ad66650feeb0c4b81.eot": "dc47cf17730c47a955f365e3b7ca031a28bd53f5",
     "/untitled-font-5.1ff4ecf554fdbc84ee66.woff": "4f9632a73d837a935f9c70b55336108cf6c38fe4",
     "/untitled-font-5.27d71e90f3694ef87fc9.ttf": "10b01f9424acc889c2618e8a1e79b612b1550ad3",
     "/untitled-font-5.f49e21b54d0b191d3948.svg": "d54eb432ff91f01afe8245b354da83cfbe536e53"
+=======
+    "/styles.f4aff99d6760c9c8188a.css": "daa447ac8e241cec932378c45a66b76b79207b4a",
+    "/untitled-font-5.230df30566b7e97447e9.eot": "d46272e1a46f0c6306a2c134e93826224b6d68ea",
+    "/untitled-font-5.9e30167abdf8799e6195.svg": "32f0b887e20b965cae95ebfb3dadf687a0bbec73",
+    "/untitled-font-5.cf492df2a28efe79bd51.ttf": "1dc6dea3afe199f64a388d3d61debaa98b41895e",
+    "/untitled-font-5.f72b1feb5c9a9d6a9569.woff": "747231e9d86df54825b80b8a55c8f5f3bcbac5de"
+>>>>>>> 3f9cabc364c2d215763cc5cfb57ee8d839846cf8
   },
   "navigationUrls": [
     {

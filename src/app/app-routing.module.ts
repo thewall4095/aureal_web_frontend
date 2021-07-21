@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PodcastProfileComponent } from './pages/podcast-profile/podcast-profile.component';
 // import { HomeDashboardModule } from 'src/app/pages/home-dashboard/home-dashboard.module';
-import { AuthComponent } from './components/auth/auth.component';
 import { HiveTokenComponent } from './pages/hive-token/hive-token.component';
 import { HiveTokenRegisterComponent } from './pages/hive-token-register/hive-token-register.component';
 import { PostComponent } from './pages/post/post.component';
@@ -16,13 +15,13 @@ import { HiveonboardComponent } from './pages/hiveonboard/hiveonboard.component'
 import { LiveComponent } from './pages/live/live.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { LandingComponent } from './pages/landing/landing.component';
+import { ReferralComponent } from './pages/referral/referral.component';
 
 const routes: Routes = [
   // { path: "", loadChildren: './pages/home-dashboard/home-dashboard.module#HomeDashboardModule' },
   {
     path: "podcast/:podcast_id", component: PodcastProfileComponent,
   },
-  { path: "auth", component: AuthComponent },
   { path: "hive-token", component: HiveTokenComponent },
   { path: "hive-token-register", component: HiveTokenRegisterComponent },
   { path: "post", component: PostComponent },
@@ -37,6 +36,7 @@ const routes: Routes = [
   { path: 'episode/:episode_id', component: EpisodeDetailsComponent },
   { path: 'hive-onboarding', component: HiveonboardComponent },
   { path: 'about-us', component: AboutUsComponent },
+  { path: 'referral', component: ReferralComponent}
 ];
 
 @NgModule({

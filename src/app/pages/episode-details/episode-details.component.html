@@ -63,6 +63,15 @@
                                           <mat-icon mat-list-icon>forward_10</mat-icon>
                                         </button>
                                       </div>
+                                      <div class="d-flex flex-wrap" style="max-height: 30px; position: absolute; right: 0; top: 5px;">
+                                        <!-- <div class="comment-count duration">
+                                            <i class="far fa-clock-o" aria-hidden="true"></i>
+                                            <span>{{formatDuration(episodeData.duration)}}</span>
+                                        </div> -->
+                                        <button (click)="socialShare('episode', episodeData)" class="share-but">
+                                            <span class="icon icon-share"></span>
+                                        </button>
+                                    </div>
                                 </div>
 
                             </div>

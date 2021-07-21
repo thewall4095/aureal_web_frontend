@@ -12,7 +12,7 @@ import { ConfirmationDialogService } from 'src/app/confirmation-dialog/confirmat
 import { AuthService } from 'src/app/services/auth.service';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { MetatagsService } from 'src/app/services/metatags.service';
-
+import { Clipboard } from "@angular/cdk/clipboard"
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -42,6 +42,8 @@ export class UserProfileComponent implements OnInit {
   languagesLoading: Boolean = false;
   languages = [];
 
+  ownReferralLink = '';
+
   constructor(
     private userDetailsService: UserDetailsService,
     public rssFeedDetailsService: RssFeedDetailsService,
@@ -53,6 +55,7 @@ export class UserProfileComponent implements OnInit {
     public authService: AuthService,
     @Inject(PLATFORM_ID) private platformId: Object,
     public metatagsService: MetatagsService,
+    private clipboard: Clipboard
   ) {
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -91,7 +94,11 @@ export class UserProfileComponent implements OnInit {
     //     ;
     //   }
     // });
-
+    this.userDetailsService.getPersonalReferralLink().then((res:any) =>{
+      console.log(res);
+      if(res.data.code)
+        this.ownReferralLink = res.data.code;        
+    });
     this.getCategoryLanguages();
   }
 
@@ -243,6 +250,14 @@ export class UserProfileComponent implements OnInit {
       this.profileForm.controls['instagram'].setValue(this.userDetails.instagram);
       this.profileForm.controls['twitter'].setValue(this.userDetails.twitter);
     });
+  }
+
+  redirectToReferral() {
+    this.router.navigateByUrl('referral');
+  }
+
+  copyReferralCode(){
+    this.clipboard.copy(this.ownReferralLink);
   }
 
   redirectToPost() {

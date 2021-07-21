@@ -40,6 +40,7 @@ import { ExploreComponent } from './pages/explore/explore.component';
 import { LiveComponent } from './pages/live/live.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { LandingComponent } from './pages/landing/landing.component';
+import { ReferralComponent } from './pages/referral/referral.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +69,7 @@ import { LandingComponent } from './pages/landing/landing.component';
     LiveComponent,
     AboutUsComponent,
     LandingComponent,
+    ReferralComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
@@ -77,7 +79,6 @@ import { LandingComponent } from './pages/landing/landing.component';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     SharedModule,
     SocialLoginModule,
-
   ],
   providers: [
     ConfirmationDialogService,

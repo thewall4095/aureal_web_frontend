@@ -35,12 +35,15 @@ export class HiveTokenRegisterComponent implements OnInit {
       body.append('hive_username', this.route.snapshot.queryParamMap.get("username"));
       body.append('user_id', localStorage.getItem('userId'));
       body.append('code', this.route.snapshot.queryParamMap.get("code"));
-      this.toastr.success('Loading..');
+      let used_referal_code = localStorage.getItem('used_referal_code');
+      if(used_referal_code){
+        body.append('used_referal_code', used_referal_code);
+      }
+      this.toastr.success('Loading...');
       this.authService.registerHiveUser(body).subscribe((res: any) => {
         if (res.msg) {
           this.toastr.error(res.msg);
         } else {
-
           localStorage.setItem('hive_username', this.route.snapshot.queryParamMap.get("username"));
           localStorage.setItem('access_token', res.access_token);
           this.router.navigateByUrl('/');

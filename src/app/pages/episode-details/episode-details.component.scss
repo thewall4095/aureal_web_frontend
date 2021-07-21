@@ -115,7 +115,20 @@
       }
       cursor: pointer;
     }
-  
+    .share-but{
+      background: var(--tertiary-background);
+      color: var(--accent);
+      border: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      .icon{
+        margin-top: 4px;
+        font-size: 16px;
+      }
+    }
     .duration {
       display: flex;
       margin-right: 20px;
