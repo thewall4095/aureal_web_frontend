@@ -16,9 +16,10 @@ import { LiveComponent } from './pages/live/live.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { ReferralComponent } from './pages/referral/referral.component';
+import { RoomsCreateComponent } from './pages/rooms-create/rooms-create.component';
+import { RoomsLiveComponent } from './pages/rooms-live/rooms-live.component';
 
 const routes: Routes = [
-  // { path: "", loadChildren: './pages/home-dashboard/home-dashboard.module#HomeDashboardModule' },
   {
     path: "podcast/:podcast_id", component: PodcastProfileComponent,
   },
@@ -36,7 +37,9 @@ const routes: Routes = [
   { path: 'episode/:episode_id', component: EpisodeDetailsComponent },
   { path: 'hive-onboarding', component: HiveonboardComponent },
   { path: 'about-us', component: AboutUsComponent },
-  { path: 'referral', component: ReferralComponent}
+  { path: 'referral', component: ReferralComponent},
+  { path: 'rooms-create', component: RoomsCreateComponent },
+  { path: 'rooms-live/:room_id', component: RoomsLiveComponent },
 ];
 
 @NgModule({

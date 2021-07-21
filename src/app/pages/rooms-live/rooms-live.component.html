@@ -1,0 +1,25 @@
+<div class="rooms-live-container">
+    <div class="row">
+        <div class="col-8 d-flex align-center justify-content-center">
+            <div id="jitsi-iframe" [ngClass]="{'hide': toHide}"></div>
+            <div *ngIf="toHide" style="height: 100vh; margin:auto">
+             Waiting for the host to start...
+            </div>
+        </div>
+        <div class="col-4">
+            
+        </div>
+    </div>
+
+
+        <!--For Custom Controls-->
+        <!-- <div class="item-center">
+            <span>Custom Controls</span>
+        </div>
+        <div class="item-center"> 
+            <i (click)="executeCommand('toggleAudio')" class="fas fa-2x grey-color" [ngClass]="isAudioMuted ? 'fa-microphone-slash' : 'fa-microphone'" aria-hidden="true" title="Mute / Unmute"></i>
+            <i (click)="executeCommand('hangup')" class="fas fa-phone-slash fa-2x red-color" aria-hidden="true" title="Leave"></i>
+            <i (click)="executeCommand('toggleVideo')" class="fas fa-2x grey-color" [ngClass]="isVideoMuted ? 'fa-video-slash' : 'fa-video'" aria-hidden="true" title="Start / Stop camera"></i>
+            <i (click)="executeCommand('toggleShareScreen')" class="fas fa-film fa-2x grey-color" aria-hidden="true" title="Share your screen"></i>
+        </div> -->
+</div>

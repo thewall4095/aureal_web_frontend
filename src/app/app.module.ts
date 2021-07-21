@@ -41,7 +41,8 @@ import { LiveComponent } from './pages/live/live.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { LandingComponent } from './pages/landing/landing.component';
 import { ReferralComponent } from './pages/referral/referral.component';
-
+import { RoomsCreateComponent } from './pages/rooms-create/rooms-create.component';
+import { RoomsLiveComponent } from './pages/rooms-live/rooms-live.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,7 +70,9 @@ import { ReferralComponent } from './pages/referral/referral.component';
     LiveComponent,
     AboutUsComponent,
     LandingComponent,
-    ReferralComponent
+    ReferralComponent,
+    RoomsCreateComponent,
+    RoomsLiveComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'serverApp' }),

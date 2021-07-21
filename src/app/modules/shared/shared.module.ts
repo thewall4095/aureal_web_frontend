@@ -38,7 +38,8 @@ import { CarouselComponent } from 'src/app/components/carousel/carousel.componen
 import { LazyLoadImageModule } from 'ng-lazyload-image';
 import { ClipboardModule } from '@angular/cdk/clipboard'
 import { ReferralInputComponent } from 'src/app/components/referral-input/referral-input.component';
-
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 @NgModule({
   declarations: [
     DateAgoPipe, 
@@ -90,8 +91,11 @@ import { ReferralInputComponent } from 'src/app/components/referral-input/referr
     ReactiveFormsModule,
     MatListModule,
     LazyLoadImageModule,
-    ClipboardModule
-
+    ClipboardModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    MatMomentDateModule,
+    NgxMatNativeDateModule
   ],
   exports: [
     DateAgoPipe, 
@@ -138,7 +142,11 @@ import { ReferralInputComponent } from 'src/app/components/referral-input/referr
     FavoriteEpisodeComponent,
     LazyLoadImageModule,
     ClipboardModule,
-    ReferralInputComponent
+    ReferralInputComponent,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    MatMomentDateModule,
+    NgxMatNativeDateModule
   ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },

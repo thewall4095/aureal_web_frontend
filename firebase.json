@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/aureal-rss-frontend",
+    "public": "dist/aureal-rss-frontend/browser",
     "ignore": [
       "firebase.json",
       "**/.*",

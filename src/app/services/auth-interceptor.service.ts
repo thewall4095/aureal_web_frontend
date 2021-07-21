@@ -44,7 +44,6 @@ export class AuthInterceptorService implements HttpInterceptor {
           // console.log(response);
         },
         (error: HttpErrorResponse) => {
-          console.log(error);
           if (error["status"] == 401) {
             this.authService.logout();
             this.router.navigateByUrl('/');

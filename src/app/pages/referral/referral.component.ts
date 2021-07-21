@@ -6,6 +6,8 @@ import { ActivatedRoute, Router } from "@angular/router";
 import { ThemeService } from 'src/app/services/theme.service';
 import { UserDetailsService } from 'src/app/services/user-details.service';
 import { Clipboard } from "@angular/cdk/clipboard"
+import { SocialShareComponent } from 'src/app/components/social-share/social-share.component';
+import { MetatagsService } from 'src/app/services/metatags.service';
 
 @Component({
   selector: 'app-referral',
@@ -26,8 +28,16 @@ export class ReferralComponent implements OnInit {
     public authService: AuthService,
     private themeService: ThemeService,
     public userDetailsService: UserDetailsService,
-    private clipboard: Clipboard
-  ) { }
+    private clipboard: Clipboard,
+    public metatagsService: MetatagsService,
+  ) { 
+    this.metatagsService.assignTags(
+      'Aureal - The podcast platform that pays you',
+      'Earn rewards for onboarding podcasters',
+      'https://aureal.one/referral',
+      'https://aurealbucket.s3.us-east-2.amazonaws.com/album_art/1626900134845_Screenshot%202021-07-22%20at%202.11.56%20AM.png',
+    );
+  }
 
   ngOnInit(): void {
     console.log(this.route.snapshot.queryParamMap.get("username"));
@@ -88,7 +98,13 @@ export class ReferralComponent implements OnInit {
     this.userDetailsService.getPersonalReferralLink().then((res:any) =>{
       console.log(res);
       if(res.data.code)
-        this.ownReferralLink = 'https://aureal.one/referral?refCode='+res.data.code;    
+        this.ownReferralLink = 'https://aureal.one/referral?refCode='+res.data.code;   
+        this.metatagsService.assignTags(
+          'Aureal - The podcast platform that pays you',
+          'Earn rewards for onboarding podcasters',
+          this.ownReferralLink,
+          'https://aurealbucket.s3.us-east-2.amazonaws.com/album_art/1626900134845_Screenshot%202021-07-22%20at%202.11.56%20AM.png',
+        ); 
         this.referCount = res.data.refer_count;    
     });
   }
@@ -102,6 +118,12 @@ export class ReferralComponent implements OnInit {
   }
 
   shareReferral(){
-    
+    this.dialog.open(SocialShareComponent, {
+      width: '400px',
+      // height:  '350px',
+      maxWidth: '95vw',
+      hasBackdrop: true,
+      data: { type: 'referral', attributes: this.ownReferralLink }
+    });
   }
 }

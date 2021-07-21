@@ -1,0 +1,64 @@
+.live-container{
+    width: 100%;
+    padding: 25px 40px;
+    min-height: 100vh;
+    .heading{
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 30px;
+        color: var(--accent);
+    }
+    .userprofile-section {
+        width: 100%;
+        background: var(--secondary-background);
+        // border: 1px solid var(--primary-border);
+        border-radius: 20px;
+        padding: 30px;
+        display: flex;
+        justify-content: space-between;
+    }
+    .the-form {
+        // margin-left: 10px;
+        width: calc(100% - 300px);
+        .form {
+            display: flex;
+            flex-direction: column;
+            .form-element {
+                padding: 5px 0px 0px 2px;
+                width: 100%;
+                .button {
+                  width: 100%;
+                }
+            }
+            input{
+              border-radius: 20px;
+              border: 0.5px solid var(--primary-border);
+              background: inherit;
+              padding: 10px 20px;
+              font-size: 14px;
+              width: 100%;
+              &:focus{
+                outline: none;
+              }
+            }
+            textarea{
+              border-radius: 20px;
+              border: 0.5px solid var(--primary-border);
+              background: inherit;
+              padding: 10px 20px;
+              font-size: 14px;
+              width: 100%;
+              height: 100px;
+              &:focus{
+                outline: none;
+              }
+            }
+        }
+    }
+    .side-icon{
+        .icon{
+            font-size: 200px;
+            color: var(--tertiary-background);
+        }
+    }
+}

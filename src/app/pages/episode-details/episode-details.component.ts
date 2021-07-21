@@ -69,14 +69,15 @@ export class EpisodeDetailsComponent implements OnInit {
       this.commonService.getEpisode(this.episodeId).subscribe((res: any) => {
         console.log(res);
         this.episodeData = res.episode;
-        this.episodeLoading = false;
-        this.getOtherEpisodes(this.episodeData.podcast_id);
         this.metatagsService.assignTags(
           this.episodeData.name,
           this.episodeData.summary,
           'https://aureal.one/episode/'+this.episodeData.id,
           this.episodeData.image,
         );
+        this.episodeLoading = false;
+        this.getOtherEpisodes(this.episodeData.podcast_id);
+
         // let categoryIds = '';
         // this.episodeData['Categories'].forEach(element => {
         //   categoryIds += (element.id + '_');

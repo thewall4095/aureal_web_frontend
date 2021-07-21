@@ -6,6 +6,7 @@ export const environment = {
   production: false,
   envName: 'dev',
   apiUrl: 'https://api.aureal.one',
+  SOCKET_ENDPOINT: 'http://api.aureal.one'
 };
 
 /*
