@@ -28,9 +28,9 @@ export class HiveAuthComponent implements OnInit {
 
 
   connectHive(toConnectGoogleAccount) {
-    let redirectUrl = 'http://localhost:4201/hive-token';
+    let redirectUrl = 'http://'+window.location.hostname+'/hive-token';
     if (environment.production) {
-      redirectUrl = 'https://aureal.one/hive-token';
+      redirectUrl = 'https://'+window.location.hostname+'/hive-token';
     }
     if (toConnectGoogleAccount) {
       redirectUrl += '-register';

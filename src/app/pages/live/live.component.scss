@@ -10,8 +10,8 @@
     }
     .userprofile-section {
         width: 100%;
-        background: var(--theme-background);
-        border: 1px solid var(--primary-border);
+        background: var(--secondary-background);
+        // border: 1px solid var(--primary-border);
         border-radius: 20px;
         padding: 30px;
         display: flex;
@@ -25,6 +25,42 @@
                 font-size: 200px;
                 color: var(--tertiary-background);
             }
+        }
+        .each-room{
+            background: var(--tertiary-background);
+            padding: 20px;
+            background: var(--tertiary-background);
+            margin: 20px 0;
+            border-radius: 10px;
+            img{
+                width: 100px;
+                height: 70px;
+                border-radius: 8px;
+            }
+            .user-image-avatar {
+                font: 300 44px/66px Roboto, roboto, "Helvetica Neue", sans-serif;
+                color: var(--accent);
+                text-transform: uppercase;
+                background-image: linear-gradient(to right, #52bff9, #5f51f6);
+                // background: linear-gradient(#694ed6, #c137a2, #e40046);
+                height: 70px;
+                width: 100px;
+                border-radius: 8px;
+                margin: 4px;
+                font-size: 1em;
+                -o-object-fit: cover;
+                object-fit: cover;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                -webkit-box-align: center;
+                align-items: center;
+                display: -webkit-box;
+                display: flex;
+                -webkit-box-pack: center;
+                justify-content: center;
+              }
         }
     }
 }

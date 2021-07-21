@@ -16,7 +16,6 @@ import { ShareIconsModule } from 'ngx-sharebuttons/icons';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import { MinuteSecondPipe } from 'src/app/pipes/minute-second.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AuthComponent } from 'src/app/components/auth/auth.component';
 import { PlayerComponent } from 'src/app/components/player/player.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -37,14 +36,14 @@ import { LoaderComponent } from 'src/app/components/loader/loader.component';
 import { FavoriteEpisodeComponent } from 'src/app/components/favorite-episode/favorite-episode.component';
 import { CarouselComponent } from 'src/app/components/carousel/carousel.component';
 import { LazyLoadImageModule } from 'ng-lazyload-image';
-
+import { NgxMatDatetimePickerModule, NgxMatTimepickerModule, NgxMatNativeDateModule } from '@angular-material-components/datetime-picker';
+import { MatMomentDateModule } from "@angular/material-moment-adapter";
 @NgModule({
   declarations: [
     DateAgoPipe, 
     SafeHtmlPipe,
     ImagePreloadDirective,
     MinuteSecondPipe,
-    AuthComponent,
     PlayerComponent,
     SocialShareComponent,
     CommentComponent,
@@ -88,14 +87,17 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     FormsModule,
     ReactiveFormsModule,
     MatListModule,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    MatMomentDateModule,
+    NgxMatNativeDateModule
   ],
   exports: [
     DateAgoPipe, 
     SafeHtmlPipe,
     ImagePreloadDirective,
     MinuteSecondPipe,
-    AuthComponent,
     PlayerComponent,
     SocialShareComponent,
     InfiniteScrollModule,
@@ -134,7 +136,11 @@ import { LazyLoadImageModule } from 'ng-lazyload-image';
     LoaderComponent,
     CarouselComponent,
     FavoriteEpisodeComponent,
-    LazyLoadImageModule
+    LazyLoadImageModule,
+    NgxMatDatetimePickerModule,
+    NgxMatTimepickerModule,
+    MatMomentDateModule,
+    NgxMatNativeDateModule
   ],
   providers: [
     { provide: MAT_DIALOG_DATA, useValue: {} },
