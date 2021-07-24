@@ -3,7 +3,6 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { RoomsService } from 'src/app/services/rooms.service';
 import { UserDetailsService } from 'src/app/services/user-details.service';
 declare var JitsiMeetExternalAPI: any;
-import {SocketService} from 'src/app/services/socket.service'
 @Component({
   selector: 'app-rooms-live',
   templateUrl: './rooms-live.component.html',
@@ -30,7 +29,6 @@ export class RoomsLiveComponent implements OnInit, AfterViewInit {
     public roomsService: RoomsService,
     private router: Router,
     public userDetailsService: UserDetailsService,
-    private socketService: SocketService
   ) {
     this.activatedRoute.paramMap.subscribe(paramMap => {
       this.roomId = paramMap.get('room_id');
@@ -39,7 +37,6 @@ export class RoomsLiveComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.socketService.checkConnection();
     let body = new FormData;
     body.append('roomid', this.roomId);
     this.roomsService.getRoomDetails(body).subscribe((res:any) => {
@@ -56,9 +53,10 @@ export class RoomsLiveComponent implements OnInit, AfterViewInit {
           if(this.roomData.isactive){
              this.renderRoom(false);
           }else{
+            this.timerr ? this.timerr.clearInterval() : '';
             this.timerr = setInterval(()=>{
               this.checkIfHostJoined();
-            },1000);
+            },5000);
           }
         }
         // this.userDetailsService.UserDetails = res.users;
@@ -67,6 +65,8 @@ export class RoomsLiveComponent implements OnInit, AfterViewInit {
   }
 
   renderRoom(isHost){
+    this.timerr ? this.timerr.clearInterval() : '';
+
     this.options = {
       roomName: this.roomData.title,
       width: 900,
