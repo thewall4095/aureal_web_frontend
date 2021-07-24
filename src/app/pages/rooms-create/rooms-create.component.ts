@@ -17,6 +17,8 @@ export class RoomsCreateComponent implements OnInit {
   public maxDate: moment.Moment;
   isImageUploading= false;
 
+
+  bannerFile;
   constructor(
     public roomsService: RoomsService,
     private router: Router,
@@ -38,32 +40,49 @@ export class RoomsCreateComponent implements OnInit {
     const file = event.target.files[0];
     if (file) {
       console.log(file);
-      this.isImageUploading = true;
-      let body = new FormData;
-      body.append('imageBlob', file, file.name);
-      this.userDetailsService.uploadImage(body).then((res: any) => {
-        console.log(res);
-        this.isImageUploading = false;
-        if (res.imageUrl) {
-          this.roomForm.controls['image'].setValue(res.imageUrl.url);
-        } else {
-        }
-      })
+      this.bannerFile = file;
+
     }
   }
 
 
   onSubmit(data) {
+    this.roomFormSubmitting=true;
     console.log(data);
-    let body = new FormData;
-    body.append('title', data.title);
-    body.append('description', data.description);
-    // body.append('scheduledtime', data.timedate);
-    body.append('imageurl', this.roomForm.get('image').value);
-    body.append('hostuserid', localStorage.getItem('userId'));
-    this.roomsService.createRoom(body).subscribe((res:any) => {
-      this.router.navigate(['rooms-live', res.data.roomid]);
-    });
+    this.isImageUploading = true;
+    if(this.bannerFile){
+      let body1 = new FormData;
+      body1.append('imageBlob', this.bannerFile, this.bannerFile.name);
+      this.userDetailsService.uploadImage(body1).then((res: any) => {
+        console.log(res);
+        this.isImageUploading = false;
+        if (res.imageUrl) {
+          this.roomForm.controls['image'].setValue(res.imageUrl.url);
+          let body = new FormData;
+          body.append('title', data.title);
+          body.append('description', data.description);
+          // body.append('scheduledtime', data.timedate);
+          body.append('imageurl', this.roomForm.get('image').value);
+          body.append('hostuserid', localStorage.getItem('userId'));
+          this.roomsService.createRoom(body).subscribe((res:any) => {
+            this.router.navigate(['rooms-live', res.data.roomid]);
+            this.roomFormSubmitting=false;
+          });
+        } else {
+        }
+      })
+    }else{
+      let body = new FormData;
+      body.append('title', data.title);
+      body.append('description', data.description);
+      // body.append('scheduledtime', data.timedate);
+      body.append('imageurl', this.roomForm.get('image').value);
+      body.append('hostuserid', localStorage.getItem('userId'));
+      this.roomsService.createRoom(body).subscribe((res:any) => {
+        this.router.navigate(['rooms-live', res.data.roomid]);
+      });
+    }
+
   }
 
 }

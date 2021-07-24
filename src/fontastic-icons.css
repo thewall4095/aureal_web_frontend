@@ -9,6 +9,7 @@
     url("fonticons/untitled-font-5.svg#untitled-font-5") format("svg");
   font-weight: normal;
   font-style: normal;
+
 }
 
 [data-icon]:before {
@@ -171,4 +172,13 @@
 }
 .icon-copy2:before {
   content: "\53";
+}
+.icon-web:before {
+  content: "\54";
+}
+.icon-linkedin:before {
+  content: "\55";
+}
+.icon-trash:before {
+  content: "\56";
 }

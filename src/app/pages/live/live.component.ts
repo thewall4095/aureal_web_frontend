@@ -25,12 +25,17 @@ export class LiveComponent implements OnInit {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     }
     this.metatagsService.defaultTags();
+
+  }
+
+  getUserRooms(){
     this.roomsService.getUserRooms(localStorage.getItem('userId')).subscribe((res:any) => {
       this.yourrooms = res.data;
     })
   }
 
   ngOnInit(): void {
+    this.getUserRooms();
   }
 
   navigateCreateRoom() {
@@ -65,5 +70,14 @@ export class LiveComponent implements OnInit {
 
   joinRoom(room){
     this.router.navigate(['rooms-live', room.roomid]);
+  }
+
+  deleteRoom(room){
+    let body = new FormData;
+    body.append('roomid', room.roomid);
+    body.append('userid', localStorage.getItem('userId'));
+    this.roomsService.deleteRoom(body).subscribe((res:any) => {
+      this.getUserRooms();
+    })
   }
 }

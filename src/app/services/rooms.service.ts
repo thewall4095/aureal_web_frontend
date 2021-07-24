@@ -26,4 +26,8 @@ export class RoomsService {
   getUserRooms(userId) {
     return this.api.get(this.apiUrl + '/public/getUserRooms?userid='+userId);
   }
+
+  deleteRoom(body) {
+    return this.api.post(this.apiUrl + '/private/deleteRoom', body);
+  }
 }
