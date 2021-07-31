@@ -140,6 +140,10 @@ export class CommonService {
     return this.api.get(this.apiUrl + '/public/getEpisode?episode_id=' + episode_id);
   }
 
+  getEpisodeShort(episode_id) {
+    return this.api.get(this.apiUrl + '/public/getEpisode?short_data=true&episode_id=' + episode_id);
+  }
+
 
   search(searchQuery, page, pageSize) {
     return this.api.get(this.apiUrl + '/public/search?page=' + page + '&pageSize=' + pageSize + '&word=' + searchQuery);

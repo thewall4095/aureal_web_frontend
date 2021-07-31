@@ -52,6 +52,10 @@ export class EpisodeDetailsComponent implements OnInit {
     @Inject(PLATFORM_ID) private platformId: Object
 
     ) {
+      this.activatedRoute.paramMap.subscribe(paramMap => {
+        this.episodeId = paramMap.get('episode_id');
+        this.getEpisodeShort();
+    })
 
   }
 
@@ -63,18 +67,11 @@ export class EpisodeDetailsComponent implements OnInit {
     }
 
     this.playingThis = false;
-    this.activatedRoute.paramMap.subscribe(paramMap => {
-      this.episodeId = paramMap.get('episode_id');
       this.episodeLoading = true;
       this.commonService.getEpisode(this.episodeId).subscribe((res: any) => {
         console.log(res);
         this.episodeData = res.episode;
-        this.metatagsService.assignTags(
-          this.episodeData.name,
-          this.episodeData.podcast_name,
-          'https://aureal.one/episode/'+this.episodeData.id,
-          this.episodeData.image ? this.episodeData.image : this.episodeData.podcast_image,
-        );
+    
         this.episodeLoading = false;
         this.getOtherEpisodes(this.episodeData.podcast_id);
 
@@ -107,7 +104,17 @@ export class EpisodeDetailsComponent implements OnInit {
         }); 
       });
       this.getComments();
-    })
+  }
+
+  getEpisodeShort(){
+    this.commonService.getEpisodeShort(this.episodeId).subscribe((res: any) => {
+      this.metatagsService.assignTags(
+        res.episode.name,
+        res.episode.summary,
+        'https://aureal.one/episode/'+res.episode.id,
+        res.episode.image ? res.episode.image : '',
+      );
+    });
   }
 
   getOtherEpisodes(podcast_id){

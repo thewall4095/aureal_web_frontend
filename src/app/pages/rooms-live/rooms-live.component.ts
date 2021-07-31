@@ -115,6 +115,7 @@ export class RoomsLiveComponent implements OnInit, AfterViewInit {
     }
     if(!isHost){
       this.options.configOverwrite.toolbarButtons = [
+        'microphone', 
         'closedcaptions',
         'fodeviceselection', 'hangup',
         'raisehand',
