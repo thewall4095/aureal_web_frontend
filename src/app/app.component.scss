@@ -3,7 +3,7 @@
   .logo{
       padding: 15px;
       height: 68px;
-      border-bottom: 0.5px solid var(--primary-border);
+      // border-bottom: 0.5px solid var(--primary-border);
       a{
           width: 100%;
           img{
@@ -82,6 +82,7 @@
   &.left{
     width: 100px;
     left: 0;
+    border-right: none;
     &.expanded{
       width: 250px;
     }
@@ -93,7 +94,7 @@
       width: 250px;
     }
   }
-  border-right: 0.5px solid var(--primary-border);
+  // border-right: 0.5px solid var(--primary-border);
   box-shadow: none;
   height: 100vh;
   
