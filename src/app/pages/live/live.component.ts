@@ -6,6 +6,8 @@ import { RoomsService } from 'src/app/services/rooms.service';
 import * as moment_ from 'moment';
 import { MatDialog } from "@angular/material/dialog";
 import { SocialShareComponent } from 'src/app/components/social-share/social-share.component';
+import { AuthService } from 'src/app/services/auth.service';
+import { HiveAuthComponent } from 'src/app/components/hive-auth/hive-auth.component';
 
 @Component({
   selector: 'app-live',
@@ -20,6 +22,7 @@ export class LiveComponent implements OnInit {
     private router: Router,
     private roomsService: RoomsService,
     public dialog: MatDialog,
+    public authService: AuthService,
   ) { 
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -39,7 +42,15 @@ export class LiveComponent implements OnInit {
   }
 
   navigateCreateRoom() {
-    this.router.navigate(['rooms-create']);
+    if (!this.authService.isAuthenticated()) {
+      if(window.innerWidth < 756) {
+        this.router.navigateByUrl('/home');
+      }else{
+        this.openHiveAuthDialog(true);
+      }
+    }else{
+      this.router.navigate(['rooms-create']);
+    }
   }
 
   getAvatarText(name) {
@@ -79,5 +90,15 @@ export class LiveComponent implements OnInit {
     this.roomsService.deleteRoom(body).subscribe((res:any) => {
       this.getUserRooms();
     })
+  }
+
+  openHiveAuthDialog(autoCheck: Boolean): void {
+    this.dialog.open(HiveAuthComponent, {
+      width: '800px',
+      // height:  '350px',
+      maxWidth: '95vw',
+      hasBackdrop: true,
+      data: { autoCheck: autoCheck }
+    });
   }
 }

@@ -60,7 +60,7 @@ export class HiveAuthComponent implements OnInit {
           height:  '400px',
           maxWidth: '95vw',
           hasBackdrop: true,
-          data: { type: type, connectHive : true }
+          data: { type: type, connectHive : false }
         });
       }
     });

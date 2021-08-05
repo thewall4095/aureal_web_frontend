@@ -1,10 +1,12 @@
 :root[theme=dark] {
-    --theme-background: #161616;
+    --theme-background: #2a2b2f;//#303237;//#161616;
     --theme-color: #E8E8E8;
     --primary: #5bc3ef;
-    --accent: #E8E8E8;
-    --accenttwo: #777777;
-    --secondary-background: #222222;
-    --tertiary-background: #3A3A3A;
+    --accent: #DCDDDE;//#E8E8E8;
+    --accenttwo: #8e9297;//#777777;
+    --primary-background: #1e1f21;//#2a2b2f;
+    --secondary-background: #34353a;//#393c42;//#222222;
+    --tertiary-background: #303237;//#393c42;//#2a2b2f;//#3A3A3A;
+    --input-background: #202225;
     --primary-border: #3A3A3A;
 }

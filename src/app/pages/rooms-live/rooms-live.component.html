@@ -1,25 +1,61 @@
 <div class="rooms-live-container">
     <div class="row">
-        <div class="col-8 d-flex align-center justify-content-center">
-            <div id="jitsi-iframe" [ngClass]="{'hide': toHide}"></div>
-            <div *ngIf="toHide" style="height: 100vh; margin:auto">
-             Waiting for the host to start...
+        <div class="col-12">
+            <div class="d-flex align-items-center justify-content-between mb-5">
+                <div class="d-flex align-items-center">
+                    <span class="icon icon-arrow-left-1 accenttwo mt-1 pointer" (click)="hangUp()" style="font-size: 18px;"></span>
+                    <span class="d-flex align-items-center">
+                        <h6 class="room-name pointer">{{roomData.title}}</h6>
+               
+                    </span>
+                </div>
+                <div>
+                    <span class="icon-share mt-1 ml-2 pointer accenttwo" (click)="shareReferral()" style="font-size: 20px;">
+                    </span>
+                </div>
             </div>
         </div>
-        <div class="col-4">
-            
+    </div>
+    <div class="row">
+        <div class="col-7 d-flex align-center justify-content-start">
+            <div id="aureal-iframe" class="aureal-iframe" [ngClass]="{'hide': toHide}"></div>
+            <div *ngIf="toHide" style="height: 100vh; margin:auto">
+                <app-loader></app-loader>
+            </div>
+        </div>
+        <div class="col-5">
+            <div class="stream-chat">
+                <div class="stream-heading">
+                    Live Chat
+                </div>
+                <div class="stream-content" id="stream-content">
+                    <div class="w100 d-flex align-items-center justify-content-center p-5" *ngIf="websocketService?.messages$?.length==0">
+                        Looks quite empty here!
+                    </div>
+                    <div *ngIf="websocketService?.messages$?.length!=0">
+                        <div *ngFor="let msg of websocketService.messages$;">
+                            <div class="each-chat-row">
+                                <div>
+                                    <img *ngIf="msg?.user_image" [src]="msg.user_image">
+                                    <img *ngIf="!msg?.user_image" src="https://aurealbucket.s3.us-east-2.amazonaws.com/thumbnailnew.png">
+                                </div>
+                                <div>
+                                    <div class="chat-author">
+                                        {{msg.user_name}}
+                                    </div>
+                                    <div class="chat-message">
+                                        {{msg.message}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input relative">
+                    <input [(ngModel)]="chatText" class="accenttwo" (keyup.enter)="triggerSearch($event)">
+                    <span class="icon icon-send accenttwo" (click)="triggerSearch(true)"></span>
+                </div>
+            </div>
         </div>
     </div>
-
-
-        <!--For Custom Controls-->
-        <!-- <div class="item-center">
-            <span>Custom Controls</span>
-        </div>
-        <div class="item-center"> 
-            <i (click)="executeCommand('toggleAudio')" class="fas fa-2x grey-color" [ngClass]="isAudioMuted ? 'fa-microphone-slash' : 'fa-microphone'" aria-hidden="true" title="Mute / Unmute"></i>
-            <i (click)="executeCommand('hangup')" class="fas fa-phone-slash fa-2x red-color" aria-hidden="true" title="Leave"></i>
-            <i (click)="executeCommand('toggleVideo')" class="fas fa-2x grey-color" [ngClass]="isVideoMuted ? 'fa-video-slash' : 'fa-video'" aria-hidden="true" title="Start / Stop camera"></i>
-            <i (click)="executeCommand('toggleShareScreen')" class="fas fa-film fa-2x grey-color" aria-hidden="true" title="Share your screen"></i>
-        </div> -->
 </div>

@@ -56,7 +56,7 @@ export class PodcastProfileComponent implements OnInit {
     if (isPlatformBrowser(this.platformId)) {
       setTimeout(()=>{
         window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-      },100)
+      },3000)
     }
     this.progress = true;
     this.activatedRoute.paramMap.subscribe(paramMap => {

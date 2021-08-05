@@ -28,11 +28,18 @@ export class RoomsCreateComponent implements OnInit {
   ngOnInit(): void {
     this.roomForm = new FormGroup({
       'title': new FormControl('', [Validators.required]),
+      'toHive': new FormControl(false, []),
       'description': new FormControl('', []),
       // 'timedate': new FormControl('', []),
       // 'type': new FormControl('public', []),
       'image': new FormControl('', []),
     });
+  }
+
+  checkRoomTitle(control) {
+    // let enteredPassword = control.value
+    // let passwordCheck = /^/([^/?&:]+)$/;
+    // return (!passwordCheck.test(enteredPassword) && enteredPassword) ? { 'requirements': true } : null;
   }
 
 

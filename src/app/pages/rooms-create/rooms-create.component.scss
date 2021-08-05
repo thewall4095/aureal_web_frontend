@@ -12,7 +12,7 @@
         width: 100%;
         background: var(--secondary-background);
         // border: 1px solid var(--primary-border);
-        border-radius: 20px;
+        border-radius: 8px;
         padding: 30px;
         display: flex;
         justify-content: space-between;
@@ -31,9 +31,9 @@
                 }
             }
             input{
-              border-radius: 20px;
+              border-radius: 8px;
               border: 0.5px solid var(--primary-border);
-              background: inherit;
+              background: var(--input-background);
               padding: 10px 20px;
               font-size: 14px;
               width: 100%;
@@ -42,9 +42,9 @@
               }
             }
             textarea{
-              border-radius: 20px;
+              border-radius: 8px;
               border: 0.5px solid var(--primary-border);
-              background: inherit;
+              background: var(--input-background);
               padding: 10px 20px;
               font-size: 14px;
               width: 100%;
