@@ -1,6 +1,83 @@
 .rooms-live-container{
-    height: 100vh;
+    width: 100%;
+    padding: 25px 40px;
+    min-height: 100vh;
+    .room-name {
+        color: var(--accent);
+        font-size: 18px !important;
+        font-weight: 500;
+        margin-bottom: 0px;
+        margin-left: 10px;
+        @media (max-width: 576px) {
+          font-size: 13px !important;
+        }
+    }
+    .aureal-iframe{
+        width: 100%;
+        min-height: 70vh;
+    }
+    .stream-chat{
+        background: var(--tertiary-background);
+        border-radius: 8px;
+        position: relative;
+        min-height: 70vh;
+        // padding: 20px;
+        .stream-heading{
+            padding: 20px;
+            border-bottom: 1px solid var(--primary-border);
+            font-size: 18px;
+            color: var(--accenttwo);
+        }
+        .stream-content{
+            overflow-y: scroll;
+            height: calc(70vh - 120px);
+            padding-bottom: 50px;
+            .each-chat-row{
+                display: flex;
+                padding: 10px 20px;
+                img{
+                    width: 30px;
+                    height: 30px;
+                    margin-right: 10px;
+                }
+                .chat-author{
+                    line-height: 22px;
+                    font-weight: 600;
+                    font-size: 14px;
+                }
+                .chat-message{
+                    line-height: 22px;
+                    font-size: 14px;
+                }
+            }
+        }
+        .chat-input {
+            border-top: 1px solid var(--primary-border);
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 10px;
+            input {
+                border-radius: 8px;
+                border: 0.5px solid var(--primary-border);
+                background: var(--primary-background);
+                padding: 5px 15px;
+                font-size: 14px;
+                width: 100%;
+                color: var(--accent);
+            }
+            .icon {
+                position: absolute;
+                right: 20px;
+                font-size: 20px;
+                top: 15px;
+                cursor: pointer;
+                color: var(--accenttwo);
+            }    
+        }
+    }
 }
 .hide{
     display: none;
 }
+

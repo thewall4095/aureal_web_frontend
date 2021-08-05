@@ -52,6 +52,11 @@
                                     </span>
                                     Delete Room
                                 </div>
+                                <div class="invite-but ml-3" *ngIf="room.recordingurl">
+                                    <span class="icon-check mt-1 mr-2">
+                                    </span>
+                                    <a [href]="room.recordingurl" download>Preview Recording</a>
+                                </div>
                             </div>
                         </div>
                         <div>

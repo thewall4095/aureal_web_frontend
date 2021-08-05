@@ -157,7 +157,7 @@ export class EpisodeDetailsComponent implements OnInit {
     this.playerService.setCurrentModule(null);
     this.audioService.playStream(null);
     this.stop();
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
     this.state = {
       playing: false,
       readableCurrentTime: '',
@@ -315,7 +315,7 @@ export class EpisodeDetailsComponent implements OnInit {
     // remove listener
     // this.globalListenFunc();
     if(this.subscription)
-      this.subscription.unsubscribe();
+      this.subscription?.unsubscribe();
   }
 
 
