@@ -13,6 +13,8 @@ import { AuthService } from 'src/app/services/auth.service';
 import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 import { MetatagsService } from 'src/app/services/metatags.service';
 import { Clipboard } from "@angular/cdk/clipboard"
+import { RoomsService } from 'src/app/services/rooms.service';
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -21,6 +23,7 @@ import { Clipboard } from "@angular/cdk/clipboard"
 export class UserProfileComponent implements OnInit {
   userDetails;
   podcasts = [];
+  rooms = [];
   isImageUploading: Boolean = false;
   currentTab = 'Podcasts';
   communityTab = 'All Communities';
@@ -55,7 +58,8 @@ export class UserProfileComponent implements OnInit {
     public authService: AuthService,
     @Inject(PLATFORM_ID) private platformId: Object,
     public metatagsService: MetatagsService,
-    private clipboard: Clipboard
+    private clipboard: Clipboard,
+    private roomsService: RoomsService,
   ) {
     if (isPlatformBrowser(this.platformId)) {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -74,26 +78,14 @@ export class UserProfileComponent implements OnInit {
     });
 
     this.getUserDetails();
+    this.roomsService.getUserRooms(localStorage.getItem('userId')).subscribe((res:any) => {
+      this.rooms = res.data;
+    })
     this.rssFeedDetailsService.getSubmittedRssFeeds().subscribe((res: any) => {
       if (res.podcasts) {
         this.podcasts = res.podcasts;
-        // this.podcasts.forEach(podcast => {
-        //   podcast.Episodes.forEach(element => {
-        //     element['Categories'] = podcast['Categories'];
-        //     element['podcast_name'] = podcast['name'];
-        //     element['author'] = podcast['author'];
-        //   });
-        // })
       }
     });
-    // this.userDetailsService.getUserHiveDetails().then((res: any) => {
-    //   console.log('hererere', res.client.account.reward_vesting_hive.split(' ')[0]);
-    //   if (res.client && res.client.account.reward_hive_balance.split(' ')[0] != '0.000' && res.client.account.reward_hbd_balance.split(' ')[0] != '0.000' && res.client.account.reward_vesting_hive.split(' ')[0] != '0.000') {
-    //     this.unclaimedText = `Unclaimed balance for ${localStorage.getItem('hive_username')}: ${res.client.account.reward_hive_balance}, ${res.client.account.reward_hbd_balance}, ${res.client.account.reward_vesting_hive.split(' ')[0]} HP = ${res.client.account.reward_vesting_balance}`;
-    //   } else {
-    //     ;
-    //   }
-    // });
     this.userDetailsService.getPersonalReferralLink().then((res:any) =>{
       console.log(res);
       if(res.data.code)
@@ -266,6 +258,14 @@ export class UserProfileComponent implements OnInit {
 
   redirectToPodcast(data) {
     this.router.navigateByUrl('podcast/'+data.id);
+  }
+
+  redirectToRoom(room) {
+    this.router.navigate(['rooms-live', room.roomid]);
+  }
+  
+  redirectToCreateRoom() {
+    this.router.navigate(['rooms-create']);
   }
 
   onSubmit(data) {

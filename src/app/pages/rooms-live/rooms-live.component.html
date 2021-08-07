@@ -5,7 +5,7 @@
                 <div class="d-flex align-items-center">
                     <span class="icon icon-arrow-left-1 accenttwo mt-1 pointer" (click)="hangUp()" style="font-size: 18px;"></span>
                     <span class="d-flex align-items-center">
-                        <h6 class="room-name pointer">{{roomData.title}}</h6>
+                        <h6 class="room-name pointer">{{roomData?.title}}</h6>
                
                     </span>
                 </div>
@@ -29,11 +29,11 @@
                     Live Chat
                 </div>
                 <div class="stream-content" id="stream-content">
-                    <div class="w100 d-flex align-items-center justify-content-center p-5" *ngIf="websocketService?.messages$?.length==0">
+                    <div class="w100 d-flex align-items-center justify-content-center p-5" *ngIf="socketService?.messages$?.length==0">
                         Looks quite empty here!
                     </div>
-                    <div *ngIf="websocketService?.messages$?.length!=0">
-                        <div *ngFor="let msg of websocketService.messages$;">
+                    <div *ngIf="socketService?.messages$?.length!=0">
+                        <div *ngFor="let msg of socketService.messages$;">
                             <div class="each-chat-row">
                                 <div>
                                     <img *ngIf="msg?.user_image" [src]="msg.user_image">

@@ -3,7 +3,8 @@ import { ActivatedRoute, Router, NavigationEnd } from '@angular/router';
 import { RoomsService } from 'src/app/services/rooms.service';
 import { UserDetailsService } from 'src/app/services/user-details.service';
 declare var JitsiMeetExternalAPI: any;
-import { WebsocketService } from 'src/app/services/websocket.service';
+// import { WebsocketService } from 'src/app/services/websocket.service';
+import { SocketioService } from 'src/app/socketio.service';
 import { SocialShareComponent } from 'src/app/components/social-share/social-share.component';
 import { MatDialog } from "@angular/material/dialog";
 
@@ -11,7 +12,7 @@ import { MatDialog } from "@angular/material/dialog";
   selector: 'app-rooms-live',
   templateUrl: './rooms-live.component.html',
   styleUrls: ['./rooms-live.component.scss'],
-  providers: [WebsocketService]
+  providers: [SocketioService]
 })
 export class RoomsLiveComponent implements OnInit, AfterViewInit {
   roomId;
@@ -38,7 +39,7 @@ export class RoomsLiveComponent implements OnInit, AfterViewInit {
     public roomsService: RoomsService,
     private router: Router,
     public userDetailsService: UserDetailsService,
-    public websocketService: WebsocketService
+    public socketService: SocketioService
   ) {
     this.activatedRoute.paramMap.subscribe(paramMap => {
       this.roomId = paramMap.get('room_id');
@@ -47,7 +48,8 @@ export class RoomsLiveComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    this.websocketService.connect(this.roomId);
+    // this.websocketService?.connect(this.roomId);
+    this.socketService.setupSocketConnection(this.roomId);
     let body = new FormData;
     body.append('roomid', this.roomId);
     this.roomsService.getRoomDetails(body).subscribe((res:any) => {
@@ -62,7 +64,7 @@ export class RoomsLiveComponent implements OnInit, AfterViewInit {
           });
         }else{
           if(this.roomData.isactive){
-            //  this.renderRoom(false);
+             this.renderRoom(false);
           }else{
             this.timerr ? this.timerr.clearInterval() : '';
             this.timerr = setInterval(()=>{
@@ -179,10 +181,10 @@ export class RoomsLiveComponent implements OnInit, AfterViewInit {
     // this.renderRoom();
   }
 
-  sendtest(){
-    console.log('sent');
-    this.websocketService.sendMessage('testtesttestmessagefromclient');
-  }
+  // sendtest(){
+  //   console.log('sent');
+  //   this.websocketService?.sendMessage('testtesttestmessagefromclient');
+  // }
 
   async checkAllParticipants(){
     let data:any;
@@ -314,7 +316,8 @@ export class RoomsLiveComponent implements OnInit, AfterViewInit {
         roomid : this.roomData.roomid,
         message: this.chatText
       };
-      this.websocketService.sendMessage(messageBody);
+      this.socketService.sendMessage(messageBody);
+      // this.websocketService?.sendMessage(messageBody);
       // document.getElementById('stream-content')?.scrollIntoView(
       //   { behavior: "smooth", block: "end", inline: "start" }
       // );
@@ -325,7 +328,8 @@ export class RoomsLiveComponent implements OnInit, AfterViewInit {
   }
 
   ngOnDestroy(){
-    this.websocketService.close();
+    this.socketService.disconnect();
+    // this.websocketService?.close();
   }
 
   shareReferral(){

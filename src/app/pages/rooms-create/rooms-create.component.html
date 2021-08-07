@@ -25,34 +25,22 @@
                 </div>
                 <div class="row mt-4">
                     <div class="col-6">
-                        <!-- <mat-form-field class="form-element">
-                            <label class="accenttwo">Schedule at</label>
-                            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" formControlName="timedate"
-                               [min]="minDate" [max]="maxDate">
-                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <ngx-mat-datetime-picker #picker
-                            >
-                            </ngx-mat-datetime-picker>
-                         </mat-form-field> -->
-                         <!-- <mat-form-field class="form-element"> -->
-                            <label class="accenttwo">Publish to Hive</label>
-                            <!-- <input matInput formControlName="title"> -->
-                            <div class="toogle-but">
-                                <input type="checkbox" id="switch" formControlName="toHive"/><label for="switch">Toggle</label>
-                            </div>
-                            <div>
-                                <p class="accenttwo" style="font-size: 12px !important;" *ngIf="roomForm.controls['toHive'].value">*This room and related details will be posted to HIVE blockchain.</p>
-                            </div>
-                        <!-- </mat-form-field> -->
-                    </div>
-                    <!-- <div class="col-6">
                         <div class="form-element">
                             <label class="accenttwo">Banner Image</label>
-                            <input type='file' (change)="readURL($event);" >
+                            <input type='file' (change)="readURL($event);" accept="image/png, image/gif, image/jpeg">
                         </div>
-                    </div> -->
+                    </div>
+                    <div class="col-6">
+                        <label class="accenttwo">Publish to Hive</label>
+                        <div class="toogle-but">
+                            <input type="checkbox" id="switch" formControlName="toHive"/><label for="switch">Toggle</label>
+                        </div>
+                        <div>
+                            <p class="accenttwo" style="font-size: 12px !important;" *ngIf="roomForm.controls['toHive'].value">*This room and related details will be posted to HIVE blockchain.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-element">
+                <div class="form-element mt-5">
                     <div class="d-flex align-items-center">
                         <button class="primary-but" type="submit" [disabled]="!roomForm.valid || roomFormSubmitting">
                             Create
@@ -67,7 +55,4 @@
             <span class="icon icon-stream-black-24dp"></span>
         </div>
     </div>
-
-
-
 </div>

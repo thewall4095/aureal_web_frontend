@@ -683,7 +683,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 }
 
 .toogle-but{
-  margin-top: -25px;
+  margin-top: -20px;
   input[type=checkbox]{
     height: 0;
     width: 0;
@@ -730,4 +730,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 iframe{
   border-radius: 8px !important;
   border: none;
+}
+
+textarea{
+  resize: none !important;
+}
+
+.file-input{
+  opacity: 0;
 }

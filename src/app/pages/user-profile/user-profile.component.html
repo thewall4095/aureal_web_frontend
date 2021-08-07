@@ -166,6 +166,38 @@
         </div>
     </div>
     <div class="userpodcasts-section">
+        <div class="heading">Your Rooms</div>
+        <div class="d-flex">
+            <div class="podcast-card" *ngFor="let room of rooms; let podcastIndex = index;">
+                <img defaultImage="https://aurealbucket.s3.us-east-2.amazonaws.com/thumbnailnew.png" [lazyLoad]="room.imageurl" class="lazyload">
+                <div class="flex flex-column">
+                  <div class="podcast-name">
+                    {{room.title}}
+                  </div>
+                  <div>
+                      <span class="vote-count" (click)="redirectToRoom(room)"> 
+                        <span>
+                            Go to room
+                        </span>  
+                        <span class="icon icon-right-open-big">
+                        </span>
+                      </span>
+                  </div>
+                </div>
+            </div>
+            <div class="podcast-card" (click)="redirectToCreateRoom()">
+                <div class="dummy-image">
+                    <span class="icon icon-plus-square-o"></span>
+                </div>
+                <div class="flex flex-column">
+                  <div class="podcast-name">
+                   Create Room
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="userpodcasts-section">
         <div class="heading">Preferences</div>
         <div class="userprofile-section">
             <div class="sub-heading">

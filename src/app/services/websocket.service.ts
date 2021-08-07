@@ -41,8 +41,8 @@ export class WebsocketService {
     return webSocket(WS_ENDPOINT);
   }
   sendMessage(msg: any) {
-    this.socket$.next(msg);
+    this.socket$?.next(msg);
   }
   close() {
-    this.socket$.complete(); }
+    this.socket$?.complete(); }
 }

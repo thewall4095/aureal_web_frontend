@@ -36,19 +36,11 @@ export class RoomsCreateComponent implements OnInit {
     });
   }
 
-  checkRoomTitle(control) {
-    // let enteredPassword = control.value
-    // let passwordCheck = /^/([^/?&:]+)$/;
-    // return (!passwordCheck.test(enteredPassword) && enteredPassword) ? { 'requirements': true } : null;
-  }
-
-
   readURL(event){
     const file = event.target.files[0];
     if (file) {
       console.log(file);
       this.bannerFile = file;
-
     }
   }
 
@@ -69,6 +61,7 @@ export class RoomsCreateComponent implements OnInit {
           body.append('title', data.title);
           body.append('description', data.description);
           // body.append('scheduledtime', data.timedate);
+          body.append('toHive', data.toHive);
           body.append('imageurl', this.roomForm.get('image').value);
           body.append('hostuserid', localStorage.getItem('userId'));
           this.roomsService.createRoom(body).subscribe((res:any) => {

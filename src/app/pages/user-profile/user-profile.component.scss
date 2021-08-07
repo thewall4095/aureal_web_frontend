@@ -214,6 +214,9 @@
   padding: 20px;
   background: var(--secondary-background);
   margin-right: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   img{
     width: 70%;
     margin-bottom: 10px;
