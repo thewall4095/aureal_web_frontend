@@ -40,12 +40,8 @@ export class LandingComponent implements OnInit {
     public router: Router,
     public authService: AuthService,
     private themeService: ThemeService,
-    @Inject(PLATFORM_ID) private platformId: Object,
     public metatagsService: MetatagsService,
   ) { 
-    if (isPlatformBrowser(this.platformId)) {
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    }
     this.metatagsService.defaultTags();
   }
 

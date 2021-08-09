@@ -60,12 +60,6 @@ export class EpisodeDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
-      setTimeout(()=>{
-        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-      },100)
-    }
-
     this.playingThis = false;
       this.episodeLoading = true;
       this.commonService.getEpisode(this.episodeId).subscribe((res: any) => {

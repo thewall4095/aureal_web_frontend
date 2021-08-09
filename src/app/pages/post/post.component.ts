@@ -42,12 +42,8 @@ export class PostComponent implements OnInit {
     public router: Router,
     public dialog: MatDialog,
     private commonService: CommonService,
-    @Inject(PLATFORM_ID) private platformId: Object,
     public metatagsService: MetatagsService,
     ) {
-      if (isPlatformBrowser(this.platformId)) {
-        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-      }
       this.metatagsService.defaultTags();
     }
 

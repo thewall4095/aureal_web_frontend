@@ -17,18 +17,13 @@ import { HiveAuthComponent } from 'src/app/components/hive-auth/hive-auth.compon
 export class LiveComponent implements OnInit {
   yourrooms;
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
     public metatagsService: MetatagsService,
     private router: Router,
     private roomsService: RoomsService,
     public dialog: MatDialog,
     public authService: AuthService,
   ) { 
-    if (isPlatformBrowser(this.platformId)) {
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    }
     this.metatagsService.defaultTags();
-
   }
 
   getUserRooms(){
@@ -51,6 +46,10 @@ export class LiveComponent implements OnInit {
     }else{
       this.router.navigate(['rooms-create']);
     }
+  }
+
+  publishRoom(room){
+    
   }
 
   getAvatarText(name) {

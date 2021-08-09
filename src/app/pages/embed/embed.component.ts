@@ -19,9 +19,6 @@ export class EmbedComponent implements OnInit {
     private domSanitizer: DomSanitizer,
     @Inject(PLATFORM_ID) private platformId: Object
   ) { 
-    if (isPlatformBrowser(this.platformId)) {
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    }
   }
 
   ngOnInit(): void {

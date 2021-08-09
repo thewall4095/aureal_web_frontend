@@ -37,15 +37,16 @@ const routes: Routes = [
   { path: 'episode/:episode_id', component: EpisodeDetailsComponent },
   { path: 'hive-onboarding', component: HiveonboardComponent },
   { path: 'about-us', component: AboutUsComponent },
-  { path: 'referral', component: ReferralComponent},
+  { path: 'referral', component: ReferralComponent },
   { path: 'rooms-create', component: RoomsCreateComponent },
   { path: 'rooms-live/:room_id', component: RoomsLiveComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabled'
-})],
+    initialNavigation: 'enabled',
+    scrollPositionRestoration: 'enabled'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

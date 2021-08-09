@@ -61,9 +61,6 @@ export class UserProfileComponent implements OnInit {
     private clipboard: Clipboard,
     private roomsService: RoomsService,
   ) {
-    if (isPlatformBrowser(this.platformId)) {
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-    }
     this.metatagsService.defaultTags();
   }
 

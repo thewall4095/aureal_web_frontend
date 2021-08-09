@@ -74,7 +74,7 @@ export class AppComponent implements OnInit {
     private themeService: ThemeService,
     private activatedRoute: ActivatedRoute,
     public userDetailsService: UserDetailsService,
-    private authService: AuthService
+    private authService: AuthService,
     ) {
 
       if(!this.authService.isAuthenticated()){
@@ -231,5 +231,9 @@ export class AppComponent implements OnInit {
 
   get dark() {
     return this.themeService.theme === 'dark';
+  }
+
+  onActivate(e, outlet){
+    outlet.scrollTop = 0;
   }
 }
